@@ -8,7 +8,7 @@ export const getWhatsAppCheckoutLink = async (message: string) => {
         .eq("id", 1)
         .single();
 
-    const phoneNumber = data?.whatsapp_number?.replace(/\s+/g, '') || "";
+    const phoneNumber = data?.whatsapp_number?.replace(/\D/g, '') || "917510988326";
     return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 };
 

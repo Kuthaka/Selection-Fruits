@@ -24,7 +24,7 @@ export default function Footer() {
 
     // Fallbacks
     const displayEmail = settings?.email || "pronto@starplusfoods.com";
-    const displayMobile = settings?.mobile_number || "+91 84800 05280";
+    const displayMobile = settings?.mobile_number || "+91 75109 88326";
 
     return (
         <footer className="w-full bg-[#5c190d] text-white">
@@ -145,11 +145,9 @@ export default function Footer() {
                                 <Youtube className="w-5 h-5" />
                             </a>
                         )}
-                        {settings?.whatsapp_number && (
-                            <a href={`https://wa.me/${settings.whatsapp_number.replace(/\D/g, '')}`} target="_blank" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-green-500 transition-all hover:scale-110 shadow-lg">
-                                <MessageCircle className="w-5 h-5" />
-                            </a>
-                        )}
+                        <a href={`https://wa.me/${(settings?.whatsapp_number || displayMobile).replace(/\D/g, '')}`} target="_blank" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-green-500 transition-all hover:scale-110 shadow-lg">
+                            <MessageCircle className="w-5 h-5" />
+                        </a>
                     </div>
                 </div>
             </div>

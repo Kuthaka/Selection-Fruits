@@ -77,7 +77,7 @@ export default function ContactPage() {
                                             </div>
                                             <div>
                                                 <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Call Us</p>
-                                                <p className="text-brand-teal font-bold">{settings?.mobile_number || "+91 84800 05280"}</p>
+                                                <p className="text-brand-teal font-bold">{settings?.mobile_number || "+91 75109 88326"}</p>
                                             </div>
                                         </div>
                                         <div className="flex items-center gap-4">
@@ -95,7 +95,7 @@ export default function ContactPage() {
                                             </div>
                                             <div>
                                                 <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">WhatsApp</p>
-                                                <p className="text-brand-teal font-bold">{settings?.whatsapp_number || "Direct Chat"}</p>
+                                                <p className="text-brand-teal font-bold">{settings?.whatsapp_number || "+91 75109 88326"}</p>
                                             </div>
                                         </div>
                                     </div>

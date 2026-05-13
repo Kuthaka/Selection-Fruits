@@ -53,14 +53,14 @@ export default function AdminSettingsPage() {
                 const defaultSettings: Partial<SiteSettings> = {
                     id: 1,
                     site_name: "STAR PLUS FOODS",
-                    whatsapp_number: "",
-                    mobile_number: "",
-                    email: "",
+                    whatsapp_number: "+91 75109 88326",
+                    mobile_number: "+91 75109 88326",
+                    email: "pronto@starplusfoods.com",
                     instagram_url: "",
                     facebook_url: "",
                     youtube_url: "",
-                    address: "",
-                    top_banner_text: ""
+                    address: "Star Plus Foods, Industrial Estate, Cuttack, Odisha - 753010",
+                    top_banner_text: "Free Shipping across India on Orders above Rs 500/-"
                 };
                 setSettings(defaultSettings as SiteSettings);
             }
