@@ -274,8 +274,13 @@ export default function Home() {
 
                       <div className="flex items-center justify-between mt-2">
                         <div className="flex flex-col">
-                          <span className="text-gray-400 text-[10px] font-bold uppercase leading-none mb-1">Price</span>
-                          <span className="text-brand-teal font-black text-lg md:text-xl">₹{product.price}</span>
+                          <span className="text-gray-400 text-[10px] font-bold uppercase mb-0.5">Price</span>
+                          <div className="flex items-center gap-2">
+                            <span className="text-brand-teal font-black text-lg md:text-xl">₹{product.offer_price || product.price}</span>
+                            {product.offer_price && (
+                              <span className="text-[10px] font-bold text-gray-300 line-through">₹{product.regular_price}</span>
+                            )}
+                          </div>
                         </div>
                         <button
                           onClick={() => useCartStore.getState().addItem(product)}

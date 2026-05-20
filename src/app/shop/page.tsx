@@ -235,8 +235,13 @@ export default function Shop() {
                                             </div>
                                             <div className="flex items-center justify-between mt-2">
                                                 <div className="flex flex-col">
-                                                    <span className="text-gray-400 text-[10px] font-bold uppercase mb-1">Price</span>
-                                                    <span className="text-brand-teal font-black text-lg md:text-xl">₹{product.price}</span>
+                                                    <span className="text-gray-400 text-[10px] font-bold uppercase mb-0.5">Price</span>
+                                                    <div className="flex items-center gap-2">
+                                                        <span className="text-brand-teal font-black text-lg md:text-xl">₹{product.offer_price || product.price}</span>
+                                                        {product.offer_price && (
+                                                            <span className="text-[10px] md:text-xs font-bold text-gray-300 line-through">₹{product.regular_price}</span>
+                                                        )}
+                                                    </div>
                                                 </div>
                                                 <button
                                                     onClick={() => useCartStore.getState().addItem(product)}
@@ -276,7 +281,12 @@ export default function Shop() {
                                                 <span className="text-[10px] text-gray-400 font-bold ml-1">(4.9)</span>
                                             </div>
                                             <div className="flex items-center justify-center md:justify-between gap-4">
-                                                <span className="text-brand-teal font-black text-2xl whitespace-nowrap">₹{product.price}</span>
+                                                <div className="flex items-center gap-3">
+                                                    <span className="text-brand-teal font-black text-2xl whitespace-nowrap">₹{product.offer_price || product.price}</span>
+                                                    {product.offer_price && (
+                                                        <span className="text-sm font-bold text-gray-300 line-through">₹{product.regular_price}</span>
+                                                    )}
+                                                </div>
                                                 <button className="h-10 w-10 bg-brand-teal text-white rounded-xl flex items-center justify-center hover:bg-brand-orange transition-all hover:scale-110">
                                                     <ShoppingBag className="w-5 h-5" />
                                                 </button>

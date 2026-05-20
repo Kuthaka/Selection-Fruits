@@ -197,8 +197,11 @@ export default function AdminProductsPage() {
                                 <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{product.size_grams}g Net Weight</p>
 
                                 <div className="mt-4 flex items-center justify-between">
-                                    <div className="text-xl font-black text-brand-teal tracking-tighter">
-                                        ₹{product.price}
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-brand-teal font-black">₹{product.offer_price || product.price}</span>
+                                        {product.offer_price && (
+                                            <span className="text-[10px] text-gray-300 line-through font-bold">₹{product.regular_price}</span>
+                                        )}
                                     </div>
                                     <Link
                                         href={`/admin/products/${product.id}`}

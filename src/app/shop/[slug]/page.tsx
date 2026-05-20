@@ -189,8 +189,10 @@ export default function ProductDetails() {
                             </div>
 
                             <div className="flex items-baseline gap-4">
-                                <span className="text-5xl font-black text-brand-teal tracking-tighter">₹{product.price}</span>
-                                <span className="text-lg font-bold text-gray-300 line-through">₹{Math.round(product.price * 1.5)}</span>
+                                <span className="text-5xl font-black text-brand-teal tracking-tighter">₹{product.offer_price || product.price}</span>
+                                {product.offer_price && (
+                                    <span className="text-lg font-bold text-gray-300 line-through">₹{product.regular_price}</span>
+                                )}
                             </div>
 
                             <p className="text-brand-teal/60 text-lg leading-relaxed font-medium">
@@ -307,7 +309,12 @@ export default function ProductDetails() {
                                         </div>
                                         <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{p.category}</span>
                                         <h4 className="text-brand-teal font-black text-lg uppercase tracking-tight mt-1 group-hover:text-brand-orange transition-colors">{p.name}</h4>
-                                        <p className="text-xl font-black text-brand-teal mt-4">₹{p.price}</p>
+                                        <div className="flex items-center gap-3 mt-4">
+                                            <p className="text-xl font-black text-brand-teal">₹{p.offer_price || p.price}</p>
+                                            {p.offer_price && (
+                                                <p className="text-xs font-bold text-gray-300 line-through">₹{p.regular_price}</p>
+                                            )}
+                                        </div>
                                     </div>
                                 ))}
                             </div>

@@ -45,7 +45,8 @@ export default function ProductDetailsPage() {
     const [editName, setEditName] = useState("");
     const [editSlug, setEditSlug] = useState("");
     const [editCategory, setEditCategory] = useState("");
-    const [editPrice, setEditPrice] = useState("");
+    const [editRegularPrice, setEditRegularPrice] = useState("");
+    const [editOfferPrice, setEditOfferPrice] = useState("");
     const [editSize, setEditSize] = useState("");
     const [editImages, setEditImages] = useState<(string | null)[]>([null, null, null, null]);
     const [editFiles, setEditFiles] = useState<(Blob | null)[]>([null, null, null, null]);
@@ -97,7 +98,8 @@ export default function ProductDetailsPage() {
             setEditName(data.name);
             setEditSlug(data.slug || "");
             setEditCategory(data.category);
-            setEditPrice(data.price.toString());
+            setEditRegularPrice(data.regular_price?.toString() || data.price.toString());
+            setEditOfferPrice(data.offer_price?.toString() || "");
             setEditSize(data.size_grams.toString());
 
             const prodImages = [...(data.images || [])];
@@ -205,7 +207,9 @@ export default function ProductDetailsPage() {
                     name: editName,
                     slug: editSlug,
                     category: editCategory,
-                    price: parseFloat(editPrice),
+                    regular_price: parseFloat(editRegularPrice),
+                    offer_price: editOfferPrice ? parseFloat(editOfferPrice) : null,
+                    price: editOfferPrice ? parseFloat(editOfferPrice) : parseFloat(editRegularPrice),
                     size_grams: parseInt(editSize),
                     images: cleanImageUrls
                 })
@@ -377,17 +381,32 @@ export default function ProductDetailsPage() {
                                     </div>
                                 </div>
 
-                                <div className="space-y-2">
-                                    <label className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] ml-2">Price Strategy (₹)</label>
-                                    <div className="relative">
-                                        <input
-                                            type="number"
-                                            step="0.01"
-                                            value={editPrice}
-                                            onChange={(e) => setEditPrice(e.target.value)}
-                                            className="w-full h-20 bg-brand-teal text-white border-none rounded-2xl px-14 text-2xl font-black outline-none"
-                                        />
-                                        <span className="absolute left-6 top-1/2 -translate-y-1/2 text-xl font-black text-white/40">₹</span>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                    <div className="space-y-2">
+                                        <label className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] ml-2">Regular Price (₹)</label>
+                                        <div className="relative">
+                                            <input
+                                                type="number"
+                                                step="0.01"
+                                                value={editRegularPrice}
+                                                onChange={(e) => setEditRegularPrice(e.target.value)}
+                                                className="w-full h-16 bg-brand-teal text-white border-none rounded-2xl px-14 text-xl font-black outline-none"
+                                            />
+                                            <span className="absolute left-6 top-1/2 -translate-y-1/2 text-lg font-black text-white/40">₹</span>
+                                        </div>
+                                    </div>
+                                    <div className="space-y-2">
+                                        <label className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] ml-2">Offer Price (₹)</label>
+                                        <div className="relative">
+                                            <input
+                                                type="number"
+                                                step="0.01"
+                                                value={editOfferPrice}
+                                                onChange={(e) => setEditOfferPrice(e.target.value)}
+                                                className="w-full h-16 bg-brand-orange text-white border-none rounded-2xl px-14 text-xl font-black outline-none"
+                                            />
+                                            <span className="absolute left-6 top-1/2 -translate-y-1/2 text-lg font-black text-white/40">₹</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -518,8 +537,11 @@ export default function ProductDetailsPage() {
                         <div>
                             <h2 className="text-5xl md:text-6xl font-black text-brand-teal uppercase tracking-tighter leading-tight mb-4">{product.name}</h2>
                             <div className="flex items-baseline gap-4">
-                                <span className="text-5xl font-black text-brand-orange tracking-tighter">₹{product.price}</span>
-                                <span className="text-xs font-bold text-gray-300 uppercase tracking-widest">Global MSRP (Tax incl.)</span>
+                                <span className="text-5xl font-black text-brand-orange tracking-tighter">₹{product.offer_price || product.regular_price || product.price}</span>
+                                {(product.offer_price && product.regular_price) && (
+                                    <span className="text-xl font-bold text-gray-300 line-through uppercase tracking-widest">₹{product.regular_price}</span>
+                                )}
+                                <span className="text-xs font-bold text-gray-300 uppercase tracking-widest ml-4">Global MSRP (Tax incl.)</span>
                             </div>
                         </div>
 

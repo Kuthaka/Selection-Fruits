@@ -24,7 +24,8 @@ export default function AddProductPage() {
     const [name, setName] = useState("");
     const [slug, setSlug] = useState("");
     const [category, setCategory] = useState("");
-    const [price, setPrice] = useState("");
+    const [regularPrice, setRegularPrice] = useState("");
+    const [offerPrice, setOfferPrice] = useState("");
     const [size, setSize] = useState("");
     const [images, setImages] = useState<(string | null)[]>([null, null, null, null]);
     const [imageFiles, setImageFiles] = useState<(Blob | null)[]>([null, null, null, null]);
@@ -133,8 +134,8 @@ export default function AddProductPage() {
         setError(null);
 
         // Validation
-        if (!name || !price || !itemsInImages().length) {
-            setError("Please fill in name, price and at least one image.");
+        if (!name || !regularPrice || !itemsInImages().length) {
+            setError("Please fill in name, regular price and at least one image.");
             setIsSubmitting(false);
             return;
         }
@@ -169,7 +170,9 @@ export default function AddProductPage() {
                 name,
                 slug,
                 category: category || "Uncategorized", // Fallback
-                price: parseFloat(price),
+                regular_price: parseFloat(regularPrice),
+                offer_price: offerPrice ? parseFloat(offerPrice) : null,
+                price: offerPrice ? parseFloat(offerPrice) : parseFloat(regularPrice),
                 size_grams: parseInt(size) || 0,
                 images: imageUrls,
                 is_listed: true
@@ -303,21 +306,39 @@ export default function AddProductPage() {
                                 </div>
                             </div>
 
-                            {/* Price */}
-                            <div className="space-y-3 group">
-                                <label className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] ml-2">Unit Price (₹) <span className="text-brand-orange">*</span></label>
-                                <div className="relative">
-                                    <input
-                                        type="number"
-                                        required
-                                        value={price}
-                                        onChange={(e) => setPrice(e.target.value)}
-                                        placeholder="0.00"
-                                        step="0.01"
-                                        className="w-full h-20 bg-brand-teal text-white border-none rounded-[1.5rem] px-14 text-2xl font-black focus:ring-4 focus:ring-brand-orange/20 transition-all outline-none"
-                                    />
-                                    <span className="absolute left-6 top-1/2 -translate-y-1/2 text-xl font-black text-white/40">₹</span>
-                                    <div className="absolute right-4 top-1/2 -translate-y-1/2 px-4 py-2 bg-white/10 rounded-xl text-[10px] font-black uppercase tracking-widest text-white/60">Tax Included</div>
+                            {/* Pricing Section */}
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                {/* Regular Price */}
+                                <div className="space-y-3 group">
+                                    <label className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] ml-2">Regular Price (₹) <span className="text-brand-orange">*</span></label>
+                                    <div className="relative">
+                                        <input
+                                            type="number"
+                                            required
+                                            value={regularPrice}
+                                            onChange={(e) => setRegularPrice(e.target.value)}
+                                            placeholder="0.00"
+                                            step="0.01"
+                                            className="w-full h-16 bg-brand-teal text-white border-none rounded-[1.5rem] px-14 text-xl font-black focus:ring-4 focus:ring-brand-orange/20 transition-all outline-none"
+                                        />
+                                        <span className="absolute left-6 top-1/2 -translate-y-1/2 text-lg font-black text-white/40">₹</span>
+                                    </div>
+                                </div>
+
+                                {/* Offer Price */}
+                                <div className="space-y-3 group">
+                                    <label className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] ml-2">Offer Price (₹) <span className="text-gray-400 opacity-60">(Optional)</span></label>
+                                    <div className="relative">
+                                        <input
+                                            type="number"
+                                            value={offerPrice}
+                                            onChange={(e) => setOfferPrice(e.target.value)}
+                                            placeholder="0.00"
+                                            step="0.01"
+                                            className="w-full h-16 bg-brand-orange text-white border-none rounded-[1.5rem] px-14 text-xl font-black focus:ring-4 focus:ring-brand-teal/20 transition-all outline-none"
+                                        />
+                                        <span className="absolute left-6 top-1/2 -translate-y-1/2 text-lg font-black text-white/40">₹</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
