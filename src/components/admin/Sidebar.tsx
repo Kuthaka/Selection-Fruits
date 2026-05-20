@@ -14,13 +14,15 @@ import {
     UtensilsCrossed,
     PieChart,
     X,
-    Tag
+    Tag,
+    QrCode
 } from "lucide-react";
 
 const MENU_ITEMS = [
     { name: "Dashboard", icon: LayoutDashboard, path: "/admin" },
     { name: "Categories", icon: Tag, path: "/admin/categories" },
     { name: "Products", icon: UtensilsCrossed, path: "/admin/products" },
+    { name: "QR Code", icon: QrCode, path: "/admin/qr-code" },
     { name: "Settings", icon: Settings, path: "/admin/settings" },
 ];
 
