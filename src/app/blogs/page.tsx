@@ -45,7 +45,7 @@ export default function BlogsPage() {
                             The <span className="text-brand-orange">Journal</span>
                         </h1>
                         <p className="text-white/60 max-w-2xl mx-auto font-medium text-lg">
-                            Exploring the heart of Indian cuisine, product insights, and the spicy stories behind Star Plus 21.
+                            Exploring the heart of Indian cuisine, product insights, and the spicy stories behind Selection Fruits.
                         </p>
                     </div>
                     {/* Decorative Elements */}

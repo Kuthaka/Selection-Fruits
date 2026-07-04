@@ -68,7 +68,7 @@ export const useCartStore = create<CartStore>()(
             },
         }),
         {
-            name: 'star-plus-cart',
+            name: 'selection-fruits-cart',
             storage: createJSONStorage(() => localStorage),
         }
     )

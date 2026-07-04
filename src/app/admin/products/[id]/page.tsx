@@ -530,7 +530,7 @@ export default function ProductDetailsPage() {
                             <div className="px-5 py-2 bg-brand-orange text-white rounded-full text-[10px] font-black uppercase tracking-widest">
                                 {product.category}
                             </div>
-                            <span className="text-[10px] font-black text-gray-300 uppercase tracking-widest">SKU-STAR-{product.id.substring(0, 8).toUpperCase()}</span>
+                            <span className="text-[10px] font-black text-gray-300 uppercase tracking-widest">SKU-SELECTION-{product.id.substring(0, 8).toUpperCase()}</span>
                         </div>
 
                         {/* Title & Price */}

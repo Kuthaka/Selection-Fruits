@@ -70,7 +70,7 @@ export default function Home() {
           <div className="container mx-auto px-4 md:px-12 flex-grow flex flex-col md:flex-row items-center justify-center gap-12 pt-8 pb-16 relative z-10">
             {/* Left side vertical text - decreased size and moved down */}
             <div className="hidden xl:block absolute left-8 top-48 opacity-10 hover:opacity-25 transition-opacity duration-700 cursor-default flex items-center z-20">
-              <h1 className="text-6xl font-black vertical-text tracking-[0.2em] text-white whitespace-nowrap uppercase">STAR PLUS</h1>
+              <h1 className="text-6xl font-black vertical-text tracking-[0.2em] text-white whitespace-nowrap uppercase">Selection Fruits</h1>
             </div>
 
             {/* Product Image */}
@@ -92,7 +92,7 @@ export default function Home() {
               </div>
 
               <h2 className="text-4xl md:text-6xl font-black text-brand-teal leading-[1.1]">
-                Your Favorite Foods <br />
+                Your Favorite Fruits <br />
                 <span className="text-brand-orange">READY IN MINUTES.</span>
               </h2>
 
@@ -149,7 +149,7 @@ export default function Home() {
         <section className="relative overflow-hidden">
           {/* Section Header */}
           <div className="bg-brand-teal text-white py-10 text-center">
-            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight">Star Plus Foods Specials</h2>
+            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight">Selection Fruits Specials</h2>
           </div>
 
           {/* Special Dishes Grid */}
@@ -157,7 +157,7 @@ export default function Home() {
             {/* Item 1: Spicy Dhaba Chicken */}
             <Link href="/shop" className="bg-[#1e3b3e] h-[300px] md:h-[400px] flex flex-col items-center justify-center p-4 md:p-8 mandala-pattern group cursor-pointer overflow-hidden relative">
               <div className="relative w-32 h-32 md:w-56 md:h-56 transition-transform duration-500 group-hover:scale-110 drop-shadow-2xl">
-                <Image src="/star/chef-1.png" alt="Spicy Dhaba Chicken" fill className="object-contain" />
+                <Image src="/selection/chef-1.png" alt="Spicy Dhaba Chicken" fill className="object-contain" />
               </div>
               <h3 className="text-white font-black text-sm md:text-xl tracking-wider uppercase mt-6 md:mt-8 text-center px-2">Baking Powder</h3>
             </Link>
@@ -165,7 +165,7 @@ export default function Home() {
             {/* Item 2: Jhannat Dal Fry */}
             <Link href="/shop" className="bg-[#ff6138] h-[300px] md:h-[400px] flex flex-col items-center justify-center p-4 md:p-8 mandala-pattern group cursor-pointer overflow-hidden relative">
               <div className="relative w-32 h-32 md:w-56 md:h-56 transition-transform duration-500 group-hover:scale-110 drop-shadow-2xl">
-                <Image src="/star/chef-2.png" alt="Jhannat Dal Fry" fill className="object-contain" />
+                <Image src="/selection/chef-2.png" alt="Jhannat Dal Fry" fill className="object-contain" />
               </div>
               <h3 className="text-white font-black text-sm md:text-xl tracking-wider uppercase mt-6 md:mt-8 text-center px-2">Garam Masala</h3>
             </Link>
@@ -173,7 +173,7 @@ export default function Home() {
             {/* Item 3: Smoky Butter Chicken */}
             <Link href="/shop" className="bg-[#ffb400] h-[300px] md:h-[400px] flex flex-col items-center justify-center p-4 md:p-8 mandala-pattern group cursor-pointer overflow-hidden relative">
               <div className="relative w-32 h-32 md:w-56 md:h-56 transition-transform duration-500 group-hover:scale-110 drop-shadow-2xl">
-                <Image src="/star/chef-3.png" alt="Smoky Butter Chicken" fill className="object-contain" />
+                <Image src="/selection/chef-3.png" alt="Smoky Butter Chicken" fill className="object-contain" />
               </div>
               <h3 className="text-white font-black text-sm md:text-xl tracking-wider uppercase mt-6 md:mt-8 text-center px-2">Majboos Masala</h3>
             </Link>
@@ -181,7 +181,7 @@ export default function Home() {
             {/* Item 4: Shahi Dal Makhni */}
             <Link href="/shop" className="bg-[#ac5e2e] h-[300px] md:h-[400px] flex flex-col items-center justify-center p-4 md:p-8 mandala-pattern group cursor-pointer overflow-hidden relative">
               <div className="relative w-32 h-32 md:w-56 md:h-56 transition-transform duration-500 group-hover:scale-110 drop-shadow-2xl">
-                <Image src="/star/chef-4.png" alt="Shahi Dal Makhni" fill className="object-contain" />
+                <Image src="/selection/chef-4.png" alt="Shahi Dal Makhni" fill className="object-contain" />
               </div>
               <h3 className="text-white font-black text-sm md:text-xl tracking-wider uppercase mt-6 md:mt-8 text-center px-2">Tandoori Chicken</h3>
             </Link>

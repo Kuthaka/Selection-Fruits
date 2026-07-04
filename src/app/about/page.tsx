@@ -46,11 +46,11 @@ export default function AboutPage() {
                                 <div className="space-y-4">
                                     <span className="text-brand-orange text-xs font-black uppercase tracking-[0.4em]">Legacy of Flavor</span>
                                     <h2 className="text-4xl md:text-5xl font-black text-brand-teal uppercase tracking-tighter leading-tight">
-                                        Preserving Authentic <br />Food Tradition.
+                                        Preserving Authentic <br />Fruit Tradition.
                                     </h2>
                                     <p className="text-lg text-brand-teal/60 font-medium leading-relaxed">
-                                        Born from the vibrant street kitchens of India, Star Plus brings the soul of authentic recipes
-                                        directly to your dinner table. We aren't just making food; we're preserving tradition.
+                                        Born from the vibrant street kitchens of India, Selection Fruits brings the soul of authentic recipes
+                                        directly to your dinner table. We aren't just making fruit; we're preserving tradition.
                                     </p>
                                 </div>
                                 <div className="grid grid-cols-2 gap-8">
@@ -66,7 +66,7 @@ export default function AboutPage() {
                             </div>
                             <div className="relative aspect-square rounded-3xl overflow-hidden shadow-2xl">
                                 <Image
-                                    src="/star/hero-png.png"
+                                    src="/selection/hero-png.png"
                                     alt="Spices"
                                     fill
                                     className="object-cover"
@@ -78,7 +78,7 @@ export default function AboutPage() {
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 pt-20 border-t border-gray-100">
                             {[
                                 { icon: Heart, title: "Passion", desc: "Crafting every meal with the same love as a home-cooked recipe." },
-                                { icon: ShieldCheck, title: "Purity", desc: "No artificial preservatives or MSG. Just clean, wholesome food." },
+                                { icon: ShieldCheck, title: "Purity", desc: "No artificial preservatives or MSG. Just clean, wholesome fruit." },
                                 { icon: Award, title: "Quality", desc: "Premium ingredients meeting the highest global safety standards." }
                             ].map((v, i) => (
                                 <div key={i} className="space-y-4">

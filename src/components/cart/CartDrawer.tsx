@@ -83,7 +83,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                                 onClick={onClose}
                                 className="mt-4 px-10 py-4 bg-brand-orange text-white font-black rounded-full hover:shadow-[0_10px_30px_rgba(242,101,34,0.3)] transition-all hover:scale-105 flex items-center gap-3 group uppercase tracking-widest text-sm"
                             >
-                                COLLECT FOOD
+                                COLLECT FRUIT
                                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                             </button>
                         </div>
@@ -165,7 +165,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                         onClick={async () => {
                             if (items.length === 0) return;
 
-                            let message = "Hello Star Plus Foods! 👋\n\nI'd like to place an order for the following items:\n\n";
+                            let message = "Hello Selection Fruits! 👋\n\nI'd like to place an order for the following items:\n\n";
 
                             items.forEach((item, index) => {
                                 message += `${index + 1}. *${item.name}*\n   🔢 Qty: ${item.quantity}\n   💰 Price: ₹${item.price * item.quantity}\n   🔗 Link: ${window.location.origin}/shop/${item.slug}\n\n`;

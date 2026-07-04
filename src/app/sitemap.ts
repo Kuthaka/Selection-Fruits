@@ -3,7 +3,7 @@ import { createClient } from '@/lib/supabase/server'
 import { STATIC_BLOGS } from '@/data/blogs'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.starplusfoods.com'
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.selectionfruits.com'
     const supabase = await createClient()
 
     // 1. Fetch Products

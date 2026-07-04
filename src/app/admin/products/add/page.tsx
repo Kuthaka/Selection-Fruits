@@ -246,7 +246,7 @@ export default function AddProductPage() {
                                     required
                                     value={name}
                                     onChange={(e) => handleNameChange(e.target.value)}
-                                    placeholder="e.g. Star Plus Garam Masala"
+                                    placeholder="e.g. Selection Fruits Garam Masala"
                                     className="w-full h-16 bg-[#FEFCE8]/40 border-none rounded-[1.5rem] px-8 text-sm font-bold text-brand-teal focus:ring-4 focus:ring-brand-orange/10 transition-all outline-none"
                                 />
                             </div>
@@ -260,7 +260,7 @@ export default function AddProductPage() {
                                         required
                                         value={slug}
                                         onChange={(e) => setSlug(generateSlug(e.target.value))}
-                                        placeholder="star-plus-garam-masala"
+                                        placeholder="selection-fruits-garam-masala"
                                         className="w-full h-16 bg-gray-50/50 border-none rounded-[1.5rem] px-8 text-sm font-bold text-brand-teal/50 focus:ring-4 focus:ring-brand-orange/10 transition-all outline-none"
                                     />
                                     <span className="absolute right-6 top-1/2 -translate-y-1/2 text-[8px] font-black text-brand-teal/20 uppercase">Auto Generated</span>

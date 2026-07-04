@@ -6,7 +6,7 @@ import { Download, FileImage, FileType2 } from "lucide-react";
 import jsPDF from "jspdf";
 
 export default function QrCodePage() {
-    const qrUrl = "https://starplusfoods.com/shop";
+    const qrUrl = "https://selectionfruits.com/shop";
     const qrRef = useRef<HTMLCanvasElement>(null);
     const qrLogoRef = useRef<HTMLCanvasElement>(null);
 
@@ -16,7 +16,7 @@ export default function QrCodePage() {
         const canvas = ref.current;
         const url = canvas.toDataURL(`image/${format}`, 1.0);
         const link = document.createElement("a");
-        link.download = `starplus-shop-qr-${nameSuffix}.${format}`;
+        link.download = `selectionfruits-shop-qr-${nameSuffix}.${format}`;
         link.href = url;
         link.click();
     };
@@ -50,9 +50,9 @@ export default function QrCodePage() {
         // Add website text
         pdf.setFontSize(12);
         pdf.setTextColor(150, 150, 150);
-        pdf.text("starplusfoods.com/shop", 105, 175, { align: "center" });
+        pdf.text("selectionfruits.com/shop", 105, 175, { align: "center" });
 
-        pdf.save(`starplus-shop-qr-${nameSuffix}.pdf`);
+        pdf.save(`selectionfruits-shop-qr-${nameSuffix}.pdf`);
     };
 
     const renderQrCard = (
@@ -158,7 +158,7 @@ export default function QrCodePage() {
                 {renderQrCard("Standard QR Code", qrRef, "standard")}
                 
                 {renderQrCard("Logo QR Code", qrLogoRef, "with-logo", {
-                    src: "/star/logo-bg.png",
+                    src: "/selection/logo-bg.png",
                     height: 45,
                     width: 90,
                     excavate: true,

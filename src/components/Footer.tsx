@@ -23,7 +23,7 @@ export default function Footer() {
     }, []);
 
     // Fallbacks
-    const displayEmail = settings?.email || "pronto@starplusfoods.com";
+    const displayEmail = settings?.email || "pronto@selectionfruits.com";
     const displayMobile = settings?.mobile_number || "+91 75109 88326";
 
     return (
@@ -42,8 +42,8 @@ export default function Footer() {
                     {/* Mascot Illustration - Scaled Down */}
                     <div className="relative w-32 h-32 md:w-40 md:h-40">
                         <Image
-                            src="/star/hero-png.png"
-                            alt="Star Plus Mascot"
+                            src="/selection/hero-png.png"
+                            alt="Selection Fruits Mascot"
                             fill
                             className="object-contain"
                         />
@@ -80,9 +80,9 @@ export default function Footer() {
                 {/* Brand Column */}
                 <div className="lg:col-span-1 flex flex-col gap-3">
                     <div className="flex flex-col">
-                        <h2 className="text-2xl font-black leading-none tracking-tighter">STAR</h2>
+                        <h2 className="text-2xl font-black leading-none tracking-tighter">SELECTION</h2>
                         <h2 className="text-3xl font-black leading-none tracking-widest -mt-1 ml-4 text-brand-yellow">PLUS</h2>
-                        <h3 className="text-[10px] font-bold tracking-[0.4em] mt-1 uppercase text-white/40">FOODS</h3>
+                        <h3 className="text-[10px] font-bold tracking-[0.4em] mt-1 uppercase text-white/40">FRUITS</h3>
                     </div>
                 </div>
 
@@ -155,7 +155,7 @@ export default function Footer() {
             {/* Copyright Section */}
             <div className="bg-[#4a140b] py-4 text-center border-t border-white/5">
                 <p className="text-[9px] md:text-[10px] font-bold tracking-[0.3em] uppercase text-white/30">
-                    &copy; 2026 STAR PLUS FOODS. ALL RIGHTS RESERVED.
+                    &copy; 2026 Selection Fruits. ALL RIGHTS RESERVED.
                 </p>
             </div>
         </footer>

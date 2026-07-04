@@ -87,7 +87,7 @@ export default function Navbar() {
                         `}
                     >
                         <div className="relative w-full h-full">
-                            <Image src="/star/logo-bg.png" alt="Logo" fill className="object-contain" priority />
+                            <Image src="/selection/logo-bg.png" alt="Logo" fill className="object-contain" priority />
                         </div>
                     </Link>
 

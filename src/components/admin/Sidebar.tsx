@@ -57,7 +57,7 @@ export default function AdminSidebar({ isCollapsed, isMobileOpen, onClose }: Sid
                 <div className={`p-6 border-b border-white/10 flex items-center ${isActuallyCollapsed ? "justify-center" : "justify-between"}`}>
                     <Link href="/admin" className="flex items-center group" onClick={onClose}>
                         <div className={`flex flex-col ${isActuallyCollapsed ? "hidden" : "flex"}`}>
-                            <h2 className="text-xl font-black leading-none tracking-tighter group-hover:text-brand-orange transition-colors">STAR</h2>
+                            <h2 className="text-xl font-black leading-none tracking-tighter group-hover:text-brand-orange transition-colors">SELECTION</h2>
                             <h2 className="text-2xl font-black leading-none tracking-widest -mt-1 ml-4 text-brand-orange">PLUS</h2>
                         </div>
                         {isActuallyCollapsed && (

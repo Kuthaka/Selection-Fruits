@@ -147,7 +147,7 @@ export default function AdminDashboard() {
             <div className="flex items-center justify-between">
                 <div className="flex flex-col gap-1">
                     <h1 className="text-4xl font-black text-brand-teal uppercase tracking-tighter">Dashboard <span className="text-brand-orange">Overview</span></h1>
-                    <p className="text-sm font-medium text-gray-400">Welcome back! Here's the live telemetry for Star Plus Foods.</p>
+                    <p className="text-sm font-medium text-gray-400">Welcome back! Here's the live telemetry for Selection Fruits.</p>
                 </div>
                 <div className="flex items-center gap-3 bg-white p-2 rounded-2xl shadow-sm border border-gray-100">
                     <Calendar className="w-4 h-4 text-gray-400 ml-2" />

@@ -6,7 +6,7 @@ export const STATIC_BLOGS: Blog[] = [
         title: "Mastering the Perfect Tandoori Chicken at Home",
         slug: "perfect-tandoori-chicken-guide",
         category: "Recipes",
-        author: "Star Plus Chef",
+        author: "Selection Fruits Chef",
         created_at: "2024-03-01T10:00:00Z",
         is_published: true,
         cover_image: "https://images.unsplash.com/photo-1599481238640-4c1288750d7a?q=80&w=1000",
@@ -14,13 +14,13 @@ export const STATIC_BLOGS: Blog[] = [
         content: `
             <p>Tandoori Chicken is the crown jewel of Indian appetizers. While traditionally cooked in a clay oven (tandoor), you can achieve spectacular results in your home kitchen using the right technique and the perfect spice blend.</p>
             
-            <h3>The Secret is in the Star Plus 21 Blend</h3>
+            <h3>The Secret is in the Selection Fruits Blend</h3>
             <p>Our Tandoori Chicken Masala is crafted with premium Kashmiri Chillies for that vibrant red color without artificial dyes, and a secret mix of 21 spices that penetrate deep into the meat.</p>
 
             <h3>How to Prepare:</h3>
             <ul>
                 <li><b>First Marination:</b> Rub chicken with lemon juice and salt. Let it rest for 15 minutes.</li>
-                <li><b>Second Marination:</b> Mix hung curd, ginger-garlic paste, and 3 tablespoons of <b>Star Plus 21 Tandoori Masala</b>.</li>
+                <li><b>Second Marination:</b> Mix hung curd, ginger-garlic paste, and 3 tablespoons of <b>Selection Fruits Tandoori Masala</b>.</li>
                 <li><b>Cooking:</b> Grill at 200°C for 20-25 minutes, basting with butter halfway through.</li>
             </ul>
 
@@ -57,7 +57,7 @@ export const STATIC_BLOGS: Blog[] = [
         created_at: "2024-03-03T10:00:00Z",
         is_published: true,
         cover_image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1000",
-        excerpt: "From fruit salads to evening snacks, discover why Star Plus Chaat Masala is a household essential.",
+        excerpt: "From fruit salads to evening snacks, discover why Selection Fruits Chaat Masala is a household essential.",
         content: `
             <p>Chaat Masala is the unsung hero of the Indian pantry. It's that magical sprinkle that turns something "plain" into something "delicious".</p>
             
@@ -71,7 +71,7 @@ export const STATIC_BLOGS: Blog[] = [
                 <li><b>Beverages:</b> Add a pinch to your fresh lime soda or buttermilk for a refreshing twist.</li>
             </ul>
 
-            <p>With Star Plus 21 Chaat Masala, you’re not just adding salt; you’re adding a burst of personality to your food.</p>
+            <p>With Selection Fruits Chaat Masala, you’re not just adding salt; you’re adding a burst of personality to your fruit.</p>
         `
     },
     {
@@ -79,7 +79,7 @@ export const STATIC_BLOGS: Blog[] = [
         title: "Perfect Crispy Chicken: The Arabian Broast Secret",
         slug: "arabian-broast-crispy-secret",
         category: "Products",
-        author: "Food Stylist",
+        author: "Fruit Stylist",
         created_at: "2024-03-04T10:00:00Z",
         is_published: true,
         cover_image: "https://media-assets.swiggy.com/swiggy/image/upload/f_auto,q_auto,fl_lossy/0adb9227754731ed9f524b3d60577295",
@@ -90,7 +90,7 @@ export const STATIC_BLOGS: Blog[] = [
             <h3>Consistency is Key</h3>
             <p>Our <b>Arabian Broast Mix</b> is a complete solution. It contains the perfect ratio of flour, garlic powder, and white pepper. You don't need to hunt for individual spices; just coat and fry.</p>
 
-            <p>The Star Plus 21 Broast Mix is engineered to handle high temperatures, ensuring the coating doesn't burn before the chicken is cooked. It's the easiest way to give your family a premium fast-food experience at home.</p>
+            <p>The Selection Fruits Broast Mix is engineered to handle high temperatures, ensuring the coating doesn't burn before the chicken is cooked. It's the easiest way to give your family a premium fast-fruit experience at home.</p>
         `
     }
 ];

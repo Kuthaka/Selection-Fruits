@@ -246,7 +246,7 @@ export default function ProductDetails() {
 
                                 <button
                                     onClick={async () => {
-                                        const message = `Hello Star Plus Foods! 👋\n\nI'm interested in ordering:\n📦 *${product.name}*\n🔢 Quantity: ${quantity}\n💰 Price: ₹${product.price * quantity}\n🔗 Product Link: ${window.location.origin}/shop/${product.slug}\n\nPlease let me know how to proceed with the payment. Thank you!`;
+                                        const message = `Hello Selection Fruits! 👋\n\nI'm interested in ordering:\n📦 *${product.name}*\n🔢 Quantity: ${quantity}\n💰 Price: ₹${product.price * quantity}\n🔗 Product Link: ${window.location.origin}/shop/${product.slug}\n\nPlease let me know how to proceed with the payment. Thank you!`;
 
                                         const { handleWhatsAppCheckout } = await import("@/lib/whatsapp");
                                         handleWhatsAppCheckout(message);

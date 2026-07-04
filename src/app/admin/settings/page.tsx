@@ -52,14 +52,14 @@ export default function AdminSettingsPage() {
                 // Initialize with defaults if row doesn't exist
                 const defaultSettings: Partial<SiteSettings> = {
                     id: 1,
-                    site_name: "STAR PLUS FOODS",
+                    site_name: "Selection Fruits",
                     whatsapp_number: "+91 75109 88326",
                     mobile_number: "+91 75109 88326",
-                    email: "pronto@starplusfoods.com",
+                    email: "pronto@selectionfruits.com",
                     instagram_url: "",
                     facebook_url: "",
                     youtube_url: "",
-                    address: "Star Plus Foods, Industrial Estate, Cuttack, Odisha - 753010",
+                    address: "Selection Fruits, Industrial Estate, Cuttack, Odisha - 753010",
                     top_banner_text: "Free Shipping across India on Orders above Rs 500/-"
                 };
                 setSettings(defaultSettings as SiteSettings);
@@ -260,7 +260,7 @@ export default function AdminSettingsPage() {
                                     <label className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] ml-2">Enterprise Email</label>
                                     <input
                                         type="email"
-                                        placeholder="support@starplusfoods.com"
+                                        placeholder="support@selectionfruits.com"
                                         value={settings.email}
                                         onChange={(e) => handleChange("email", e.target.value)}
                                         className="w-full h-16 bg-[#FEFCE8]/40 border-none rounded-[1.25rem] px-8 text-sm font-bold text-brand-teal focus:ring-4 focus:ring-brand-orange/5 transition-all outline-none"

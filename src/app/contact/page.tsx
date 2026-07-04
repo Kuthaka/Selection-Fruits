@@ -86,7 +86,7 @@ export default function ContactPage() {
                                             </div>
                                             <div>
                                                 <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Email Us</p>
-                                                <p className="text-brand-teal font-bold">{settings?.email || "pronto@starplusfoods.com"}</p>
+                                                <p className="text-brand-teal font-bold">{settings?.email || "pronto@selectionfruits.com"}</p>
                                             </div>
                                         </div>
                                         <div className="flex items-center gap-4">
@@ -106,7 +106,7 @@ export default function ContactPage() {
                                         <MapPin className="w-6 h-6 text-brand-orange" /> Head Office
                                     </h3>
                                     <p className="text-brand-teal/60 font-medium leading-relaxed">
-                                        {settings?.address || "Star Plus Foods, Industrial Estate, Cuttack, Odisha - 753010"}
+                                        {settings?.address || "Selection Fruits, Industrial Estate, Cuttack, Odisha - 753010"}
                                     </p>
                                 </div>
                             </div>

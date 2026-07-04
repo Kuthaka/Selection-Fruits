@@ -57,8 +57,8 @@ export default function ForgotPasswordPage() {
                 <div className="flex flex-col items-center mb-6 group">
                     <div className="relative w-40 h-20 mb-3 transform group-hover:scale-110 transition-transform duration-500">
                         <Image
-                            src="/star/logo-bg.png"
-                            alt="Star Plus Logo"
+                            src="/selection/logo-bg.png"
+                            alt="Selection Fruits Logo"
                             fill
                             className="object-contain drop-shadow-2xl"
                             priority
@@ -115,7 +115,7 @@ export default function ForgotPasswordPage() {
                                                 required
                                                 value={email}
                                                 onChange={(e) => setEmail(e.target.value)}
-                                                placeholder="admin@starplus.com"
+                                                placeholder="admin@selectionfruits.com"
                                                 className="w-full h-14 bg-[#FEFCE8]/80 border-none rounded-2xl pl-14 pr-6 text-sm font-bold text-brand-teal focus:ring-4 focus:ring-brand-orange/10 transition-all outline-none"
                                             />
                                         </div>
