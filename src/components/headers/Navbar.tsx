@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { ChevronLeft, Home, Store, BookOpen, Info, Phone, ShoppingBag, Heart, Search, Apple, Leaf, Milk, ShoppingBasket } from "lucide-react";
+import { ChevronLeft, Home, Store, BookOpen, Info, Phone, ShoppingBag, Heart, Search, Apple, Leaf, Milk, ShoppingBasket, X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import TopStrip from "./TopStrip";
@@ -15,6 +15,7 @@ export default function Navbar() {
     const [showBottomNav, setShowBottomNav] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
     const [isCartOpen, setIsCartOpen] = useState(false);
+    const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(true);
     const pathname = usePathname();
 
     const totalItems = useCartStore(state => state.getTotalItems());
@@ -62,7 +63,7 @@ export default function Navbar() {
             {/* ── Mobile: complete top bar ── */}
             <header className="md:hidden fixed top-0 left-0 right-0 z-50 shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
                 {/* Row 1: Logo & Icons */}
-                <div className="flex items-center justify-between px-4 h-16 bg-[#429420]">
+                <div className="flex items-center justify-between px-4 h-16 bg-[#429420] relative z-20">
                     <div className="flex items-center gap-3">
                         {pathname !== "/" && (
                             <button
@@ -82,7 +83,10 @@ export default function Navbar() {
                         </Link>
                     </div>
 
-                    <div className="flex items-center gap-4 text-white">
+                    <div className="flex items-center gap-3.5 text-white">
+                        <button onClick={() => setIsMobileSearchOpen(!isMobileSearchOpen)} className="hover:scale-105 transition-transform">
+                            {isMobileSearchOpen ? <X className="w-6 h-6" /> : <Search className="w-6 h-6" />}
+                        </button>
                         <button className="hover:scale-105 transition-transform"><Heart className="w-6 h-6" /></button>
                         <button onClick={() => setIsCartOpen(true)} className="relative hover:scale-105 transition-transform">
                             <ShoppingBag className="w-6 h-6" />
@@ -96,30 +100,32 @@ export default function Navbar() {
                 </div>
 
                 {/* Row 2: Search & Categories */}
-                <div className="bg-[#cdebc9] px-4 pt-3 pb-4 rounded-b-2xl shadow-sm">
-                    <div className="relative flex items-center w-full mb-4">
-                        <Search className="absolute left-4 w-4 h-4 text-gray-500" />
-                        <input
-                            type="text"
-                            placeholder="Search for Kid's Nutrition"
-                            className="w-full h-[44px] bg-[#fcf9f2] rounded-full pl-11 pr-4 text-[14px] text-gray-700 placeholder-gray-500 outline-none shadow-sm"
-                        />
-                    </div>
-                    
-                    <div className="flex items-center gap-5 overflow-x-auto no-scrollbar pb-1 px-1">
-                        {mobileCategories.map((cat, idx) => (
-                            <div 
-                                key={idx} 
-                                className={`flex flex-col items-center justify-center min-w-[64px] h-[68px] flex-shrink-0 cursor-pointer transition-all ${
-                                    cat.active 
-                                    ? "bg-[#fcf9f2] rounded-xl shadow-sm text-gray-800" 
-                                    : "text-gray-700 hover:text-gray-900"
-                                }`}
-                            >
-                                <cat.icon className={`w-6 h-6 mb-1 ${cat.active ? "text-gray-800" : "text-gray-700"}`} strokeWidth={1.5} />
-                                <span className={`text-[11px] ${cat.active ? "font-bold" : "font-medium"}`}>{cat.name}</span>
-                            </div>
-                        ))}
+                <div className={`relative z-10 transition-all duration-300 ease-in-out origin-top overflow-hidden bg-[#cdebc9] rounded-b-2xl shadow-sm ${isMobileSearchOpen ? "max-h-[300px] opacity-100 py-3 pb-4" : "max-h-0 opacity-0 py-0"}`}>
+                    <div className="px-4">
+                        <div className="relative flex items-center w-full mb-4">
+                            <Search className="absolute left-4 w-4 h-4 text-gray-500" />
+                            <input
+                                type="text"
+                                placeholder="Search for Kid's Nutrition"
+                                className="w-full h-[44px] bg-[#fcf9f2] rounded-full pl-11 pr-4 text-[14px] text-gray-700 placeholder-gray-500 outline-none shadow-sm"
+                            />
+                        </div>
+                        
+                        <div className="flex items-center gap-5 overflow-x-auto no-scrollbar pb-1 px-1">
+                            {mobileCategories.map((cat, idx) => (
+                                <div 
+                                    key={idx} 
+                                    className={`flex flex-col items-center justify-center min-w-[64px] h-[68px] flex-shrink-0 cursor-pointer transition-all ${
+                                        cat.active 
+                                        ? "bg-[#fcf9f2] rounded-xl shadow-sm text-gray-800" 
+                                        : "text-gray-700 hover:text-gray-900"
+                                    }`}
+                                >
+                                    <cat.icon className={`w-6 h-6 mb-1 ${cat.active ? "text-gray-800" : "text-gray-700"}`} strokeWidth={1.5} />
+                                    <span className={`text-[11px] ${cat.active ? "font-bold" : "font-medium"}`}>{cat.name}</span>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </header>
@@ -144,7 +150,7 @@ export default function Navbar() {
             </nav>
 
             {/* Spacer for fixed header */}
-            <div className="h-[210px] md:h-[148px]" aria-hidden="true" />
+            <div className={`md:h-[148px] transition-all duration-300 ease-in-out ${isMobileSearchOpen ? "h-[210px]" : "h-[64px]"}`} aria-hidden="true" />
         </>
     );
 }
