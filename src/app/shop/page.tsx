@@ -60,7 +60,7 @@ export default function Shop() {
                 <div className="flex flex-col lg:flex-row gap-8">
                     
                     {/* ── Sidebar ── */}
-                    <aside className="w-full lg:w-[260px] flex-shrink-0 space-y-6">
+                    <aside className="hidden lg:block lg:w-[260px] flex-shrink-0 space-y-6">
                         
                         {/* Filter Block */}
                         <div className="border border-gray-200 bg-[#f9fbf9] rounded-sm pb-4">
