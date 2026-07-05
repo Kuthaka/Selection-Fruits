@@ -83,22 +83,6 @@ export default function CategoryNav() {
                         </Link>
                     ))}
                 </nav>
-
-                {/* Right side links */}
-                <div className="hidden md:flex items-center gap-6 ml-auto h-full">
-                    <Link
-                        href="/shop"
-                        className="text-[14px] font-semibold text-gray-800 hover:text-[#429420] transition-colors"
-                    >
-                        Offer Zone
-                    </Link>
-                    <Link
-                        href="#"
-                        className="text-[14px] font-semibold text-gray-800 hover:text-[#429420] transition-colors"
-                    >
-                        Gift Cards
-                    </Link>
-                </div>
             </div>
         </div>
     );

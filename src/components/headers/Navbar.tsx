@@ -41,16 +41,19 @@ export default function Navbar() {
         <>
             <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
 
-            {/* ── Desktop: 3-layer header ── */}
-            <header className="hidden md:block fixed top-0 left-0 right-0 z-50 shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
+            {/* ── TopStrip (Scrolls with page) ── */}
+            <div className="w-full">
                 <TopStrip />
+            </div>
+
+            {/* ── Desktop: 2-layer sticky header ── */}
+            <header className="hidden md:block sticky top-0 left-0 right-0 z-50 shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
                 <MainNav />
                 <CategoryNav />
             </header>
 
             {/* ── Mobile: complete top bar ── */}
-            <header className="md:hidden fixed top-0 left-0 right-0 z-50 shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
-                <TopStrip />
+            <header className="md:hidden sticky top-0 left-0 right-0 z-50 shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
                 {/* Row 1: Logo & Icons */}
                 <div className="flex items-center justify-between px-4 h-16 bg-[#429420] relative z-20">
                     <div className="flex items-center gap-3">
@@ -137,8 +140,7 @@ export default function Navbar() {
                 </div>
             </nav>
 
-            {/* Spacer for fixed header */}
-            <div className={`md:h-[148px] transition-all duration-300 ease-in-out ${isMobileSearchOpen ? "h-[210px]" : "h-[64px]"}`} aria-hidden="true" />
+
         </>
     );
 }

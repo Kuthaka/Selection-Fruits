@@ -131,7 +131,10 @@ export default function Home() {
                 {/* ─────────────────────────────────────────────────────────────────
                     HERO SECTION
                 ───────────────────────────────────────────────────────────────── */}
-                <section className="w-full bg-[#fbd341] relative overflow-hidden">
+                <section className="w-full bg-[#283F24] relative overflow-hidden">
+                    {/* Center Lighter Glow */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#3a5834] opacity-50 blur-[120px] rounded-full pointer-events-none"></div>
+
                     {/* Vertical Background Text */}
                     <div className="absolute -left-36 lg:-left-28 xl:-left-20 top-1/2 -translate-y-1/2 -rotate-90 origin-center hidden lg:block select-none pointer-events-none">
                         <span className="text-[26px] xl:text-[36px] font-black text-white/20 tracking-[0.35em] whitespace-nowrap leading-none mix-blend-overlay animate-[pulse_4s_cubic-bezier(0.4,0,0.6,1)_infinite]">SELECTION FRUITS</span>
@@ -157,16 +160,16 @@ export default function Home() {
                         <div className="w-full md:w-1/2 flex flex-col justify-center z-10">
                             <div className="flex items-center gap-3 mb-4">
                                 <div className="w-8 h-[2px] bg-[#e45753]" />
-                                <span className="text-[13px] md:text-[14px] font-bold text-gray-700 tracking-wider">FRESH IN NO TIME</span>
+                                <span className="text-[13px] md:text-[14px] font-bold text-white/90 tracking-wider">FRESH IN NO TIME</span>
                             </div>
                             
                             <h1 className="text-[42px] md:text-[64px] font-black leading-[1.05] tracking-tight mb-6" style={{ fontFamily: "var(--font-display)" }}>
-                                <span className="text-[#152c1e]">Your Favorite Fruits</span><br/>
+                                <span className="text-white">Your Favorite Fruits</span><br/>
                                 <span className="text-[#e45753]">FRESH IN</span><br/>
                                 <span className="text-[#e45753]">MINUTES.</span>
                             </h1>
                             
-                            <p className="text-[16px] md:text-[18px] text-gray-800 font-medium max-w-md leading-relaxed mb-10">
+                            <p className="text-[16px] md:text-[18px] text-white/80 font-medium max-w-md leading-relaxed mb-10">
                                 Premium organic fruits sourced directly from local farmers of India
                             </p>
                             

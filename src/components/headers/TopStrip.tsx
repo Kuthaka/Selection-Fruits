@@ -43,40 +43,11 @@ export default function TopStrip() {
     }, [charIndex, isTyping, bannerText, pause]);
 
     return (
-        <div className="w-full bg-[#1b4310] text-white text-[12px] font-medium border-b border-white/10">
-            <div className="max-w-7xl mx-auto px-4 md:px-8 h-9 md:h-10 flex items-center justify-center md:justify-between gap-4">
-                {/* Left: promo text */}
-                <div className="flex items-center min-w-0 text-[11px] md:text-[12px] text-center w-full md:w-auto justify-center md:justify-start">
-                    <span className="truncate text-white">{displayText}<span className="animate-pulse">|</span></span>
-                </div>
-
-                {/* Right: utility links — hidden on mobile */}
-                <div className="hidden md:flex items-center gap-3.5 flex-shrink-0 text-white">
-                    <div className="flex items-center gap-1 cursor-pointer hover:text-white/80 transition-colors">
-                        En <ChevronDown className="w-3.5 h-3.5" />
-                    </div>
-                    <div className="w-px h-3 bg-white/30 mx-1" />
-                    <div className="flex items-center gap-1 cursor-pointer hover:text-white/80 transition-colors">
-                        $ USD <ChevronDown className="w-3.5 h-3.5" />
-                    </div>
-                    
-                    <div className="w-px h-3 bg-white/30 mx-1" />
-
-                    <Link href="/contact" className="flex items-center gap-1.5 hover:text-white/80 transition-colors">
-                        <MapPin className="w-3.5 h-3.5" /> Store Locator
-                    </Link>
-
-                    <div className="w-px h-3 bg-white/30 mx-1" />
-
-                    <Link href="#" className="flex items-center gap-1.5 hover:text-white/80 transition-colors">
-                        <Truck className="w-3.5 h-3.5" /> Track Your Order
-                    </Link>
-
-                    <div className="w-px h-3 bg-white/30 mx-1" />
-
-                    <Link href="/admin" className="flex items-center gap-1.5 hover:text-white/80 transition-colors">
-                        <User className="w-3.5 h-3.5" /> My Account
-                    </Link>
+        <div className="w-full bg-[#1d3131] text-white text-[11px] md:text-[12px] font-medium border-b border-white/10">
+            <div className="max-w-7xl mx-auto px-4 md:px-8 h-7 md:h-8 flex items-center justify-center">
+                {/* Promo text */}
+                <div className="flex items-center justify-center min-w-0 text-center w-full">
+                    <span className="truncate text-white tracking-wide">{displayText}<span className="animate-pulse">|</span></span>
                 </div>
             </div>
         </div>

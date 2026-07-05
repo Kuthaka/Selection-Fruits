@@ -62,49 +62,21 @@ export default function Shop() {
                     {/* ── Sidebar ── */}
                     <aside className="hidden lg:block lg:w-[260px] flex-shrink-0 space-y-6">
                         
-                        {/* Filter Block */}
+                        {/* Categories Block */}
                         <div className="border border-gray-200 bg-[#f9fbf9] rounded-sm pb-4">
                             <div className="bg-[#eef3ee] px-4 py-2.5 border-b border-gray-200">
-                                <h3 className="font-bold text-gray-800 text-[14px]">Filter By</h3>
+                                <h3 className="font-bold text-gray-800 text-[14px]">Categories</h3>
                             </div>
                             
-                            <div className="p-4 space-y-6">
-                                {/* Size */}
-                                <div>
-                                    <h4 className="font-bold text-gray-800 text-[13px] mb-3">Size</h4>
-                                    <div className="space-y-2">
-                                        {["S (17)", "M (17)", "L (13)", "XL (5)"].map(s => (
-                                            <label key={s} className="flex items-center gap-2 cursor-pointer group">
-                                                <input type="checkbox" className="w-3.5 h-3.5 rounded-sm border-gray-300 text-[#429420] focus:ring-[#429420]" />
-                                                <span className="text-[13px] text-gray-600 group-hover:text-gray-900">{s}</span>
-                                            </label>
-                                        ))}
-                                    </div>
-                                </div>
-
-                                {/* Color */}
-                                <div>
-                                    <h4 className="font-bold text-gray-800 text-[13px] mb-3">Color</h4>
-                                    <div className="space-y-2">
-                                        {["Gray (2)", "Taupe (12)", "Beige (9)", "White (3)", "Off White (2)", "Red (4)", "Black (1)"].map(c => (
-                                            <label key={c} className="flex items-center gap-2 cursor-pointer group">
-                                                <input type="checkbox" className="w-3.5 h-3.5 rounded-sm border-gray-300 text-[#429420] focus:ring-[#429420]" />
-                                                <span className="text-[13px] text-gray-600 group-hover:text-gray-900">{c}</span>
-                                            </label>
-                                        ))}
-                                    </div>
-                                </div>
-
-                                {/* Price */}
-                                <div>
-                                    <h4 className="font-bold text-gray-800 text-[13px] mb-3">Price</h4>
-                                    <p className="text-[13px] text-gray-600 mb-2">$23.00 - $86.00</p>
-                                    <div className="w-full h-1 bg-gray-300 rounded-full relative">
-                                        <div className="absolute left-0 right-1/4 h-full bg-[#429420] rounded-full"></div>
-                                        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-3.5 h-3.5 bg-[#429420] rounded-full border-2 border-white shadow-sm cursor-pointer"></div>
-                                        <div className="absolute right-1/4 top-1/2 -translate-y-1/2 w-3.5 h-3.5 bg-[#429420] rounded-full border-2 border-white shadow-sm cursor-pointer"></div>
-                                    </div>
-                                </div>
+                            <div className="p-4 space-y-2">
+                                {["Fresh Fruits", "Fresh Vegetables", "Organic Staples", "Dairy Products", "Exotic Fruits"].map(c => (
+                                    <label key={c} className="flex items-center justify-between cursor-pointer group py-1.5">
+                                        <div className="flex items-center gap-2.5">
+                                            <input type="checkbox" className="w-3.5 h-3.5 rounded-sm border-gray-300 text-[#429420] focus:ring-[#429420]" />
+                                            <span className="text-[13px] text-gray-600 group-hover:text-[#429420] transition-colors">{c}</span>
+                                        </div>
+                                    </label>
+                                ))}
                             </div>
                         </div>
 
