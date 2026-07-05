@@ -159,14 +159,14 @@ export default function Home() {
                         {/* Right: Text block */}
                         <div className="w-full md:w-1/2 flex flex-col justify-center z-10">
                             <div className="flex items-center gap-3 mb-4">
-                                <div className="w-8 h-[2px] bg-[#e45753]" />
-                                <span className="text-[13px] md:text-[14px] font-bold text-white/90 tracking-wider">FRESH IN NO TIME</span>
+                                <div className="w-8 h-[2px] bg-[#FFF78D]" />
+                                <span className="text-[13px] md:text-[14px] font-bold text-[#FFF78D] tracking-wider">FRESH IN NO TIME</span>
                             </div>
                             
                             <h1 className="text-[42px] md:text-[64px] font-black leading-[1.05] tracking-tight mb-6" style={{ fontFamily: "var(--font-display)" }}>
                                 <span className="text-white">Your Favorite Fruits</span><br/>
-                                <span className="text-[#e45753]">FRESH IN</span><br/>
-                                <span className="text-[#e45753]">MINUTES.</span>
+                                <span className="text-[#FFF78D]">FRESH IN</span><br/>
+                                <span className="text-[#FFF78D]">MINUTES.</span>
                             </h1>
                             
                             <p className="text-[16px] md:text-[18px] text-white/80 font-medium max-w-md leading-relaxed mb-10">
@@ -176,7 +176,7 @@ export default function Home() {
                             <div>
                                 <button
                                     onClick={() => router.push("/shop")}
-                                    className="bg-[#e45753] hover:bg-[#d44844] text-white text-[14px] md:text-[15px] font-bold px-10 py-4 rounded-full transition-all shadow-[0_8px_20px_rgba(228,87,83,0.3)] hover:shadow-[0_8px_25px_rgba(228,87,83,0.4)] hover:-translate-y-0.5 tracking-widest uppercase active:scale-95"
+                                    className="bg-[#FFF78D] hover:bg-[#efe77d] text-[#283F24] text-[14px] md:text-[15px] font-bold px-10 py-4 rounded-full transition-all shadow-[0_8px_20px_rgba(255,247,141,0.2)] hover:shadow-[0_8px_25px_rgba(255,247,141,0.3)] hover:-translate-y-0.5 tracking-widest uppercase active:scale-95"
                                 >
                                     YES, I'M HEALTHY
                                 </button>

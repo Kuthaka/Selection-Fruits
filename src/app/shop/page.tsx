@@ -80,42 +80,6 @@ export default function Shop() {
                             </div>
                         </div>
 
-                        {/* Promo Banner Placeholder */}
-                        <div className="w-full aspect-[4/5] relative rounded-md overflow-hidden shadow-sm border border-gray-100">
-                             <div className="absolute inset-0 bg-black/50 z-10"></div>
-                             {/* Faking a promo image layout */}
-                             <Image src="/promos/grapes.png" alt="Promo" fill className="object-cover z-0" unoptimized />
-                             <div className="relative z-20 flex flex-col items-center justify-end h-full p-4 pb-8">
-                                <h3 className="text-white font-bold text-xl mb-3">Fresh Juice</h3>
-                                <button className="px-5 py-2 bg-[#429420] text-white text-[13px] font-bold rounded-full shadow-lg hover:scale-105 transition-transform">Shop Now</button>
-                             </div>
-                        </div>
-
-                        {/* Most View Product */}
-                        <div className="border border-gray-200 bg-white rounded-sm pb-4">
-                            <div className="bg-[#f9fbf9] px-4 py-2.5 border-b border-gray-200">
-                                <h3 className="font-bold text-gray-800 text-[14px]">Most View Product</h3>
-                            </div>
-                            <div className="flex flex-col gap-4 p-4">
-                                {FAKE_PRODUCTS.slice(0, 3).map((product, i) => (
-                                    <div key={i} className="flex gap-3 items-center group cursor-pointer">
-                                        <div className="w-[70px] h-[70px] rounded-md bg-[#f4f7f4] flex-shrink-0 relative overflow-hidden flex items-center justify-center p-1 border border-gray-100">
-                                            <Image src={product.image} alt={product.name} fill className="object-contain p-2" unoptimized />
-                                        </div>
-                                        <div className="flex flex-col min-w-0 flex-grow">
-                                            <div className="flex items-center gap-0.5 mb-1">
-                                                {[1,2,3,4,5].map(s => <Star key={s} className={`w-2.5 h-2.5 ${s <= product.rating ? "fill-[#ffc107] text-[#ffc107]" : "fill-gray-200 text-gray-200"}`} />)}
-                                            </div>
-                                            <h4 className="text-[12px] font-bold text-gray-900 leading-tight mb-1 group-hover:text-[#429420] transition-colors line-clamp-2">{product.name}</h4>
-                                            <span className="text-[13px] font-bold text-[#429420]">${product.price.toFixed(2)}</span>
-                                        </div>
-                                    </div>
-                                ))}
-                                <button className="w-full mt-2 py-2 bg-[#429420] text-white rounded-md text-[13px] font-bold hover:bg-[#367a19] transition-colors shadow-sm">
-                                    All Products
-                                </button>
-                            </div>
-                        </div>
                     </aside>
 
                     {/* ── Main Content ── */}
