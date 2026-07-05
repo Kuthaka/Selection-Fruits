@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
-import { Star, Check, ChevronUp, ChevronDown, Heart, Shuffle, Loader2 } from "lucide-react";
+import { Star, Check, ChevronUp, ChevronDown, Heart, Shuffle, Loader2, Minus, Plus } from "lucide-react";
 
 import Navbar from "@/components/headers/Navbar";
 import Footer from "@/components/Footer";
@@ -314,18 +314,32 @@ export default function ProductDetails() {
 
             {/* ── Mobile Sticky Buy Button ── */}
             <div className="md:hidden fixed bottom-[76px] left-0 right-0 z-[40] bg-white border-t border-gray-100 p-3 shadow-[0_-4px_20px_rgba(0,0,0,0.06)] flex items-center justify-between transition-transform duration-300">
-                <div className="flex flex-col">
+                <div className="flex flex-col flex-shrink-0 mr-2">
                     <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Total Price</span>
-                    <span className="text-[18px] font-black text-gray-900">${(displayPrice * qty).toFixed(2)}</span>
+                    <span className="text-[17px] font-black text-[#429420]">${(displayPrice * qty).toFixed(2)}</span>
                 </div>
-                <button 
-                    onClick={() => {
-                        for(let i=0; i<qty; i++) addItem(product);
-                    }}
-                    className="h-12 px-8 bg-[#429420] text-white text-[13px] font-bold rounded-sm hover:bg-[#367a19] shadow-md shadow-[#429420]/20 transition-all active:scale-95"
-                >
-                    Add To Cart
-                </button>
+                
+                <div className="flex items-center gap-2">
+                    {/* Touch-Friendly Qty Selector */}
+                    <div className="flex items-center border border-gray-200 rounded-sm h-11 bg-white shadow-sm flex-shrink-0">
+                        <button onClick={() => setQty(q => Math.max(1, q - 1))} className="w-8 h-full flex items-center justify-center text-gray-500 hover:text-gray-900 active:bg-gray-50 transition-colors">
+                            <Minus className="w-3.5 h-3.5" />
+                        </button>
+                        <span className="w-6 text-center text-[13px] font-bold text-gray-900">{qty}</span>
+                        <button onClick={() => setQty(q => q + 1)} className="w-8 h-full flex items-center justify-center text-gray-500 hover:text-gray-900 active:bg-gray-50 transition-colors">
+                            <Plus className="w-3.5 h-3.5" />
+                        </button>
+                    </div>
+
+                    <button 
+                        onClick={() => {
+                            for(let i=0; i<qty; i++) addItem(product);
+                        }}
+                        className="h-11 px-4 sm:px-6 bg-[#429420] text-white text-[13px] font-bold rounded-sm hover:bg-[#367a19] shadow-md shadow-[#429420]/20 transition-all active:scale-95 whitespace-nowrap"
+                    >
+                        Add To Cart
+                    </button>
+                </div>
             </div>
 
             <Footer />
