@@ -44,14 +44,14 @@ export default function Navbar() {
     return (
         <>
             {/* ── Desktop: 3-layer header ── */}
-            <header className="hidden md:block fixed top-0 left-0 right-0 z-50 shadow-sm">
+            <header className="hidden md:block fixed top-0 left-0 right-0 z-50 shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
                 <TopStrip />
                 <MainNav />
                 <CategoryNav />
             </header>
 
             {/* ── Mobile: compact top bar ── */}
-            <header className="md:hidden fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-100 shadow-sm">
+            <header className="md:hidden fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-100 shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
                 <div className="flex items-center justify-between px-4 h-14 gap-3">
                     <div className="flex items-center gap-2.5 min-w-0">
                         {pathname !== "/" && (

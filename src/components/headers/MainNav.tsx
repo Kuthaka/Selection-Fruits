@@ -21,8 +21,8 @@ export default function MainNav() {
                 <div className="max-w-7xl mx-auto px-4 md:px-8 h-[76px] flex items-center gap-6 md:gap-10">
 
                     {/* Logo */}
-                    <Link href="/" className="flex-shrink-0 flex items-center gap-2.5 text-white">
-                        <div className="relative w-10 h-10">
+                    <Link href="/" className="flex-shrink-0 flex items-center gap-3 text-white">
+                        <div className="relative w-14 h-14">
                             <Image
                                 src="/Mains/logo-bg.png"
                                 alt="Logo"
@@ -31,7 +31,15 @@ export default function MainNav() {
                                 priority
                             />
                         </div>
-                        <span className="text-[26px] font-bold tracking-tight">Selection Fruits</span>
+                        <div className="relative w-40 h-10 sm:w-48 sm:h-12">
+                            <Image
+                                src="/Mains/selection-2.png"
+                                alt="Selection Fruits"
+                                fill
+                                className="object-contain object-left"
+                                priority
+                            />
+                        </div>
                     </Link>
 
                     {/* Search bar — grows to fill middle */}
