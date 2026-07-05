@@ -331,13 +331,8 @@ export default function Home() {
                                                 </h4>
                                             </Link>
                                             
-                                            {/* Stars */}
-                                            <div className="flex items-center gap-0.5 mb-2 mt-auto">
-                                                {[1,2,3,4,5].map(s => <Star key={s} className={`w-3 h-3 ${s <= product.rating ? "fill-[#ffc107] text-[#ffc107]" : "fill-gray-200 text-gray-200"}`} />)}
-                                            </div>
-
                                             {/* Price */}
-                                            <div className="flex items-baseline gap-1.5 h-[24px]">
+                                            <div className="flex items-baseline gap-1.5 h-[24px] mt-auto mb-2">
                                                 <span className="text-[14px] font-bold text-[#429420]">${product.price.toFixed(2)}</span>
                                                 {product.originalPrice && <span className="text-[12px] text-gray-400 line-through">${product.originalPrice.toFixed(2)}</span>}
                                             </div>
@@ -394,58 +389,7 @@ export default function Home() {
                     </div>
                 </section>
 
-                {/* ─────────────────────────────────────────────────────────────────
-                    CUSTOMER REVIEWS
-                ───────────────────────────────────────────────────────────────── */}
-                <section className="bg-[#f2f4f8] py-12 md:py-16">
-                    <div className="max-w-7xl mx-auto px-4 md:px-8">
-                        <div className="flex flex-col mb-10 border-b border-[#429420]/20">
-                            <div className="inline-block border-b-[2.5px] border-[#429420] pb-2.5 w-fit">
-                                <h2 className="text-xl md:text-2xl font-bold text-gray-900" style={{ fontFamily: "var(--font-display)" }}>
-                                    See What Our Customers Says
-                                </h2>
-                            </div>
-                        </div>
 
-                        <div className="relative">
-                            {/* Carousel Navigation Arrows */}
-                            <button onClick={() => scrollReviews('left')} className="absolute left-0 md:-left-5 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-[0_2px_15px_rgba(0,0,0,0.08)] z-10 text-gray-700 hover:text-[#429420] transition-colors border border-gray-100 hidden md:flex">
-                                <ArrowLeft className="w-4 h-4" />
-                            </button>
-                            <button onClick={() => scrollReviews('right')} className="absolute right-0 md:-right-5 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-[0_2px_15px_rgba(0,0,0,0.08)] z-10 text-gray-700 hover:text-[#429420] transition-colors border border-gray-100 hidden md:flex">
-                                <ArrowRight className="w-4 h-4" />
-                            </button>
-
-                            <div 
-                                ref={scrollRefReviews}
-                                className="flex overflow-x-auto snap-x snap-mandatory gap-4 md:gap-6 pb-2 hide-scrollbar"
-                                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-                            >
-                                {FAKE_REVIEWS.map((review, i) => (
-                                    <div key={i} className="min-w-[280px] md:min-w-[380px] w-[280px] md:w-[380px] flex-shrink-0 snap-start bg-white rounded-md p-6 md:p-8 shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
-                                        <div className="flex items-center gap-1 mb-4">
-                                            {[1,2,3,4,5].map(s => (
-                                                <div key={s} className="w-[22px] h-[22px] bg-[#8da5e1] rounded-[2px] flex items-center justify-center">
-                                                    <Star className="w-3.5 h-3.5 fill-white text-white" />
-                                                </div>
-                                            ))}
-                                        </div>
-                                        <p className="text-[13.5px] md:text-[14.5px] text-gray-600 leading-[1.6] mb-6 min-h-[70px]">
-                                            {review.text}
-                                        </p>
-                                        <div className="flex items-center gap-4">
-                                            <div className="w-11 h-11 rounded-full overflow-hidden relative bg-gray-200">
-                                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                                <img src={review.image} alt={review.name} className="w-full h-full object-cover" />
-                                            </div>
-                                            <span className="text-[14px] font-bold text-gray-900">{review.name}</span>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                </section>
 
             </main>
 

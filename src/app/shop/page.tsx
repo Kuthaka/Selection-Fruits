@@ -233,13 +233,8 @@ export default function Shop() {
                                             {product.name}
                                         </h4>
                                         
-                                        {/* Stars */}
-                                        <div className="flex items-center gap-0.5 mb-2 mt-auto">
-                                            {[1,2,3,4,5].map(s => <Star key={s} className={`w-3 h-3 ${s <= product.rating ? "fill-[#ffc107] text-[#ffc107]" : "fill-gray-200 text-gray-200"}`} />)}
-                                        </div>
-
                                         {/* Price */}
-                                        <div className="flex items-baseline gap-1.5 h-[24px]">
+                                        <div className="flex items-baseline gap-1.5 h-[24px] mt-auto mb-2">
                                             <span className="text-[14px] font-bold text-[#429420]">${product.price.toFixed(2)}</span>
                                             {product.originalPrice && <span className="text-[12px] text-gray-400 line-through">${product.originalPrice.toFixed(2)}</span>}
                                         </div>

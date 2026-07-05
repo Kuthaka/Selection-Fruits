@@ -140,15 +140,10 @@ export default function ProductDetails() {
                     <div className="flex flex-col">
                         <h1 className="text-[26px] font-bold text-gray-900 mb-2">{product.name}</h1>
                         
-                        {/* Stars & Info */}
+                        {/* Product Info */}
                         <div className="flex flex-col mb-4">
-                            <div className="flex items-center gap-0.5 mb-2">
-                                {[1, 2, 3, 4, 5].map((s) => (
-                                    <Star key={s} className={`w-3.5 h-3.5 ${s <= 3 ? 'fill-[#ffc107] text-[#ffc107]' : 'fill-gray-200 text-gray-200'}`} />
-                                ))}
-                            </div>
                             <p className="text-[13px] text-gray-400 font-medium">
-                                Brand : Woodsman <span className="mx-2 text-gray-300">|</span> Reference : demo_10
+                                Brand : Selection Fruits <span className="mx-2 text-gray-300">|</span> Reference : demo_10
                             </p>
                         </div>
                         

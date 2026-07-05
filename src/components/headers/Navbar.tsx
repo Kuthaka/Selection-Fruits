@@ -13,7 +13,7 @@ import CartDrawer from "@/components/cart/CartDrawer";
 
 export default function Navbar() {
     const [isCartOpen, setIsCartOpen] = useState(false);
-    const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(true);
+    const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
     const pathname = usePathname();
 
     const totalItems = useCartStore(state => state.getTotalItems());
@@ -50,6 +50,7 @@ export default function Navbar() {
 
             {/* ── Mobile: complete top bar ── */}
             <header className="md:hidden fixed top-0 left-0 right-0 z-50 shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
+                <TopStrip />
                 {/* Row 1: Logo & Icons */}
                 <div className="flex items-center justify-between px-4 h-16 bg-[#429420] relative z-20">
                     <div className="flex items-center gap-3">

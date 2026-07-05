@@ -43,10 +43,10 @@ export default function TopStrip() {
     }, [charIndex, isTyping, bannerText, pause]);
 
     return (
-        <div className="w-full bg-[#429420] text-white text-[12px] font-medium border-b border-white/10">
-            <div className="max-w-7xl mx-auto px-4 md:px-8 h-10 flex items-center justify-between gap-4">
+        <div className="w-full bg-[#1b4310] text-white text-[12px] font-medium border-b border-white/10">
+            <div className="max-w-7xl mx-auto px-4 md:px-8 h-9 md:h-10 flex items-center justify-center md:justify-between gap-4">
                 {/* Left: promo text */}
-                <div className="flex items-center min-w-0">
+                <div className="flex items-center min-w-0 text-[11px] md:text-[12px] text-center w-full md:w-auto justify-center md:justify-start">
                     <span className="truncate text-white">{displayText}<span className="animate-pulse">|</span></span>
                 </div>
 
