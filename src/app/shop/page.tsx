@@ -205,7 +205,7 @@ export default function Shop() {
                                         </div>
 
                                         {/* Quick Actions (Right side stacked) */}
-                                        <div className="absolute top-2 right-2 flex flex-col gap-1.5 translate-x-10 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300 z-10">
+                                        <div className="absolute top-2 right-2 flex flex-col gap-1.5 translate-x-0 opacity-100 lg:translate-x-10 lg:opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300 z-10">
                                             <button className="w-7 h-7 bg-white rounded-full flex items-center justify-center text-gray-600 hover:text-[#429420] shadow-sm border border-gray-100">
                                                 <Maximize className="w-3.5 h-3.5" />
                                             </button>
@@ -245,7 +245,7 @@ export default function Shop() {
                                         </div>
                                         
                                         {/* Add To Cart Hover Button */}
-                                        <div className="mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none group-hover:pointer-events-auto h-9">
+                                        <div className="mt-3 opacity-100 pointer-events-auto lg:opacity-0 lg:pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto h-9">
                                             <button 
                                                 onClick={(e) => { e.preventDefault(); console.log("Added fake product") }}
                                                 className="w-full h-full bg-[#429420] text-white font-bold text-[13px] rounded-md hover:bg-[#367a19] transition-colors"
