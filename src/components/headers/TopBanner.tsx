@@ -57,7 +57,7 @@ export default function TopBanner() {
     }, [charIndex, isTyping, originalText, pause]);
 
     return (
-        <div className="bg-brand-teal text-white text-[10px] md:text-xs py-2 text-center font-medium tracking-wide min-h-[32px] flex items-center justify-center">
+        <div className="bg-brand-green text-white text-[10px] md:text-xs py-2 text-center font-semibold tracking-wide min-h-[28px] flex items-center justify-center">
             {displayText}
         </div>
     );

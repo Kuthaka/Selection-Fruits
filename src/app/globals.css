@@ -1,12 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fcf9f2;
+  --foreground: #1a1a1a;
   --brand-yellow: #f9c846;
   --brand-orange: #eb5e52;
-  --brand-teal: #1d3131;
+  --brand-teal: #1d4d3a;
   --brand-tan: #fdf2d0;
+  --brand-green: #25D367;
+  --brand-green-dark: #1aad52;
+  --brand-cream: #fcf9f2;
+  --card-bg-1: #e8f4ea;
+  --card-bg-2: #e8edf8;
+  --card-bg-3: #fef3e2;
+  --card-bg-4: #fce8f3;
+  --card-bg-5: #e8f8f5;
+  --card-bg-6: #f3e8fe;
 }
 
 @theme inline {
@@ -14,7 +24,15 @@
   --color-brand-orange: var(--brand-orange);
   --color-brand-teal: var(--brand-teal);
   --color-brand-tan: var(--brand-tan);
-  --font-sans: "Outfit", sans-serif;
+  --color-brand-green: var(--brand-green);
+  --color-brand-green-dark: var(--brand-green-dark);
+  --color-brand-cream: var(--brand-cream);
+  --font-sans: "Inter", sans-serif;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -23,24 +41,32 @@ body {
   font-family: var(--font-sans);
 }
 
-.hero-gradient {
-  background: white;
-  background-image:
-    radial-gradient(circle at 50% 50%, #fbd26e 0%, #f9c846 100%);
-  position: relative;
-  overflow: hidden;
+/* ── Card pastel backgrounds cycling ── */
+.card-bg-1 { background-color: var(--card-bg-1); }
+.card-bg-2 { background-color: var(--card-bg-2); }
+.card-bg-3 { background-color: var(--card-bg-3); }
+.card-bg-4 { background-color: var(--card-bg-4); }
+.card-bg-5 { background-color: var(--card-bg-5); }
+.card-bg-6 { background-color: var(--card-bg-6); }
+
+/* ── Scrollbar hide ── */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-.hero-gradient::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 50 Q 25 25 50 50 T 100 50' fill='none' stroke='%23fbd26e' stroke-width='1' opacity='0.3'/%3E%3C/svg%3E");
-  background-size: 200px 100px;
-  opacity: 0.5;
+/* ── Shop page specific ── */
+.shop-card {
+  border: 1px solid rgba(0,0,0,0.04);
+}
+
+/* ── Hero gradient ── */
+.hero-gradient {
+  background: white;
+  background-image: radial-gradient(circle at 50% 50%, #fbd26e 0%, #f9c846 100%);
+  position: relative;
+  overflow: hidden;
 }
 
 .vertical-text {
@@ -48,26 +74,23 @@ body {
   text-orientation: mixed;
 }
 
-.mandala-pattern {
-  background-image: radial-gradient(circle at 100% 100%, rgba(255, 255, 255, 0.05) 0%, transparent 20%),
-    radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.05) 0%, transparent 20%);
-  background-size: 40px 40px;
+/* ── Bestseller badge shimmer ── */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.bestseller-badge {
+  background: linear-gradient(90deg, #25D367, #1aad52, #25D367);
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
 }
 
-.swirl-pattern {
-  background-color: #f3f4f6;
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 30c0-10 10-10 10-20S30 0 30 0s-10 0-10 10 10 10 10 20z' fill='%23d1d5db' fill-opacity='0.2' fill-rule='evenodd'/%3E%3C/svg%3E");
+/* ── Smooth add button pulse ── */
+@keyframes pop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.18); }
+  100% { transform: scale(1); }
 }
-
-/* Hide scrollbar for Chrome, Safari and Opera */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-
-/* Hide scrollbar for IE, Edge and Firefox */
-.no-scrollbar {
-  -ms-overflow-style: none;
-  /* IE and Edge */
-  scrollbar-width: none;
-  /* Firefox */
+.btn-pop:active {
+  animation: pop 0.25s ease;
 }

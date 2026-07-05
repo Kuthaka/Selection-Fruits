@@ -158,7 +158,7 @@ export default function QrCodePage() {
                 {renderQrCard("Standard QR Code", qrRef, "standard")}
                 
                 {renderQrCard("Logo QR Code", qrLogoRef, "with-logo", {
-                    src: "/selection/logo-bg.png",
+                    src: "/Mains/logo-bg.png",
                     height: 45,
                     width: 90,
                     excavate: true,

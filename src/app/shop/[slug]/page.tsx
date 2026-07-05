@@ -22,6 +22,7 @@ import {
 import Navbar from "@/components/headers/Navbar";
 import Footer from "@/components/Footer";
 import TopBanner from "@/components/headers/TopBanner";
+import CartDrawer from "@/components/cart/CartDrawer";
 import { createClient } from "@/lib/supabase/client";
 import { Product } from "@/types/product";
 import { useCartStore } from "@/store/useCartStore";
@@ -31,9 +32,14 @@ export default function ProductDetails() {
     const router = useRouter();
     const [product, setProduct] = useState<Product | null>(null);
     const [loading, setLoading] = useState(true);
-    const [quantity, setQuantity] = useState(1);
     const [activeImage, setActiveImage] = useState(0);
+    const [isCartOpen, setIsCartOpen] = useState(false);
     const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
+
+    const cartItems = useCartStore(state => state.items);
+    const totalItems = useCartStore(state => state.getTotalItems());
+    const cartItem = product ? cartItems.find(item => item.id === product.id) : null;
+    const cartQuantity = cartItem ? cartItem.quantity : 0;
 
     const supabase = createClient();
 
@@ -100,28 +106,33 @@ export default function ProductDetails() {
 
     return (
         <div className="flex min-h-screen flex-col font-sans bg-white">
-            <TopBanner />
-            <Navbar />
+            <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+            
+            {/* Fixed Top Header */}
+            <header className="fixed top-0 left-0 right-0 h-16 md:h-20 bg-white/95 backdrop-blur-md z-50 border-b border-gray-100 flex items-center justify-between px-4 md:px-12 shadow-sm">
+                <button
+                    onClick={() => router.back()}
+                    className="flex items-center justify-center w-10 h-10 bg-gray-50 rounded-full text-brand-teal hover:bg-brand-orange hover:text-white transition-colors"
+                >
+                    <ArrowLeft className="w-5 h-5" />
+                </button>
+                <h1 className="text-sm md:text-base font-black text-brand-teal uppercase tracking-widest truncate px-4">
+                    {product.name}
+                </h1>
+                <div className="relative group cursor-pointer" onClick={() => setIsCartOpen(true)}>
+                    <button className="flex items-center justify-center w-10 h-10 bg-gray-50 rounded-full text-brand-teal hover:bg-brand-orange hover:text-white transition-colors">
+                        <ShoppingBag className="w-5 h-5" />
+                    </button>
+                    {totalItems > 0 && (
+                        <span className="absolute -top-1 -right-1 bg-brand-orange text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full font-black shadow-sm pulse-orange">
+                            {totalItems}
+                        </span>
+                    )}
+                </div>
+            </header>
 
-            <main className="flex-grow pt-24 pb-32">
+            <main className="flex-grow pt-24 md:pt-32 pb-40">
                 <div className="container mx-auto px-4 md:px-12">
-                    {/* Breadcrumbs & Navigation */}
-                    <div className="flex items-center justify-between mb-12">
-                        <button
-                            onClick={() => router.back()}
-                            className="flex items-center gap-2 text-xs font-black text-brand-teal/40 hover:text-brand-orange transition-colors uppercase tracking-widest"
-                        >
-                            <ArrowLeft className="w-4 h-4" />
-                            Return Back
-                        </button>
-                        <div className="hidden md:flex items-center gap-3 text-[10px] font-black uppercase tracking-widest text-gray-300">
-                            <span>Home</span>
-                            <ChevronRight className="w-3 h-3 text-gray-200" />
-                            <span>Shop</span>
-                            <ChevronRight className="w-3 h-3 text-gray-200" />
-                            <span className="text-brand-orange">{product.category}</span>
-                        </div>
-                    </div>
 
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
                         {/* Left: Image Showcase */}
@@ -210,52 +221,49 @@ export default function ProductDetails() {
                                 </div>
                             </div>
 
-                            {/* Actions */}
-                            <div className="space-y-6">
-                                <div className="flex flex-col sm:flex-row items-center gap-4">
-                                    {/* Quantity Toggle */}
-                                    <div className="flex items-center justify-between bg-gray-50 p-2 rounded-2xl w-full sm:w-auto min-w-[140px]">
+                            {/* Fixed Bottom Bar Actions */}
+                            <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-xl border-t border-gray-100 p-4 md:px-12 z-50 flex flex-row items-center justify-center gap-4 pb-6 md:pb-8 shadow-[0_-10px_40px_rgba(0,0,0,0.05)]">
+                                <div className="w-full max-w-7xl mx-auto flex flex-row items-center gap-4">
+                                    {cartQuantity > 0 ? (
+                                        <div className="flex-1 flex items-center justify-between bg-brand-orange text-white h-14 md:h-16 rounded-2xl px-2 md:px-6 shadow-xl shadow-brand-orange/20">
+                                            <button
+                                                onClick={() => useCartStore.getState().updateQuantity(product.id, cartQuantity - 1)}
+                                                className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-white/20 rounded-xl hover:bg-white/30 transition-colors"
+                                            >
+                                                <Minus className="w-4 h-4 md:w-5 md:h-5" />
+                                            </button>
+                                            <span className="text-lg md:text-xl font-black">{cartQuantity}</span>
+                                            <button
+                                                onClick={() => useCartStore.getState().addItem(product)}
+                                                className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-white/20 rounded-xl hover:bg-white/30 transition-colors"
+                                            >
+                                                <Plus className="w-4 h-4 md:w-5 md:h-5" />
+                                            </button>
+                                        </div>
+                                    ) : (
                                         <button
-                                            onClick={() => setQuantity(q => Math.max(1, q - 1))}
-                                            className="w-10 h-10 flex items-center justify-center bg-white text-brand-teal rounded-xl hover:bg-brand-orange hover:text-white transition-all shadow-sm"
+                                            onClick={() => useCartStore.getState().addItem(product)}
+                                            className="flex-1 bg-brand-orange text-white h-14 md:h-16 rounded-2xl font-black text-[10px] md:text-xs uppercase tracking-[0.2em] shadow-xl shadow-brand-orange/20 flex items-center justify-center gap-2 hover:bg-brand-teal transition-all transform hover:-translate-y-1"
                                         >
-                                            <Minus className="w-4 h-4" />
+                                            <ShoppingBag className="w-4 h-4 md:w-5 md:h-5 font-bold" />
+                                            Add to Cart
                                         </button>
-                                        <span className="text-sm font-black text-brand-teal w-12 text-center">{quantity}</span>
-                                        <button
-                                            onClick={() => setQuantity(q => q + 1)}
-                                            className="w-10 h-10 flex items-center justify-center bg-white text-brand-teal rounded-xl hover:bg-brand-orange hover:text-white transition-all shadow-sm"
-                                        >
-                                            <Plus className="w-4 h-4" />
-                                        </button>
-                                    </div>
+                                    )}
 
                                     <button
-                                        onClick={() => {
-                                            for (let i = 0; i < quantity; i++) {
-                                                useCartStore.getState().addItem(product);
-                                            }
-                                            // Optional: open cart drawer or show feedback
+                                        onClick={async () => {
+                                            const qty = cartQuantity > 0 ? cartQuantity : 1;
+                                            const message = `Hello Selection Fruits! 👋\n\nI'm interested in ordering:\n📦 *${product.name}*\n🔢 Quantity: ${qty}\n💰 Price: ₹${product.price * qty}\n🔗 Product Link: ${window.location.origin}/shop/${product.slug}\n\nPlease let me know how to proceed with the payment. Thank you!`;
+
+                                            const { handleWhatsAppCheckout } = await import("@/lib/whatsapp");
+                                            handleWhatsAppCheckout(message);
                                         }}
-                                        className="flex-grow w-full bg-brand-orange text-white h-16 rounded-2xl font-black text-xs uppercase tracking-[0.2em] shadow-2xl shadow-brand-orange/20 flex items-center justify-center gap-4 hover:bg-brand-teal transition-all transform hover:-translate-y-1"
+                                        className="flex-1 bg-brand-teal text-white h-14 md:h-16 rounded-2xl font-black text-[10px] md:text-xs uppercase tracking-[0.2em] shadow-xl shadow-brand-teal/10 flex items-center justify-center gap-2 hover:bg-brand-orange transition-all transform hover:-translate-y-1"
                                     >
-                                        <ShoppingBag className="w-5 h-5 font-bold" />
-                                        Add to Cart
+                                        <MessageCircle className="w-4 h-4 md:w-5 md:h-5 text-white" />
+                                        Buy on WhatsApp
                                     </button>
                                 </div>
-
-                                <button
-                                    onClick={async () => {
-                                        const message = `Hello Selection Fruits! 👋\n\nI'm interested in ordering:\n📦 *${product.name}*\n🔢 Quantity: ${quantity}\n💰 Price: ₹${product.price * quantity}\n🔗 Product Link: ${window.location.origin}/shop/${product.slug}\n\nPlease let me know how to proceed with the payment. Thank you!`;
-
-                                        const { handleWhatsAppCheckout } = await import("@/lib/whatsapp");
-                                        handleWhatsAppCheckout(message);
-                                    }}
-                                    className="w-full bg-brand-teal text-white h-16 rounded-2xl font-black text-xs uppercase tracking-[0.2em] shadow-xl shadow-brand-teal/10 flex items-center justify-center gap-4 hover:bg-brand-orange transition-all transform hover:-translate-y-1"
-                                >
-                                    <MessageCircle className="w-5 h-5 text-white" />
-                                    Checkout via WhatsApp
-                                </button>
                             </div>
 
                             {/* Trust Badges */}

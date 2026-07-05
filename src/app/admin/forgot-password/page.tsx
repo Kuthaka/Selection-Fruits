@@ -57,7 +57,7 @@ export default function ForgotPasswordPage() {
                 <div className="flex flex-col items-center mb-6 group">
                     <div className="relative w-40 h-20 mb-3 transform group-hover:scale-110 transition-transform duration-500">
                         <Image
-                            src="/selection/logo-bg.png"
+                            src="/Mains/logo-bg.png"
                             alt="Selection Fruits Logo"
                             fill
                             className="object-contain drop-shadow-2xl"
