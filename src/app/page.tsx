@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Leaf, ShieldCheck, Truck, BadgePercent, Plus, UtensilsCrossed, ChevronRight, Star } from "lucide-react";
+import { Leaf, ShieldCheck, Truck, BadgePercent, Plus, UtensilsCrossed, ChevronRight, Star, RotateCcw, Headset, Gift, Maximize, Heart, ArrowRightLeft, ArrowLeft, ArrowRight } from "lucide-react";
 import Navbar from "@/components/headers/Navbar";
 import Footer from "@/components/Footer";
 import { createClient } from "@/lib/supabase/client";
@@ -36,6 +36,15 @@ export default function Home() {
     const router = useRouter();
     const addItem = useCartStore((state) => state.addItem);
     const supabase = createClient();
+    const scrollRef = React.useRef<HTMLDivElement>(null);
+
+    const scroll = (direction: 'left' | 'right') => {
+        if (scrollRef.current) {
+            const { scrollLeft, clientWidth } = scrollRef.current;
+            const scrollTo = direction === 'left' ? scrollLeft - clientWidth : scrollLeft + clientWidth;
+            scrollRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
+        }
+    };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -55,6 +64,19 @@ export default function Home() {
     }, []);
 
     const featuredProducts = products.slice(0, 8);
+
+    const FAKE_PRODUCTS = [
+        { id: "1", brand: "Woodsman", name: "Pusa Cabbage Green Pattagobi Seed", price: 71.30, originalPrice: 85.90, discount: 17, isNew: true, rating: 3, image: "/promos/mango.png", weight: "500 g" },
+        { id: "2", brand: "Graphics", name: "Fresh Juicy Banana Isolated On White", price: 48.90, originalPrice: null, discount: 0, isNew: true, rating: 4, image: "/promos/grapes.png", weight: "1 kg" },
+        { id: "3", brand: "Graphics", name: "Organic Fresh Green Avocado Fruits", price: 61.90, originalPrice: null, discount: 0, isNew: true, rating: 4, image: "/promos/meat.png", weight: "3 pcs" },
+        { id: "4", brand: "Starwav", name: "Irresistable Apple Fragrance Oil", price: 35.20, originalPrice: 41.90, discount: 16, isNew: true, rating: 3, image: "/promos/coffee.png", weight: "250 ml" },
+        { id: "5", brand: "Vintage", name: "Kirat Organic Green Capsicum Seed", price: 56.90, originalPrice: null, discount: 0, isNew: true, rating: 3, image: "/promos/mango.png", weight: "50 g" },
+        { id: "6", brand: "Golden", name: "Onion hybrid seeds vegetable seeds", price: 39.19, originalPrice: 50.90, discount: 23, isNew: true, rating: 4, image: "/promos/grapes.png", weight: "100 g" },
+        { id: "7", brand: "Harvest", name: "Farm Fresh Sweet Corn Seeds", price: 22.50, originalPrice: 30.00, discount: 25, isNew: false, rating: 5, image: "/promos/meat.png", weight: "200 g" },
+        { id: "8", brand: "Organic", name: "Raw Honey From The Wild", price: 89.00, originalPrice: 110.00, discount: 19, isNew: false, rating: 4, image: "/promos/coffee.png", weight: "500 g" },
+        { id: "9", brand: "Spice", name: "Red Chili Powder Organic", price: 15.00, originalPrice: 18.00, discount: 16, isNew: true, rating: 5, image: "/promos/mango.png", weight: "250 g" },
+        { id: "10", brand: "Farm", name: "Fresh Strawberries Basket", price: 45.00, originalPrice: null, discount: 0, isNew: false, rating: 4, image: "/promos/grapes.png", weight: "1 Box" }
+    ];
 
     const PROMO_BANNERS = [
         {
@@ -183,21 +205,22 @@ export default function Home() {
                 {/* ─────────────────────────────────────────────────────────────────
                     TRUST STRIP
                 ───────────────────────────────────────────────────────────────── */}
-                <section className="border-y border-gray-100 bg-gray-50/60">
-                    <div className="max-w-7xl mx-auto px-4 md:px-8 py-5 grid grid-cols-2 md:grid-cols-4 gap-4">
+                <section className="max-w-7xl mx-auto px-4 md:px-8 pt-8 pb-6 md:pt-10 md:pb-8">
+                    <div className="border border-gray-100 rounded-md py-6 px-4 md:px-6 grid grid-cols-1 md:grid-cols-5 divide-y md:divide-y-0 md:divide-x divide-gray-100 shadow-[0_2px_15px_-5px_rgba(0,0,0,0.03)] bg-white">
                         {[
-                            { Icon: Truck,        label: "Free Delivery",       sub: "On orders over ₹500" },
-                            { Icon: Leaf,         label: "100% Fresh",          sub: "Farm-sourced daily" },
-                            { Icon: ShieldCheck,  label: "Safe Packaging",      sub: "Hygienic & sealed" },
-                            { Icon: BadgePercent, label: "Best Prices",         sub: "No hidden charges" },
-                        ].map(({ Icon, label, sub }) => (
-                            <div key={label} className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-xl bg-[#25863a]/10 flex items-center justify-center flex-shrink-0">
-                                    <Icon className="w-5 h-5 text-[#25863a]" />
+                            { Icon: Truck,        title: "Easy Free Delivery", sub: "Order on $100*" },
+                            { Icon: ShieldCheck,  title: "Premium Warranty",   sub: "Up to 2 years" },
+                            { Icon: RotateCcw,    title: "Easy Free Return",   sub: "365 days return" },
+                            { Icon: Headset,      title: "24*7 Online Suport", sub: "Premium searvice" },
+                            { Icon: Gift,         title: "Best Special Gifts", sub: "First Order" },
+                        ].map(({ Icon, title, sub }, i) => (
+                            <div key={i} className={`flex items-center gap-3.5 px-2 md:px-5 ${i === 0 ? "md:pl-2" : ""} ${i === 4 ? "md:pr-2" : ""} py-4 md:py-0`}>
+                                <div className="flex items-center justify-center flex-shrink-0">
+                                    <Icon className="w-8 h-8 text-[#429420]" strokeWidth={1.25} />
                                 </div>
                                 <div>
-                                    <p className="text-[13px] font-bold text-gray-800">{label}</p>
-                                    <p className="text-[11px] text-gray-400">{sub}</p>
+                                    <p className="text-[13px] font-bold text-gray-900 leading-[1.2]">{title}</p>
+                                    <p className="text-[11px] text-gray-400 mt-1 font-medium">{sub}</p>
                                 </div>
                             </div>
                         ))}
@@ -205,103 +228,118 @@ export default function Home() {
                 </section>
 
                 {/* ─────────────────────────────────────────────────────────────────
-                    BEST SELLERS
+                    FEATURED PRODUCTS
                 ───────────────────────────────────────────────────────────────── */}
-                <section className="max-w-7xl mx-auto px-4 md:px-8 py-10">
-                    <div className="flex items-center justify-between mb-6">
-                        <div>
-                            <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-[#25863a] mb-0.5">Top picks</p>
-                            <h2 className="text-2xl md:text-3xl font-black text-gray-900" style={{ fontFamily: "var(--font-display)" }}>
-                                Best Sellers
+                <section className="max-w-7xl mx-auto px-4 md:px-8 pt-4 md:pt-6 pb-10 md:pb-14 relative">
+                    <div className="flex flex-col mb-8 border-b border-gray-200">
+                        <div className="inline-block border-b-[2.5px] border-[#429420] pb-2.5 w-fit">
+                            <h2 className="text-xl md:text-2xl font-bold text-gray-900" style={{ fontFamily: "var(--font-display)" }}>
+                                Featured Products
                             </h2>
                         </div>
-                        <Link href="/shop" className="flex items-center gap-1 text-sm font-semibold text-[#25863a] hover:text-[#1d6e30] transition-colors">
-                            View all <ChevronRight className="w-4 h-4" />
-                        </Link>
                     </div>
+                    
+                    {/* Carousel Navigation Arrows */}
+                    <button onClick={() => scroll('left')} className="absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-[0_2px_10px_rgba(0,0,0,0.1)] z-10 text-gray-700 hover:text-[#429420] transition-colors md:-ml-4 border border-gray-100 hidden md:flex">
+                        <ArrowLeft className="w-4 h-4" />
+                    </button>
+                    <button onClick={() => scroll('right')} className="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-[0_2px_10px_rgba(0,0,0,0.1)] z-10 text-gray-700 hover:text-[#429420] transition-colors md:-mr-4 border border-gray-100 hidden md:flex">
+                        <ArrowRight className="w-4 h-4" />
+                    </button>
 
-                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-5">
+                    <div 
+                        ref={scrollRef}
+                        className="flex overflow-x-auto snap-x snap-mandatory gap-3 md:gap-4 pb-4 hide-scrollbar"
+                        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                    >
                         {loading ? (
                             Array.from({ length: 8 }).map((_, i) => (
-                                <div key={i} className="rounded-xl overflow-hidden animate-pulse">
-                                    <div className="aspect-[4/5] bg-gray-100" />
-                                    <div className="p-3 space-y-2">
-                                        <div className="h-2.5 w-1/3 bg-gray-100 rounded-full" />
-                                        <div className="h-3.5 w-4/5 bg-gray-100 rounded-full" />
-                                        <div className="h-3 w-1/2 bg-gray-100 rounded-full" />
+                                <div key={i} className="w-[140px] md:w-[175px] flex-shrink-0 animate-pulse border border-gray-100 p-2.5 rounded-xl">
+                                    <div className="aspect-square bg-gray-100 mb-3 rounded-lg" />
+                                    <div className="space-y-2">
+                                        <div className="h-3 w-1/3 bg-gray-100" />
+                                        <div className="h-4 w-4/5 bg-gray-100" />
+                                        <div className="h-3 w-1/2 bg-gray-100" />
                                     </div>
                                 </div>
                             ))
-                        ) : featuredProducts.length > 0 ? (
-                            featuredProducts.map((product, i) => {
-                                const pod = PODS[i % PODS.length];
-                                const displayPrice = product.offer_price ?? product.price;
-                                const originalPrice = product.offer_price ? product.regular_price : null;
-                                const weight = formatWeight(product.size_grams);
+                        ) : (
+                            FAKE_PRODUCTS.map((product, i) => {
                                 return (
-                                    <div key={product.id} className="produce-card group overflow-hidden transition-all duration-300 hover:shadow-[0_8px_32px_rgba(0,0,0,0.10)] hover:-translate-y-0.5">
-                                        <Link href={`/shop/${product.slug}`} className={`card-pod relative w-full aspect-[4/5] flex items-center justify-center ${pod} block`}>
-                                            {originalPrice && (
-                                                <span className="sale-badge absolute top-3 left-3 z-10">
-                                                    Sale
-                                                </span>
-                                            )}
-                                            <div className="relative w-[78%] h-[78%] transform transition-transform duration-500 group-hover:scale-[1.06] drop-shadow-lg">
-                                                {product.images?.[0] ? (
-                                                    <Image src={product.images[0]} alt={product.name} fill className="object-contain" sizes="(max-width:640px) 50vw, 25vw" />
-                                                ) : (
-                                                    <div className="absolute inset-0 flex items-center justify-center opacity-20">
-                                                        <UtensilsCrossed className="w-10 h-10 text-gray-600" />
-                                                    </div>
+                                    <div key={product.id} className="w-[140px] md:w-[175px] flex-shrink-0 snap-start group relative bg-white flex flex-col h-full cursor-pointer border border-gray-100 hover:shadow-[0_4px_15px_rgba(0,0,0,0.05)] p-2.5 rounded-xl transition-all">
+                                        {/* Image Area */}
+                                        <div className="relative aspect-square bg-[#f4f7f4] rounded-lg flex items-center justify-center overflow-hidden p-4 mb-3">
+                                            {/* Badges */}
+                                            <div className="absolute top-2 left-2 flex flex-col gap-1.5 z-10">
+                                                {product.discount > 0 && (
+                                                    <span className="bg-[#ff4b4b] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full leading-none">
+                                                        -{product.discount}%
+                                                    </span>
+                                                )}
+                                                {product.isNew && (
+                                                    <span className="text-[10px] font-bold text-gray-600 leading-none ml-0.5 mt-0.5">
+                                                        New
+                                                    </span>
                                                 )}
                                             </div>
-                                        </Link>
-                                        <div className="px-3 pt-3 pb-4 bg-white flex flex-col gap-0.5">
-                                            {weight && <span className="text-[10px] text-gray-400 font-medium">{weight}</span>}
-                                            <Link href={`/shop/${product.slug}`}>
-                                                <h4 className="text-[13px] font-semibold text-gray-900 leading-snug line-clamp-2 group-hover:text-[#25863a] transition-colors">
+
+                                            {/* Quick Actions (Right side stacked) */}
+                                            <div className="absolute top-2 right-2 flex flex-col gap-1.5 translate-x-10 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300 z-10">
+                                                <button className="w-7 h-7 bg-white rounded-full flex items-center justify-center text-gray-600 hover:text-[#429420] shadow-sm border border-gray-100">
+                                                    <Maximize className="w-3.5 h-3.5" />
+                                                </button>
+                                                <button className="w-7 h-7 bg-white rounded-full flex items-center justify-center text-gray-600 hover:text-[#429420] shadow-sm border border-gray-100">
+                                                    <Heart className="w-3.5 h-3.5" />
+                                                </button>
+                                                <button className="w-7 h-7 bg-white rounded-full flex items-center justify-center text-gray-600 hover:text-[#429420] shadow-sm border border-gray-100">
+                                                    <RotateCcw className="w-3.5 h-3.5" />
+                                                </button>
+                                            </div>
+
+                                            {/* Product Image */}
+                                            <div className="relative w-[85%] h-[85%] transform transition-transform duration-500 group-hover:scale-105">
+                                                <Image src={product.image} alt={product.name} fill className="object-contain" unoptimized={true} sizes="(max-width:640px) 50vw, 16vw" />
+                                            </div>
+                                        </div>
+
+                                        {/* Content Area */}
+                                        <div className="flex flex-col flex-grow relative">
+                                            <div className="flex items-center justify-between mb-1">
+                                                <p className="text-[11px] text-gray-500">{product.brand}</p>
+                                                <p className="text-[10px] font-medium text-gray-400">{product.weight}</p>
+                                            </div>
+                                            <Link href="#">
+                                                <h4 className="text-[13px] font-bold text-gray-900 leading-[1.3] mb-1.5 group-hover:text-[#429420] transition-colors line-clamp-2 h-[34px] overflow-hidden">
                                                     {product.name}
                                                 </h4>
                                             </Link>
+                                            
                                             {/* Stars */}
-                                            <div className="flex items-center gap-0.5 mt-1">
-                                                {[1,2,3,4,5].map(s => <Star key={s} className="w-2.5 h-2.5 fill-[#f9c846] text-[#f9c846]" />)}
-                                                <span className="text-[9px] text-gray-400 ml-1">(4.9)</span>
+                                            <div className="flex items-center gap-0.5 mb-2 mt-auto">
+                                                {[1,2,3,4,5].map(s => <Star key={s} className={`w-3 h-3 ${s <= product.rating ? "fill-[#ffc107] text-[#ffc107]" : "fill-gray-200 text-gray-200"}`} />)}
                                             </div>
-                                            <div className="flex items-center justify-between mt-2 gap-1">
-                                                <div>
-                                                    <span className="text-[15px] font-bold text-gray-900">₹{displayPrice}</span>
-                                                    {originalPrice && <span className="text-[11px] text-gray-400 line-through ml-1.5">₹{originalPrice}</span>}
-                                                </div>
-                                                <button
-                                                    onClick={() => addItem(product)}
-                                                    className="w-8 h-8 bg-[#25863a] text-white rounded-full flex items-center justify-center hover:bg-[#1d6e30] transition-colors shadow-sm flex-shrink-0"
+
+                                            {/* Price */}
+                                            <div className="flex items-baseline gap-1.5 h-[24px]">
+                                                <span className="text-[14px] font-bold text-[#429420]">${product.price.toFixed(2)}</span>
+                                                {product.originalPrice && <span className="text-[12px] text-gray-400 line-through">${product.originalPrice.toFixed(2)}</span>}
+                                            </div>
+                                            
+                                            {/* Add To Cart Hover Button */}
+                                            <div className="mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none group-hover:pointer-events-auto h-9">
+                                                <button 
+                                                    onClick={(e) => { e.preventDefault(); console.log("Added fake product") }}
+                                                    className="w-full h-full bg-[#429420] text-white font-bold text-[13px] rounded-md hover:bg-[#367a19] transition-colors"
                                                 >
-                                                    <Plus className="w-4 h-4" strokeWidth={2.8} />
+                                                    Add To Cart
                                                 </button>
                                             </div>
                                         </div>
                                     </div>
                                 );
                             })
-                        ) : (
-                            <div className="col-span-full py-20 text-center text-gray-300">
-                                <UtensilsCrossed className="w-12 h-12 mx-auto mb-3" />
-                                <p className="text-sm font-semibold">No products yet. Add some from the admin panel.</p>
-                            </div>
                         )}
                     </div>
-
-                    {!loading && featuredProducts.length > 0 && (
-                        <div className="mt-8 text-center">
-                            <Link
-                                href="/shop"
-                                className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#25863a] text-white font-bold rounded-md hover:bg-[#1d6e30] transition-colors text-sm shadow-md"
-                            >
-                                Browse All Products <ChevronRight className="w-4 h-4" />
-                            </Link>
-                        </div>
-                    )}
                 </section>
             </main>
 
