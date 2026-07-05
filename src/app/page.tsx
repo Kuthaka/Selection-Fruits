@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Leaf, ShieldCheck, Truck, BadgePercent, Plus, UtensilsCrossed, ChevronRight, Star, RotateCcw, Headset, Gift, Maximize, Heart, ArrowRightLeft, ArrowLeft, ArrowRight } from "lucide-react";
+import { Leaf, ShieldCheck, Truck, BadgePercent, Plus, UtensilsCrossed, ChevronRight, Star, RotateCcw, Headset, Gift, Maximize, Heart, ArrowRightLeft, ArrowLeft, ArrowRight, Carrot, Droplets, CupSoda, Fish, Baby, PawPrint, Cherry } from "lucide-react";
 import Navbar from "@/components/headers/Navbar";
 import Footer from "@/components/Footer";
 import { createClient } from "@/lib/supabase/client";
@@ -46,6 +46,15 @@ export default function Home() {
         }
     };
 
+    const scrollRefReviews = React.useRef<HTMLDivElement>(null);
+    const scrollReviews = (direction: 'left' | 'right') => {
+        if (scrollRefReviews.current) {
+            const { scrollLeft, clientWidth } = scrollRefReviews.current;
+            const scrollTo = direction === 'left' ? scrollLeft - clientWidth : scrollLeft + clientWidth;
+            scrollRefReviews.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
+        }
+    };
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -76,6 +85,14 @@ export default function Home() {
         { id: "8", brand: "Organic", name: "Raw Honey From The Wild", price: 89.00, originalPrice: 110.00, discount: 19, isNew: false, rating: 4, image: "/promos/coffee.png", weight: "500 g" },
         { id: "9", brand: "Spice", name: "Red Chili Powder Organic", price: 15.00, originalPrice: 18.00, discount: 16, isNew: true, rating: 5, image: "/promos/mango.png", weight: "250 g" },
         { id: "10", brand: "Farm", name: "Fresh Strawberries Basket", price: 45.00, originalPrice: null, discount: 0, isNew: false, rating: 4, image: "/promos/grapes.png", weight: "1 Box" }
+    ];
+
+    const FAKE_REVIEWS = [
+        { id: 1, name: "Byron Watts", text: "Contrary to popular belief, Lorem Ipsu not simply random text. It has roots in piece of classical Latin literature from", image: "https://randomuser.me/api/portraits/men/32.jpg" },
+        { id: 2, name: "Jhon Marker", text: "Contrary to popular belief, Lorem Ipsu not simply random text. It has roots in piece of classical Latin literature from", image: "https://randomuser.me/api/portraits/men/44.jpg" },
+        { id: 3, name: "Celeste Estrada", text: "Contrary to popular belief, Lorem Ipsu not simply random text. It has roots in piece of classical Latin literature from", image: "https://randomuser.me/api/portraits/women/44.jpg" },
+        { id: 4, name: "Cameaila Cablle", text: "Contrary to popular belief, Lorem Ipsu not simply random text. It has roots in piece of classical Latin literature from", image: "https://randomuser.me/api/portraits/women/68.jpg" },
+        { id: 5, name: "Byron Watts", text: "Contrary to popular belief, Lorem Ipsu not simply random text. It has roots in piece of classical Latin literature from", image: "https://randomuser.me/api/portraits/men/32.jpg" },
     ];
 
     const PROMO_BANNERS = [
@@ -341,6 +358,95 @@ export default function Home() {
                         )}
                     </div>
                 </section>
+
+                {/* ─────────────────────────────────────────────────────────────────
+                    SHOP BY FEATURED CATEGORIES
+                ───────────────────────────────────────────────────────────────── */}
+                <section className="bg-[#f4f7f4] py-12 md:py-16">
+                    <div className="max-w-7xl mx-auto px-4 md:px-8">
+                        <div className="flex flex-col mb-10 border-b border-[#429420]/20">
+                            <div className="inline-block border-b-[2.5px] border-[#429420] pb-2.5 w-fit">
+                                <h2 className="text-xl md:text-2xl font-bold text-gray-900" style={{ fontFamily: "var(--font-display)" }}>
+                                    Shop by Featured Categories
+                                </h2>
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-4 md:gap-6">
+                            {[
+                                { name: "Organic Limes", Icon: Leaf },
+                                { name: "Vegetable", Icon: Carrot },
+                                { name: "Dried Fruits", Icon: Cherry },
+                                { name: "Cooking Oils", Icon: Droplets },
+                                { name: "Cold Drinks", Icon: CupSoda },
+                                { name: "Meat And Fish", Icon: Fish },
+                                { name: "Baby Care", Icon: Baby },
+                                { name: "Pet Care & Food", Icon: PawPrint }
+                            ].map((cat, i) => (
+                                <Link key={i} href="#" className="flex flex-col items-center group cursor-pointer">
+                                    <div className="w-[100px] h-[100px] md:w-[130px] md:h-[130px] bg-white rounded-full flex items-center justify-center mb-4 shadow-[0_4px_15px_rgba(0,0,0,0.02)] group-hover:shadow-[0_8px_25px_rgba(66,148,32,0.15)] transition-all duration-300 group-hover:-translate-y-1">
+                                        <cat.Icon className="w-10 h-10 md:w-[48px] md:h-[48px] text-[#429420] stroke-[1.25px]" />
+                                    </div>
+                                    <span className="text-[12px] md:text-[14px] font-bold text-gray-800 text-center group-hover:text-[#429420] transition-colors">{cat.name}</span>
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                {/* ─────────────────────────────────────────────────────────────────
+                    CUSTOMER REVIEWS
+                ───────────────────────────────────────────────────────────────── */}
+                <section className="bg-[#f2f4f8] py-12 md:py-16">
+                    <div className="max-w-7xl mx-auto px-4 md:px-8">
+                        <div className="flex flex-col mb-10 border-b border-[#429420]/20">
+                            <div className="inline-block border-b-[2.5px] border-[#429420] pb-2.5 w-fit">
+                                <h2 className="text-xl md:text-2xl font-bold text-gray-900" style={{ fontFamily: "var(--font-display)" }}>
+                                    See What Our Customers Says
+                                </h2>
+                            </div>
+                        </div>
+
+                        <div className="relative">
+                            {/* Carousel Navigation Arrows */}
+                            <button onClick={() => scrollReviews('left')} className="absolute left-0 md:-left-5 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-[0_2px_15px_rgba(0,0,0,0.08)] z-10 text-gray-700 hover:text-[#429420] transition-colors border border-gray-100 hidden md:flex">
+                                <ArrowLeft className="w-4 h-4" />
+                            </button>
+                            <button onClick={() => scrollReviews('right')} className="absolute right-0 md:-right-5 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-[0_2px_15px_rgba(0,0,0,0.08)] z-10 text-gray-700 hover:text-[#429420] transition-colors border border-gray-100 hidden md:flex">
+                                <ArrowRight className="w-4 h-4" />
+                            </button>
+
+                            <div 
+                                ref={scrollRefReviews}
+                                className="flex overflow-x-auto snap-x snap-mandatory gap-4 md:gap-6 pb-2 hide-scrollbar"
+                                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                            >
+                                {FAKE_REVIEWS.map((review, i) => (
+                                    <div key={i} className="min-w-[280px] md:min-w-[380px] w-[280px] md:w-[380px] flex-shrink-0 snap-start bg-white rounded-md p-6 md:p-8 shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
+                                        <div className="flex items-center gap-1 mb-4">
+                                            {[1,2,3,4,5].map(s => (
+                                                <div key={s} className="w-[22px] h-[22px] bg-[#8da5e1] rounded-[2px] flex items-center justify-center">
+                                                    <Star className="w-3.5 h-3.5 fill-white text-white" />
+                                                </div>
+                                            ))}
+                                        </div>
+                                        <p className="text-[13.5px] md:text-[14.5px] text-gray-600 leading-[1.6] mb-6 min-h-[70px]">
+                                            {review.text}
+                                        </p>
+                                        <div className="flex items-center gap-4">
+                                            <div className="w-11 h-11 rounded-full overflow-hidden relative bg-gray-200">
+                                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                                <img src={review.image} alt={review.name} className="w-full h-full object-cover" />
+                                            </div>
+                                            <span className="text-[14px] font-bold text-gray-900">{review.name}</span>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
             </main>
 
             <Footer />
