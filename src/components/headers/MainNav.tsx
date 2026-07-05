@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Search, ShoppingBag, Heart, RefreshCw } from "lucide-react";
+import { Search, ShoppingBag } from "lucide-react";
 import CartDrawer from "@/components/cart/CartDrawer";
 import { useCartStore } from "@/store/useCartStore";
 
@@ -58,22 +58,6 @@ export default function MainNav() {
 
                     {/* Right: icons */}
                     <div className="flex items-center gap-6 flex-shrink-0 ml-auto md:ml-0">
-                        {/* Compare / Refresh */}
-                        <button className="relative flex items-center justify-center hover:opacity-80 transition-opacity">
-                            <RefreshCw className="w-6 h-6 text-white stroke-[1.5px]" />
-                            <span className="absolute -top-1.5 -right-2.5 bg-white text-[#429420] text-[10px] w-[18px] h-[18px] flex items-center justify-center rounded-full font-bold shadow-sm">
-                                0
-                            </span>
-                        </button>
-
-                        {/* Wishlist */}
-                        <button className="relative flex items-center justify-center hover:opacity-80 transition-opacity">
-                            <Heart className="w-6 h-6 text-white stroke-[1.5px]" />
-                            <span className="absolute -top-1.5 -right-2.5 bg-white text-[#429420] text-[10px] w-[18px] h-[18px] flex items-center justify-center rounded-full font-bold shadow-sm">
-                                0
-                            </span>
-                        </button>
-
                         {/* Cart */}
                         <button
                             onClick={() => setIsCartOpen(true)}

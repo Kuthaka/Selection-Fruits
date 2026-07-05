@@ -76,7 +76,6 @@ export default function Navbar() {
                         <button onClick={() => setIsMobileSearchOpen(!isMobileSearchOpen)} className="hover:scale-105 transition-transform">
                             {isMobileSearchOpen ? <X className="w-6 h-6" /> : <Search className="w-6 h-6" />}
                         </button>
-                        <button className="hover:scale-105 transition-transform"><Heart className="w-6 h-6" /></button>
                         <button onClick={() => setIsCartOpen(true)} className="relative hover:scale-105 transition-transform">
                             <ShoppingBag className="w-6 h-6" />
                             {totalItems > 0 && (

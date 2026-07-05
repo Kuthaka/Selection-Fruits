@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Leaf, ShieldCheck, Truck, BadgePercent, Plus, UtensilsCrossed, ChevronRight, Star, RotateCcw, Headset, Gift, Maximize, Heart, ArrowRightLeft, ArrowLeft, ArrowRight, Carrot, Droplets, CupSoda, Fish, Baby, PawPrint, Cherry } from "lucide-react";
+import { ChevronRight, ArrowLeft, ArrowRight, Truck, ShieldCheck, RotateCcw, Headset, Gift, Leaf, Carrot, Cherry, Droplets, CupSoda, Fish, Baby, PawPrint, Eye, Plus, Star, UtensilsCrossed, BadgePercent } from "lucide-react";
 import Navbar from "@/components/headers/Navbar";
 import Footer from "@/components/Footer";
 import { createClient } from "@/lib/supabase/client";
@@ -131,51 +131,54 @@ export default function Home() {
                 {/* ─────────────────────────────────────────────────────────────────
                     HERO SECTION
                 ───────────────────────────────────────────────────────────────── */}
-                <section className="w-full bg-[#f97833] relative overflow-hidden">
-                    <div className="max-w-7xl mx-auto px-4 md:px-8 py-10 md:py-0 flex flex-col md:flex-row items-center min-h-[380px] md:min-h-[420px] gap-6 relative z-10">
+                <section className="w-full bg-[#fbd341] relative overflow-hidden">
+                    {/* Vertical Background Text */}
+                    <div className="absolute -left-36 lg:-left-28 xl:-left-20 top-1/2 -translate-y-1/2 -rotate-90 origin-center hidden lg:block select-none pointer-events-none">
+                        <span className="text-[26px] xl:text-[36px] font-black text-white/20 tracking-[0.35em] whitespace-nowrap leading-none mix-blend-overlay animate-[pulse_4s_cubic-bezier(0.4,0,0.6,1)_infinite]">SELECTION FRUITS</span>
+                    </div>
 
-                        {/* Text block */}
-                        <div className="flex-1 text-white z-10 pt-2 md:py-12">
-                            <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/70 mb-3">
-                                Sale Up to 30% OFF
-                            </p>
-                            <h1 className="text-[36px] md:text-[52px] font-black leading-[1.08] mb-4" style={{ fontFamily: "var(--font-display)" }}>
-                                Fresh Fruits,<br />Delivered Daily.
-                            </h1>
-                            <p className="text-white/80 text-base md:text-lg mb-8 max-w-sm leading-relaxed">
-                                Farm-sourced, handpicked, and at your door across India.
-                            </p>
-                            <button
-                                onClick={() => router.push("/shop")}
-                                className="inline-flex items-center gap-2 bg-white text-[#f97833] font-bold px-7 py-3.5 rounded-md hover:bg-gray-50 transition-colors shadow-lg text-sm"
-                            >
-                                Shop Now <ChevronRight className="w-4 h-4" />
-                            </button>
-                        </div>
-
-                        {/* Hero product image */}
-                        <div className="flex-1 flex items-end justify-center md:justify-end relative min-h-[260px] md:min-h-[380px] w-full">
-                            <div className="relative w-full max-w-[380px] md:max-w-[460px] h-[260px] md:h-[420px] drop-shadow-2xl">
+                    <div className="max-w-7xl mx-auto px-4 md:px-8 py-12 md:py-20 flex flex-col md:flex-row items-center justify-between min-h-[480px] md:min-h-[600px] gap-8 md:gap-16 relative z-10 pl-4 lg:pl-32">
+                        
+                        {/* Left: Hero product image */}
+                        <div className="w-full md:w-1/2 flex items-center justify-center relative">
+                            <div className="relative w-full max-w-[320px] md:max-w-[420px] aspect-square drop-shadow-2xl hover:scale-105 transition-transform duration-700">
                                 <Image
-                                    src="https://res.cloudinary.com/drmroxs00/image/upload/v1772532862/1-removebg_w2b9ls.png"
+                                    src="/Mains/banner-1.png"
                                     alt="Fresh Fruits"
                                     fill
-                                    className="object-contain object-bottom"
+                                    className="object-contain"
                                     priority
+                                    unoptimized
                                 />
                             </div>
                         </div>
-                    </div>
 
-                    {/* Decorative circles */}
-                    <div className="absolute -top-20 -right-20 w-72 h-72 rounded-full bg-white/5 pointer-events-none" />
-                    <div className="absolute -bottom-16 left-1/3 w-48 h-48 rounded-full bg-white/5 pointer-events-none" />
-
-                    {/* Slider dots (visual only) */}
-                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5">
-                        <span className="w-5 h-1.5 rounded-full bg-white" />
-                        <span className="w-1.5 h-1.5 rounded-full bg-white/40" />
-                        <span className="w-1.5 h-1.5 rounded-full bg-white/40" />
+                        {/* Right: Text block */}
+                        <div className="w-full md:w-1/2 flex flex-col justify-center z-10">
+                            <div className="flex items-center gap-3 mb-4">
+                                <div className="w-8 h-[2px] bg-[#e45753]" />
+                                <span className="text-[13px] md:text-[14px] font-bold text-gray-700 tracking-wider">FRESH IN NO TIME</span>
+                            </div>
+                            
+                            <h1 className="text-[42px] md:text-[64px] font-black leading-[1.05] tracking-tight mb-6" style={{ fontFamily: "var(--font-display)" }}>
+                                <span className="text-[#152c1e]">Your Favorite Fruits</span><br/>
+                                <span className="text-[#e45753]">FRESH IN</span><br/>
+                                <span className="text-[#e45753]">MINUTES.</span>
+                            </h1>
+                            
+                            <p className="text-[16px] md:text-[18px] text-gray-800 font-medium max-w-md leading-relaxed mb-10">
+                                Premium organic fruits sourced directly from local farmers of India
+                            </p>
+                            
+                            <div>
+                                <button
+                                    onClick={() => router.push("/shop")}
+                                    className="bg-[#e45753] hover:bg-[#d44844] text-white text-[14px] md:text-[15px] font-bold px-10 py-4 rounded-full transition-all shadow-[0_8px_20px_rgba(228,87,83,0.3)] hover:shadow-[0_8px_25px_rgba(228,87,83,0.4)] hover:-translate-y-0.5 tracking-widest uppercase active:scale-95"
+                                >
+                                    YES, I'M HEALTHY
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </section>
 
@@ -303,13 +306,7 @@ export default function Home() {
                                             {/* Quick Actions (Right side stacked) */}
                                             <div className="absolute top-2 right-2 flex flex-col gap-1.5 translate-x-0 opacity-100 lg:translate-x-10 lg:opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300 z-10">
                                                 <button className="w-7 h-7 bg-white rounded-full flex items-center justify-center text-gray-600 hover:text-[#429420] shadow-sm border border-gray-100">
-                                                    <Maximize className="w-3.5 h-3.5" />
-                                                </button>
-                                                <button className="w-7 h-7 bg-white rounded-full flex items-center justify-center text-gray-600 hover:text-[#429420] shadow-sm border border-gray-100">
-                                                    <Heart className="w-3.5 h-3.5" />
-                                                </button>
-                                                <button className="w-7 h-7 bg-white rounded-full flex items-center justify-center text-gray-600 hover:text-[#429420] shadow-sm border border-gray-100">
-                                                    <RotateCcw className="w-3.5 h-3.5" />
+                                                    <Eye className="w-3.5 h-3.5" />
                                                 </button>
                                             </div>
 
