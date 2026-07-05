@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronDown, LayoutGrid, List, UtensilsCrossed, Plus, Loader2, SlidersHorizontal } from "lucide-react";
-import TopBanner from "@/components/headers/TopBanner";
+
 import Navbar from "@/components/headers/Navbar";
 import Footer from "@/components/Footer";
 import { createClient } from "@/lib/supabase/client";
@@ -206,7 +206,6 @@ export default function Shop() {
 
     return (
         <div className="flex min-h-screen flex-col bg-[#fcf9f2]">
-            <TopBanner />
             <Navbar />
 
             <main className="flex-grow max-w-7xl mx-auto w-full pb-28 md:pb-16">
