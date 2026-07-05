@@ -12,23 +12,11 @@ import { useCartStore } from "@/store/useCartStore";
 import CartDrawer from "@/components/cart/CartDrawer";
 
 export default function Navbar() {
-    const [showBottomNav, setShowBottomNav] = useState(true);
-    const [lastScrollY, setLastScrollY] = useState(0);
     const [isCartOpen, setIsCartOpen] = useState(false);
     const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(true);
     const pathname = usePathname();
 
     const totalItems = useCartStore(state => state.getTotalItems());
-
-    useEffect(() => {
-        const handleScroll = () => {
-            const y = window.scrollY;
-            setShowBottomNav(!(y > lastScrollY && y > 80));
-            setLastScrollY(y);
-        };
-        window.addEventListener("scroll", handleScroll, { passive: true });
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, [lastScrollY]);
 
     const isActive = (path: string) =>
         path === "/" ? pathname === "/" : pathname.startsWith(path);
@@ -131,7 +119,7 @@ export default function Navbar() {
             </header>
 
             {/* ── Mobile Bottom Nav ── */}
-            <nav className={`md:hidden fixed bottom-0 left-0 right-0 z-[100] transition-transform duration-300 ease-out ${showBottomNav ? "translate-y-0" : "translate-y-full"}`}>
+            <nav className="md:hidden fixed bottom-0 left-0 right-0 z-[100]">
                 <div className="bg-white border-t border-gray-100 px-2 pt-2 pb-4">
                     <div className="flex items-center justify-around">
                         {mobileNavLinks.map(({ name, path, Icon }) => (

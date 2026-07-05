@@ -84,22 +84,22 @@ export default function ProductDetails() {
             <main className="flex-grow max-w-[1350px] mx-auto w-full px-4 md:px-8 pt-12 pb-24">
                 
                 {/* ── Breadcrumbs ── */}
-                <div className="flex items-center mb-10 h-[38px] overflow-hidden">
+                <div className="flex items-center mb-6 md:mb-10 h-[38px] overflow-x-auto overflow-y-hidden whitespace-nowrap hide-scrollbar" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                     {/* Home */}
-                    <Link href="/" className="relative flex items-center h-full bg-white border border-gray-300 border-r-0 pl-6 pr-4 z-30 hover:text-[#429420] transition-colors">
-                        <span className="font-semibold text-gray-700 text-[13px]">Home</span>
+                    <Link href="/" className="relative flex items-center h-full bg-white border border-gray-300 border-r-0 pl-4 md:pl-6 pr-4 z-30 hover:text-[#429420] transition-colors flex-shrink-0">
+                        <span className="font-semibold text-gray-700 text-[12px] md:text-[13px]">Home</span>
                         <div className="absolute top-[-1px] right-[-19px] w-0 h-0 border-y-[19px] border-y-transparent border-l-[19px] border-l-gray-300 z-10"></div>
                         <div className="absolute top-[0px] right-[-18px] w-0 h-0 border-y-[18px] border-y-transparent border-l-[18px] border-l-white z-20"></div>
                     </Link>
-                    {/* Category (Shop/Tomatoes) */}
-                    <Link href="/shop" className="relative flex items-center h-full bg-[#f4f7f4] border border-gray-300 border-l-0 border-r-0 pl-10 pr-4 z-20 -ml-[1px] hover:text-[#429420] transition-colors">
-                        <span className="font-semibold text-gray-800 text-[13px]">Tomatoes</span>
+                    {/* Category (Shop) */}
+                    <Link href="/shop" className="relative flex items-center h-full bg-[#f4f7f4] border border-gray-300 border-l-0 border-r-0 pl-8 md:pl-10 pr-4 z-20 -ml-[1px] hover:text-[#429420] transition-colors flex-shrink-0">
+                        <span className="font-semibold text-gray-800 text-[12px] md:text-[13px]">Shop</span>
                         <div className="absolute top-[-1px] right-[-19px] w-0 h-0 border-y-[19px] border-y-transparent border-l-[19px] border-l-gray-300 z-10"></div>
                         <div className="absolute top-[0px] right-[-18px] w-0 h-0 border-y-[18px] border-y-transparent border-l-[18px] border-l-[#f4f7f4] z-20"></div>
                     </Link>
                     {/* Current Product */}
-                    <div className="relative flex items-center h-full bg-[#f4f7f4] border border-gray-300 border-l-0 border-r-0 pl-10 pr-4 z-10 -ml-[1px]">
-                        <span className="font-semibold text-gray-900 text-[13px]">{product.name}</span>
+                    <div className="relative flex items-center h-full bg-[#f4f7f4] border border-gray-300 border-l-0 border-r-0 pl-8 md:pl-10 pr-4 z-10 -ml-[1px] flex-shrink-0">
+                        <span className="font-semibold text-gray-900 text-[12px] md:text-[13px]">{product.name}</span>
                         <div className="absolute top-[-1px] right-[-19px] w-0 h-0 border-y-[19px] border-y-transparent border-l-[19px] border-l-gray-300 z-10"></div>
                         <div className="absolute top-[0px] right-[-18px] w-0 h-0 border-y-[18px] border-y-transparent border-l-[18px] border-l-[#f4f7f4] z-20"></div>
                     </div>
@@ -109,14 +109,14 @@ export default function ProductDetails() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
                     
                     {/* Left: Image Gallery */}
-                    <div className="flex gap-4">
+                    <div className="flex flex-col-reverse md:flex-row gap-4">
                         {/* Thumbnails */}
-                        <div className="flex flex-col gap-3 w-[80px] flex-shrink-0">
+                        <div className="flex flex-row md:flex-col gap-3 w-full md:w-[80px] flex-shrink-0 overflow-x-auto md:overflow-visible hide-scrollbar pb-2 md:pb-0" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                             {displayImages.map((img, idx) => (
                                 <button 
                                     key={idx}
                                     onClick={() => setActiveImage(idx)}
-                                    className={`relative w-full aspect-square border rounded-sm p-1 transition-all ${
+                                    className={`relative w-[70px] md:w-full flex-shrink-0 aspect-square border rounded-sm p-1 transition-all ${
                                         activeImage === idx ? 'border-[#429420] bg-white' : 'border-gray-200 bg-[#f4f7f4] opacity-70 hover:opacity-100'
                                     }`}
                                 >
@@ -125,7 +125,7 @@ export default function ProductDetails() {
                             ))}
                         </div>
                         {/* Main Image */}
-                        <div className="flex-grow aspect-square relative bg-white border border-gray-200 rounded-sm overflow-hidden">
+                        <div className="flex-grow aspect-square relative bg-white border border-gray-200 rounded-sm overflow-hidden w-full">
                             <Image 
                                 src={displayImages[activeImage]} 
                                 alt={product.name} 
@@ -163,7 +163,7 @@ export default function ProductDetails() {
                             {/* Color */}
                             <div>
                                 <p className="text-[13.5px] font-bold text-gray-900 mb-2">Color : <span className="font-medium text-gray-600">Green</span></p>
-                                <div className="flex items-center gap-2">
+                                <div className="flex items-center gap-2 flex-wrap">
                                     {['Taupe', 'Beige', 'White'].map(c => (
                                         <button key={c} className="px-4 py-1.5 border border-gray-200 text-gray-600 text-[13px] rounded-sm font-medium hover:border-gray-300">{c}</button>
                                     ))}
@@ -174,7 +174,7 @@ export default function ProductDetails() {
                             {/* Size */}
                             <div>
                                 <p className="text-[13.5px] font-bold text-gray-900 mb-2">Size : <span className="font-medium text-gray-600">M</span></p>
-                                <div className="flex items-center gap-2">
+                                <div className="flex items-center gap-2 flex-wrap">
                                     <button className="px-4 py-1.5 border border-[#429420] text-gray-800 text-[13px] rounded-sm font-medium">M</button>
                                     {['L', 'XL'].map(s => (
                                         <button key={s} className="px-4 py-1.5 border border-gray-200 text-gray-600 text-[13px] rounded-sm font-medium hover:border-gray-300">{s}</button>
@@ -185,7 +185,7 @@ export default function ProductDetails() {
                             {/* Dimension */}
                             <div>
                                 <p className="text-[13.5px] font-bold text-gray-900 mb-2">Dimension : <span className="font-medium text-gray-600">60x90cm</span></p>
-                                <div className="flex items-center gap-2">
+                                <div className="flex items-center gap-2 flex-wrap">
                                     <button className="px-4 py-1.5 border border-[#429420] text-gray-800 text-[13px] rounded-sm font-medium">60x90cm</button>
                                 </div>
                             </div>
@@ -233,20 +233,20 @@ export default function ProductDetails() {
                         <hr className="border-gray-200 mb-6" />
                         
                         {/* Add to Cart Actions */}
-                        <div className="flex items-center gap-4 mb-4">
-                            <div className="flex border border-gray-300 rounded-sm w-[75px] h-11 bg-white">
+                        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-4">
+                            <div className="flex border border-gray-300 rounded-sm w-full sm:w-[100px] h-12 sm:h-11 bg-white flex-shrink-0">
                                 <input 
                                     type="text" 
                                     value={qty} 
                                     readOnly 
                                     className="w-full h-full text-center text-[15px] font-semibold text-gray-800 outline-none bg-transparent" 
                                 />
-                                <div className="flex flex-col border-l border-gray-300 w-7">
+                                <div className="flex flex-col border-l border-gray-300 w-10 sm:w-8 flex-shrink-0">
                                     <button onClick={() => setQty(q => q + 1)} className="flex-1 flex items-center justify-center hover:bg-gray-50 border-b border-gray-300">
-                                        <ChevronUp className="w-3.5 h-3.5 text-gray-600" />
+                                        <ChevronUp className="w-4 h-4 text-gray-600" />
                                     </button>
                                     <button onClick={() => setQty(q => Math.max(1, q - 1))} className="flex-1 flex items-center justify-center hover:bg-gray-50">
-                                        <ChevronDown className="w-3.5 h-3.5 text-gray-600" />
+                                        <ChevronDown className="w-4 h-4 text-gray-600" />
                                     </button>
                                 </div>
                             </div>
@@ -255,7 +255,7 @@ export default function ProductDetails() {
                                 onClick={() => {
                                     for(let i=0; i<qty; i++) addItem(product);
                                 }}
-                                className="h-11 px-14 bg-[#429420] text-white text-[14px] font-bold rounded-sm hover:bg-[#367a19] transition-colors shadow-sm"
+                                className="w-full sm:w-auto flex-grow h-12 sm:h-11 px-8 md:px-14 bg-[#429420] text-white text-[14px] font-bold rounded-sm hover:bg-[#367a19] transition-colors shadow-sm whitespace-nowrap"
                             >
                                 Add To Cart
                             </button>
@@ -289,18 +289,18 @@ export default function ProductDetails() {
                 </div>
 
                 {/* ── Bottom Tabs ── */}
-                <div className="mt-20">
-                    <div className="flex items-center justify-center gap-10 border-b border-gray-200">
-                        <button className="pb-4 border-b-[3px] border-[#429420] text-[15px] font-bold text-gray-900 px-2">
+                <div className="mt-12 md:mt-20">
+                    <div className="flex items-center justify-start md:justify-center gap-6 md:gap-10 border-b border-gray-200 overflow-x-auto whitespace-nowrap hide-scrollbar pb-1 md:pb-0" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                        <button className="pb-3 md:pb-4 border-b-[3px] border-[#429420] text-[14px] md:text-[15px] font-bold text-gray-900 px-2 flex-shrink-0">
                             Description
                         </button>
-                        <button className="pb-4 border-b-[3px] border-transparent hover:border-gray-300 text-[15px] font-bold text-gray-600 hover:text-gray-900 transition-colors px-2">
+                        <button className="pb-3 md:pb-4 border-b-[3px] border-transparent hover:border-gray-300 text-[14px] md:text-[15px] font-bold text-gray-600 hover:text-gray-900 transition-colors px-2 flex-shrink-0">
                             Product Details
                         </button>
-                        <button className="pb-4 border-b-[3px] border-transparent hover:border-gray-300 text-[15px] font-bold text-gray-600 hover:text-gray-900 transition-colors px-2">
+                        <button className="pb-3 md:pb-4 border-b-[3px] border-transparent hover:border-gray-300 text-[14px] md:text-[15px] font-bold text-gray-600 hover:text-gray-900 transition-colors px-2 flex-shrink-0">
                             Shipping
                         </button>
-                        <button className="pb-4 border-b-[3px] border-transparent hover:border-gray-300 text-[15px] font-bold text-gray-600 hover:text-gray-900 transition-colors px-2">
+                        <button className="pb-3 md:pb-4 border-b-[3px] border-transparent hover:border-gray-300 text-[14px] md:text-[15px] font-bold text-gray-600 hover:text-gray-900 transition-colors px-2 flex-shrink-0">
                             Size Chart
                         </button>
                     </div>
@@ -311,6 +311,22 @@ export default function ProductDetails() {
                 </div>
 
             </main>
+
+            {/* ── Mobile Sticky Buy Button ── */}
+            <div className="md:hidden fixed bottom-[76px] left-0 right-0 z-[40] bg-white border-t border-gray-100 p-3 shadow-[0_-4px_20px_rgba(0,0,0,0.06)] flex items-center justify-between transition-transform duration-300">
+                <div className="flex flex-col">
+                    <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Total Price</span>
+                    <span className="text-[18px] font-black text-gray-900">${(displayPrice * qty).toFixed(2)}</span>
+                </div>
+                <button 
+                    onClick={() => {
+                        for(let i=0; i<qty; i++) addItem(product);
+                    }}
+                    className="h-12 px-8 bg-[#429420] text-white text-[13px] font-bold rounded-sm hover:bg-[#367a19] shadow-md shadow-[#429420]/20 transition-all active:scale-95"
+                >
+                    Add To Cart
+                </button>
+            </div>
 
             <Footer />
         </div>
