@@ -187,7 +187,7 @@ export default function Shop() {
                         {/* Product Grid */}
                         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
                             {[...FAKE_PRODUCTS, ...FAKE_PRODUCTS].slice(0, 15).map((product, i) => (
-                                <div key={i} className="w-full flex-shrink-0 group relative bg-white flex flex-col h-full cursor-pointer border border-gray-100 hover:shadow-[0_4px_15px_rgba(0,0,0,0.05)] p-2.5 rounded-xl transition-all">
+                                <Link href={`/shop/${product.id}`} key={i} className="w-full flex-shrink-0 group relative bg-white flex flex-col h-full cursor-pointer border border-gray-100 hover:shadow-[0_4px_15px_rgba(0,0,0,0.05)] p-2.5 rounded-xl transition-all">
                                     {/* Image Area */}
                                     <div className="relative aspect-square bg-[#f4f7f4] rounded-lg flex items-center justify-center overflow-hidden p-4 mb-3">
                                         {/* Badges */}
@@ -229,11 +229,9 @@ export default function Shop() {
                                             <p className="text-[11px] text-gray-500">{product.brand}</p>
                                             <p className="text-[10px] font-medium text-gray-400">{product.weight}</p>
                                         </div>
-                                        <Link href="#">
-                                            <h4 className="text-[13px] font-bold text-gray-900 leading-[1.3] mb-1.5 group-hover:text-[#429420] transition-colors line-clamp-2 h-[34px] overflow-hidden">
-                                                {product.name}
-                                            </h4>
-                                        </Link>
+                                        <h4 className="text-[13px] font-bold text-gray-900 leading-[1.3] mb-1.5 group-hover:text-[#429420] transition-colors line-clamp-2 h-[34px] overflow-hidden">
+                                            {product.name}
+                                        </h4>
                                         
                                         {/* Stars */}
                                         <div className="flex items-center gap-0.5 mb-2 mt-auto">
@@ -256,7 +254,7 @@ export default function Shop() {
                                             </button>
                                         </div>
                                     </div>
-                                </div>
+                                </Link>
                             ))}
                         </div>
 
