@@ -421,7 +421,7 @@ export default function Home() {
                             </div>
                         </div>
 
-                        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-4 md:gap-6">
+                        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-8 gap-3 sm:gap-4 md:gap-6">
                             {[
                                 { name: "Organic Limes", Icon: Leaf },
                                 { name: "Vegetable", Icon: Carrot },
@@ -433,10 +433,10 @@ export default function Home() {
                                 { name: "Pet Care & Food", Icon: PawPrint }
                             ].map((cat, i) => (
                                 <Link key={i} href="#" className="flex flex-col items-center group cursor-pointer">
-                                    <div className="w-[100px] h-[100px] md:w-[130px] md:h-[130px] bg-white rounded-full flex items-center justify-center mb-4 shadow-[0_4px_15px_rgba(0,0,0,0.02)] group-hover:shadow-[0_8px_25px_rgba(66,148,32,0.15)] transition-all duration-300 group-hover:-translate-y-1">
-                                        <cat.Icon className="w-10 h-10 md:w-[48px] md:h-[48px] text-[#429420] stroke-[1.25px]" />
+                                    <div className="w-[85px] h-[85px] sm:w-[100px] sm:h-[100px] md:w-[130px] md:h-[130px] bg-white rounded-full flex items-center justify-center mb-3 md:mb-4 shadow-[0_4px_15px_rgba(0,0,0,0.02)] group-hover:shadow-[0_8px_25px_rgba(66,148,32,0.15)] transition-all duration-300 group-hover:-translate-y-1">
+                                        <cat.Icon className="w-8 h-8 sm:w-10 sm:h-10 md:w-[48px] md:h-[48px] text-[#429420] stroke-[1.25px]" />
                                     </div>
-                                    <span className="text-[12px] md:text-[14px] font-bold text-gray-800 text-center group-hover:text-[#429420] transition-colors">{cat.name}</span>
+                                    <span className="text-[11px] sm:text-[12px] md:text-[14px] font-bold text-gray-800 text-center group-hover:text-[#429420] transition-colors leading-tight">{cat.name}</span>
                                 </Link>
                             ))}
                         </div>
