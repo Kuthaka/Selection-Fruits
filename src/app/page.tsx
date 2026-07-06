@@ -341,7 +341,7 @@ export default function Home() {
                                             <div className="mt-3 opacity-100 pointer-events-auto lg:opacity-0 lg:pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto h-9">
                                                 <button 
                                                     onClick={(e) => { e.preventDefault(); console.log("Added fake product") }}
-                                                    className="w-full h-full bg-[#429420] text-white font-bold text-[13px] rounded-md hover:bg-[#367a19] transition-colors"
+                                                    className="w-full h-full bg-[#25D367] text-white font-bold text-[13px] rounded-md hover:brightness-95 transition-all"
                                                 >
                                                     Add To Cart
                                                 </button>

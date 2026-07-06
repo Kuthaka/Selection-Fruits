@@ -250,7 +250,7 @@ export default function ProductDetails() {
                                 onClick={() => {
                                     for(let i=0; i<qty; i++) addItem(product);
                                 }}
-                                className="w-full sm:w-auto flex-grow h-12 sm:h-11 px-8 md:px-14 bg-[#429420] text-white text-[14px] font-bold rounded-sm hover:bg-[#367a19] transition-colors shadow-sm whitespace-nowrap"
+                                className="w-full sm:w-auto flex-grow h-12 sm:h-11 px-8 md:px-14 bg-[#25D367] text-white text-[14px] font-bold rounded-sm hover:brightness-95 transition-all shadow-sm whitespace-nowrap"
                             >
                                 Add To Cart
                             </button>

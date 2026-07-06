@@ -84,14 +84,18 @@ export default function Shop() {
 
                     {/* ── Main Content ── */}
                     <div className="flex-grow min-w-0">
+                        {/* ── Mobile Categories (Visible only on small screens) ── */}
+                        <div className="lg:hidden w-full overflow-x-auto hide-scrollbar pb-4 mb-4 flex items-center gap-2" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                            <button className="px-4 py-1.5 bg-[#429420] text-white text-[13px] font-bold rounded-full whitespace-nowrap shadow-sm">All</button>
+                            {["Fresh Fruits", "Fresh Vegetables", "Organic Staples", "Dairy Products", "Exotic Fruits"].map(c => (
+                                <button key={c} className="px-4 py-1.5 bg-[#f4f7f4] text-gray-700 hover:bg-[#e8ece8] text-[13px] font-medium rounded-full whitespace-nowrap transition-colors border border-gray-200">{c}</button>
+                            ))}
+                        </div>
+
                         {/* Toolbar */}
-                        <div className="bg-[#f9fbf9] rounded-sm p-3 px-4 flex items-center justify-between mb-6 border border-gray-200">
-                            <div className="flex items-center gap-4">
-                                <div className="flex items-center gap-1.5">
-                                    <button className="p-1 text-gray-900"><LayoutGrid className="w-4 h-4 fill-current" /></button>
-                                    <button className="p-1 text-gray-400"><List className="w-4 h-4" /></button>
-                                </div>
-                                <span className="text-[13px] text-gray-600 font-medium border-l border-gray-300 pl-4">There are 20 products.</span>
+                        <div className="bg-[#f9fbf9] rounded-sm p-3 px-4 flex flex-wrap gap-4 items-center justify-between mb-6 border border-gray-200">
+                            <div className="flex items-center">
+                                <span className="text-[13px] text-gray-600 font-medium">There are 20 products.</span>
                             </div>
                             <div className="flex items-center gap-2 relative">
                                 <span className="text-[13px] text-gray-600">Sort by:</span>
@@ -173,7 +177,7 @@ export default function Shop() {
                                         <div className="mt-3 opacity-100 pointer-events-auto lg:opacity-0 lg:pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto h-9">
                                             <button 
                                                 onClick={(e) => { e.preventDefault(); console.log("Added fake product") }}
-                                                className="w-full h-full bg-[#429420] text-white font-bold text-[13px] rounded-md hover:bg-[#367a19] transition-colors"
+                                                className="w-full h-full bg-[#25D367] text-white font-bold text-[13px] rounded-md hover:brightness-95 transition-all"
                                             >
                                                 Add To Cart
                                             </button>
