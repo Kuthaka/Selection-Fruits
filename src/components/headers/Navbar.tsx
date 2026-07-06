@@ -95,6 +95,12 @@ export default function Navbar() {
                     style={{ backgroundColor: useSolidTheme ? "#132B1A" : "transparent" }}
                 >
 
+                    {/* Seamless Dropdown Background Layer (Fades in smoothly) */}
+                    <div 
+                        className={`absolute inset-x-0 bottom-0 z-0 transition-opacity duration-300 pointer-events-none ${isFloatingLayout ? "top-[56px] rounded-b-[22px]" : "top-[64px]"} ${isMobileSearchOpen ? "opacity-100" : "opacity-0"}`}
+                        style={{ background: 'linear-gradient(to bottom, #132B1A 0%, #132B1A 25px, #cdebc9 70px, #cdebc9 100%)' }}
+                    />
+
                     {/* Row 1: Logo & Icons */}
                     <div className={`flex items-center justify-between px-4 transition-all duration-300 relative z-10 origin-center ${isFloatingLayout ? "h-14 scale-[0.96]" : "h-16 scale-100"}`}>
                         <div className="flex items-center gap-3">
@@ -124,7 +130,9 @@ export default function Navbar() {
                     </div>
 
                     {/* Row 2: Search + Categories */}
-                    <div className={`relative z-[200] transition-all duration-300 ease-in-out origin-top ${useSolidTheme ? "bg-transparent" : "bg-[#cdebc9]"} ${isMobileSearchOpen ? "max-h-[600px] opacity-100 py-3 px-4 pb-4" : "max-h-0 opacity-0 overflow-hidden py-0 px-4"}`}>
+                    <div 
+                        className={`relative z-[200] transition-all duration-300 ease-in-out origin-top ${isMobileSearchOpen ? "max-h-[600px] opacity-100 py-3 px-4 pb-4" : "max-h-0 opacity-0 overflow-hidden py-0 px-4"}`}
+                    >
                         <SearchBar />
 
                         {/* Category quick-links */}
@@ -134,11 +142,11 @@ export default function Navbar() {
                                     key={idx}
                                     className={`flex flex-col items-center justify-center min-w-[64px] h-[68px] flex-shrink-0 cursor-pointer transition-all rounded-xl ${
                                         cat.active
-                                            ? useSolidTheme ? "bg-white/20 text-white shadow-sm" : "bg-[#fcf9f2] shadow-sm text-gray-800"
-                                            : useSolidTheme ? "text-white/80 hover:text-white" : "text-gray-700 hover:text-gray-900"
+                                            ? "bg-[#fcf9f2] shadow-sm text-gray-800"
+                                            : "text-gray-700 hover:text-gray-900"
                                     }`}
                                 >
-                                    <cat.icon className={`w-6 h-6 mb-1 ${cat.active ? (useSolidTheme ? "text-white" : "text-[#429420]") : (useSolidTheme ? "text-white/70" : "text-gray-600")}`} strokeWidth={1.5} />
+                                    <cat.icon className={`w-6 h-6 mb-1 ${cat.active ? "text-[#429420]" : "text-gray-600"}`} strokeWidth={1.5} />
                                     <span className={`text-[11px] ${cat.active ? "font-bold" : "font-medium"}`}>{cat.name}</span>
                                 </div>
                             ))}
