@@ -8,7 +8,7 @@
   --brand-orange: #eb5e52;
   --brand-teal: #1d4d3a;
   --brand-tan: #fdf2d0;
-  --brand-green: #25D367;
+  --brand-green: #1aad52;
   --brand-green-dark: #1aad52;
   --brand-cream: #fcf9f2;
   --card-bg-1: #e8f4ea;
@@ -80,7 +80,7 @@ body {
   100% { background-position: 200% center; }
 }
 .bestseller-badge {
-  background: linear-gradient(90deg, #25D367, #1aad52, #25D367);
+  background: linear-gradient(90deg, #1aad52, #1aad52, #1aad52);
   background-size: 200% auto;
   animation: shimmer 3s linear infinite;
 }
