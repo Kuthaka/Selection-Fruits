@@ -21,11 +21,10 @@ export default function Navbar() {
     const isShop = pathname.startsWith("/shop");
     const isHome = pathname === "/";
     const scrolledOrSearch = scrolled || isMobileSearchOpen;
-    
     // Layout and Theme logic
     const isFloatingLayout = !isShop && scrolledOrSearch;
     const useSolidTheme = isShop || scrolledOrSearch;
-    const useWhiteElements = isHome || useSolidTheme;
+    const useWhiteElements = true;
 
     useEffect(() => {
         let lastScrollY = window.scrollY;
@@ -93,19 +92,8 @@ export default function Navbar() {
             <header className={`md:hidden z-50 transition-all duration-300 ${isShop ? "sticky top-0 w-full pt-0 px-0" : `fixed left-0 right-0 ${isFloatingLayout ? "pt-3 px-3 pb-3" : "pt-0 px-0"} ${scrolled ? "top-0" : "top-7"}`}`}>
                 <div 
                     className={`flex flex-col relative z-20 transition-all duration-300 ${isFloatingLayout ? "rounded-[22px] shadow-[0_8px_30px_rgba(0,0,0,0.2)]" : ""} ${isFloatingLayout && !isMobileSearchOpen ? "overflow-hidden" : ""}`}
-                    style={{ backgroundColor: useSolidTheme ? "#0D530E" : "transparent" }}
+                    style={{ backgroundColor: useSolidTheme ? "#467235" : "transparent" }}
                 >
-                    {/* Subtle pattern overlay - only when using solid theme */}
-                    {useSolidTheme && (
-                        <div 
-                            className="absolute inset-0 pointer-events-none opacity-[0.15]"
-                            style={{
-                                backgroundImage: `linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000), linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000)`,
-                                backgroundSize: '30px 30px',
-                                backgroundPosition: '0 0, 15px 15px'
-                            }}
-                        />
-                    )}
 
                     {/* Row 1: Logo & Icons */}
                     <div className={`flex items-center justify-between px-4 transition-all duration-300 relative z-10 ${isFloatingLayout ? "h-14" : "h-16"}`}>
@@ -115,7 +103,7 @@ export default function Navbar() {
                                     <Image src="/Mains/logo-bg.png" alt="Logo" fill className="object-contain" priority />
                                 </div>
                                 <div className={`relative w-32 h-[26px] ${!useSolidTheme ? "drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]" : ""}`}>
-                                    <Image src={useWhiteElements ? "/Mains/selection-2.png" : "/Mains/selection-1.png"} alt="Selection Fruits" fill className="object-contain object-left" priority />
+                                    <Image src={useWhiteElements ? "/Mains/selection-2.png" : "/Mains/selection.png"} alt="Selection Fruits" fill className="object-contain object-left" priority />
                                 </div>
                             </Link>
                         </div>
