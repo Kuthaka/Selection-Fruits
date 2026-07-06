@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ChevronRight, ArrowLeft, ArrowRight, Truck, ShieldCheck, RotateCcw, Headset, Gift, Leaf, Carrot, Cherry, Droplets, CupSoda, Fish, Baby, PawPrint, Eye, Plus, Star, UtensilsCrossed, BadgePercent } from "lucide-react";
+import { ChevronRight, ArrowLeft, ArrowRight, Truck, ShieldCheck, RotateCcw, Headset, Gift, Leaf, Carrot, Cherry, Droplets, CupSoda, Fish, Baby, PawPrint, Eye, Plus, Star, UtensilsCrossed, BadgePercent, Timer, Heart, Plane } from "lucide-react";
 import Navbar from "@/components/headers/Navbar";
 import Footer from "@/components/Footer";
 import { createClient } from "@/lib/supabase/client";
@@ -131,52 +131,45 @@ export default function Home() {
                 {/* ─────────────────────────────────────────────────────────────────
                     HERO SECTION
                 ───────────────────────────────────────────────────────────────── */}
-                <section className="w-full bg-[#283F24] relative overflow-hidden">
-                    {/* Center Lighter Glow */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#3a5834] opacity-50 blur-[120px] rounded-full pointer-events-none"></div>
-
+                <section 
+                    className="w-full relative overflow-hidden bg-center bg-cover bg-no-repeat"
+                    style={{ backgroundImage: "url('/Mains/banner-2.png')" }}
+                >
+                    {/* Subtle dark overlay for text readability */}
+                    <div className="absolute inset-0 bg-black/30 z-0"></div>
                     {/* Vertical Background Text */}
-                    <div className="absolute -left-36 lg:-left-28 xl:-left-20 top-1/2 -translate-y-1/2 -rotate-90 origin-center hidden lg:block select-none pointer-events-none">
-                        <span className="text-[26px] xl:text-[36px] font-black text-white/20 tracking-[0.35em] whitespace-nowrap leading-none mix-blend-overlay animate-[pulse_4s_cubic-bezier(0.4,0,0.6,1)_infinite]">SELECTION FRUITS</span>
+                    <div className="absolute -left-36 lg:-left-28 xl:-left-20 top-1/2 -translate-y-1/2 -rotate-90 origin-center hidden lg:block select-none pointer-events-none z-0">
+                        <span className="text-[26px] xl:text-[36px] font-black text-white/30 tracking-[0.35em] whitespace-nowrap leading-none mix-blend-overlay animate-[pulse_4s_cubic-bezier(0.4,0,0.6,1)_infinite]">SELECTION FRUITS</span>
                     </div>
 
                     <div className="max-w-7xl mx-auto px-4 md:px-8 py-12 md:py-20 flex flex-col md:flex-row items-center justify-between min-h-[480px] md:min-h-[600px] gap-8 md:gap-16 relative z-10 pl-4 lg:pl-32">
                         
-                        {/* Left: Hero product image */}
+                        {/* Left: Empty space to let background show and push text right */}
                         <div className="w-full md:w-1/2 flex items-center justify-center relative">
-                            <div className="relative w-full max-w-[320px] md:max-w-[420px] aspect-square drop-shadow-2xl hover:scale-105 transition-transform duration-700">
-                                <Image
-                                    src="/Mains/banner-1.png"
-                                    alt="Fresh Fruits"
-                                    fill
-                                    className="object-contain"
-                                    priority
-                                    unoptimized
-                                />
-                            </div>
+                            {/* Removed banner-1.png to showcase background image */}
                         </div>
 
                         {/* Right: Text block */}
-                        <div className="w-full md:w-1/2 flex flex-col justify-center z-10">
+                        <div className="w-full md:w-1/2 flex flex-col justify-center z-10 relative">
                             <div className="flex items-center gap-3 mb-4">
-                                <div className="w-8 h-[2px] bg-[#FFF78D]" />
-                                <span className="text-[13px] md:text-[14px] font-bold text-[#FFF78D] tracking-wider">FRESH IN NO TIME</span>
+                                <div className="w-8 h-[2px] bg-[#FFF78D] drop-shadow-sm" />
+                                <span className="text-[13px] md:text-[14px] font-bold text-[#FFF78D] tracking-wider drop-shadow-sm">FRESH IN NO TIME</span>
                             </div>
                             
-                            <h1 className="text-[42px] md:text-[64px] font-black leading-[1.05] tracking-tight mb-6" style={{ fontFamily: "var(--font-display)" }}>
+                            <h1 className="text-[42px] md:text-[64px] font-black leading-[1.05] tracking-tight mb-6 drop-shadow-md" style={{ fontFamily: "var(--font-display)" }}>
                                 <span className="text-white">Your Favorite Fruits</span><br/>
                                 <span className="text-[#FFF78D]">FRESH IN</span><br/>
                                 <span className="text-[#FFF78D]">MINUTES.</span>
                             </h1>
                             
-                            <p className="text-[16px] md:text-[18px] text-white/80 font-medium max-w-md leading-relaxed mb-10">
+                            <p className="text-[16px] md:text-[18px] text-white/90 font-medium max-w-md leading-relaxed mb-10 drop-shadow-sm">
                                 Premium organic fruits sourced directly from local farmers of India
                             </p>
                             
                             <div>
                                 <button
                                     onClick={() => router.push("/shop")}
-                                    className="bg-[#FFF78D] hover:bg-[#efe77d] text-[#283F24] text-[14px] md:text-[15px] font-bold px-10 py-4 rounded-full transition-all shadow-[0_8px_20px_rgba(255,247,141,0.2)] hover:shadow-[0_8px_25px_rgba(255,247,141,0.3)] hover:-translate-y-0.5 tracking-widest uppercase active:scale-95"
+                                    className="bg-[#FFF78D] hover:bg-[#efe77d] text-[#132B1A] text-[14px] md:text-[15px] font-bold px-10 py-4 rounded-full transition-all shadow-[0_8px_20px_rgba(255,247,141,0.2)] hover:shadow-[0_8px_25px_rgba(255,247,141,0.3)] hover:-translate-y-0.5 tracking-widest uppercase active:scale-95"
                                 >
                                     YES, I'M HEALTHY
                                 </button>
@@ -186,67 +179,124 @@ export default function Home() {
                 </section>
 
                 {/* ─────────────────────────────────────────────────────────────────
-                    PROMO BANNERS
+                    SPECIALS SECTION
                 ───────────────────────────────────────────────────────────────── */}
-                <section className="max-w-7xl mx-auto px-4 md:px-8 py-8">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
-                        {PROMO_BANNERS.map((banner, i) => (
-                            <div 
-                                key={i} 
-                                className="relative rounded-md overflow-hidden h-[150px] flex items-center shadow-sm group hover:shadow-md transition-shadow cursor-pointer"
-                                style={{ backgroundColor: banner.bg }}
-                                onClick={() => router.push("/shop")}
-                            >
-                                {/* Text Content */}
-                                <div className="relative z-10 pl-5 py-4 w-[65%] text-white flex flex-col justify-center h-full">
-                                    <p className="text-[10px] font-bold tracking-wider text-white/90 mb-1.5 uppercase">
-                                        {banner.sub}
-                                    </p>
-                                    <h3 className="text-[16px] font-black leading-[1.25] mb-4" style={{ whiteSpace: "pre-line" }}>
-                                        {banner.title}
-                                    </h3>
-                                    <span className="text-[12px] font-bold underline underline-offset-4 text-white/90 hover:text-white transition-colors w-fit">
-                                        Shop Now
-                                    </span>
-                                </div>
+                <section className="w-full">
+                    {/* Top Dark Section */}
+                    <div className="w-full bg-[#132B1A] py-14">
+                        {/* Features */}
+                        <div className="max-w-6xl mx-auto px-4 flex flex-wrap justify-between items-center mb-16 relative">
+                            {/* Dotted lines between items, visible on md+ */}
+                            <div className="absolute top-[20px] left-[15%] right-[15%] h-[1px] border-t border-dashed border-white/20 hidden md:block"></div>
 
-                                {/* Image */}
-                                <div className="absolute -right-4 top-1/2 -translate-y-1/2 w-40 h-40 md:w-44 md:h-44 z-0 group-hover:scale-[1.03] transition-transform duration-500">
-                                    <Image 
-                                        src={banner.img} 
-                                        alt={banner.sub} 
-                                        fill 
-                                        className="object-contain" 
-                                        unoptimized={true}
-                                    />
+                            {/* Item 1 */}
+                            <div className="flex flex-col items-center gap-4 relative z-10 w-1/2 md:w-auto mb-8 md:mb-0 bg-[#132B1A] px-4">
+                                <Timer className="w-8 h-8 text-[#FFF78D]" strokeWidth={1.5} />
+                                <div className="text-center font-bold text-[12px] tracking-widest leading-snug">
+                                    <span className="text-[#FFF78D]">READY IN</span><br/>
+                                    <span className="text-[#FFF78D]">2 MINS</span>
                                 </div>
                             </div>
-                        ))}
+                            {/* Item 2 */}
+                            <div className="flex flex-col items-center gap-4 relative z-10 w-1/2 md:w-auto mb-8 md:mb-0 bg-[#132B1A] px-4">
+                                <Heart className="w-8 h-8 text-[#FFF78D]" strokeWidth={1.5} />
+                                <div className="text-center font-bold text-[12px] tracking-widest leading-snug">
+                                    <span className="text-[#FFF78D]">FLAVORS FROM</span><br/>
+                                    <span className="text-[#FFF78D]">STREETS</span>
+                                </div>
+                            </div>
+                            {/* Item 3 */}
+                            <div className="flex flex-col items-center gap-4 relative z-10 w-1/2 md:w-auto bg-[#132B1A] px-4">
+                                <Plane className="w-8 h-8 text-[#FFF78D]" strokeWidth={1.5} />
+                                <div className="text-center font-bold text-[12px] tracking-widest leading-snug">
+                                    <span className="text-[#FFF78D]">TRAVEL</span><br/>
+                                    <span className="text-[#FFF78D]">PARTNER</span>
+                                </div>
+                            </div>
+                            {/* Item 4 */}
+                            <div className="flex flex-col items-center gap-4 relative z-10 w-1/2 md:w-auto bg-[#132B1A] px-4">
+                                <ShieldCheck className="w-8 h-8 text-[#FFF78D]" strokeWidth={1.5} />
+                                <div className="text-center font-bold text-[12px] tracking-widest leading-snug">
+                                    <span className="text-[#FFF78D]">HYGIENIC</span><br/>
+                                    <span className="text-[#FFF78D]">PACKAGING</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Title */}
+                        <h2 className="text-center text-white text-[28px] md:text-[36px] font-black tracking-wide uppercase">
+                            SELECTION FRUITS SPECIALS
+                        </h2>
                     </div>
-                </section>
 
-                {/* ─────────────────────────────────────────────────────────────────
-                    TRUST STRIP
-                ───────────────────────────────────────────────────────────────── */}
-                <section className="max-w-7xl mx-auto px-4 md:px-8 pt-8 pb-6 md:pt-10 md:pb-8">
-                    <div className="border border-gray-100 rounded-md py-6 px-4 md:px-6 grid grid-cols-1 md:grid-cols-5 divide-y md:divide-y-0 md:divide-x divide-gray-100 shadow-[0_2px_15px_-5px_rgba(0,0,0,0.03)] bg-white">
-                        {[
-                            { Icon: Truck,        title: "Easy Free Delivery", sub: "Order on $100*" },
-                            { Icon: ShieldCheck,  title: "Premium Warranty",   sub: "Up to 2 years" },
-                            { Icon: RotateCcw,    title: "Easy Free Return",   sub: "365 days return" },
-                            { Icon: Headset,      title: "24*7 Online Suport", sub: "Premium searvice" },
-                            { Icon: Gift,         title: "Best Special Gifts", sub: "First Order" },
-                        ].map(({ Icon, title, sub }, i) => (
-                            <div key={i} className={`flex items-center gap-3.5 px-2 md:px-5 ${i === 0 ? "md:pl-2" : ""} ${i === 4 ? "md:pr-2" : ""} py-4 md:py-0`}>
-                                <div className="flex items-center justify-center flex-shrink-0">
-                                    <Icon className="w-8 h-8 text-[#429420]" strokeWidth={1.25} />
-                                </div>
-                                <div>
-                                    <p className="text-[13px] font-bold text-gray-900 leading-[1.2]">{title}</p>
-                                    <p className="text-[11px] text-gray-400 mt-1 font-medium">{sub}</p>
-                                </div>
+                    {/* Bottom Colored Grid */}
+                    <div className="w-full grid grid-cols-2 md:grid-cols-4 h-auto md:h-[400px]">
+                        {/* Col 1 */}
+                        <div 
+                            className="relative flex flex-col items-center justify-end pb-8 pt-12 md:pb-12 md:pt-16 group"
+                            style={{ backgroundColor: "#0D530E" }}
+                        >
+                            {/* Pattern overlay 1: Diagonal Stripes */}
+                            <div 
+                                className="absolute inset-0 pointer-events-none z-0"
+                                style={{
+                                    backgroundImage: `repeating-linear-gradient(45deg, rgba(0,0,0,0.1) 0, rgba(0,0,0,0.1) 1.5px, transparent 1.5px, transparent 12px)`
+                                }}
+                            />
+                            <div className="relative z-10 w-32 h-40 md:w-44 md:h-52 mb-6 md:mb-8 drop-shadow-[0_15px_25px_rgba(0,0,0,0.35)] group-hover:scale-105 transition-transform duration-300 cursor-pointer">
+                                <Image src="/promos/grapes.png" alt="Premium Grapes" fill className="object-contain" unoptimized />
                             </div>
-                        ))}
+                            <span className="relative z-10 text-white font-black tracking-widest text-[12px] md:text-[14px]">PREMIUM GRAPES</span>
+                        </div>
+
+                        {/* Col 2 */}
+                        <div className="relative flex flex-col items-center justify-end pb-8 pt-12 md:pb-12 md:pt-16 bg-[#FF5733] group overflow-hidden">
+                            {/* Pattern overlay 2: Polka Dots */}
+                            <div 
+                                className="absolute inset-0 pointer-events-none z-0"
+                                style={{
+                                    backgroundImage: `radial-gradient(rgba(0,0,0,0.15) 2.5px, transparent 2.5px)`,
+                                    backgroundSize: '20px 20px'
+                                }}
+                            />
+                            <div className="relative z-10 w-32 h-40 md:w-44 md:h-52 mb-6 md:mb-8 drop-shadow-[0_15px_25px_rgba(0,0,0,0.25)] group-hover:scale-105 transition-transform duration-300 cursor-pointer">
+                                <Image src="/promos/mango.png" alt="Fresh Mangoes" fill className="object-contain" unoptimized />
+                            </div>
+                            <span className="relative z-10 text-white font-black tracking-widest text-[12px] md:text-[14px]">FRESH MANGOES</span>
+                        </div>
+
+                        {/* Col 3 */}
+                        <div className="relative flex flex-col items-center justify-end pb-8 pt-12 md:pb-12 md:pt-16 bg-[#FFC107] group overflow-hidden">
+                            {/* Pattern overlay 3: Grid */}
+                            <div 
+                                className="absolute inset-0 pointer-events-none z-0"
+                                style={{
+                                    backgroundImage: `linear-gradient(rgba(0,0,0,0.08) 1.5px, transparent 1.5px), linear-gradient(90deg, rgba(0,0,0,0.08) 1.5px, transparent 1.5px)`,
+                                    backgroundSize: '24px 24px'
+                                }}
+                            />
+                            <div className="relative z-10 w-32 h-40 md:w-44 md:h-52 mb-6 md:mb-8 drop-shadow-[0_15px_25px_rgba(0,0,0,0.2)] group-hover:scale-105 transition-transform duration-300 cursor-pointer">
+                                <Image src="/promos/coffee.png" alt="Coffee Beans" fill className="object-contain" unoptimized />
+                            </div>
+                            <span className="relative z-10 text-white font-black tracking-widest text-[12px] md:text-[14px]">COFFEE BEANS</span>
+                        </div>
+
+                        {/* Col 4 */}
+                        <div className="relative flex flex-col items-center justify-end pb-8 pt-12 md:pb-12 md:pt-16 bg-[#A0522D] group overflow-hidden">
+                            {/* Pattern overlay 4: Diamonds */}
+                            <div 
+                                className="absolute inset-0 pointer-events-none z-0 opacity-20"
+                                style={{
+                                    backgroundImage: `linear-gradient(135deg, #000 25%, transparent 25%), linear-gradient(225deg, #000 25%, transparent 25%), linear-gradient(45deg, #000 25%, transparent 25%), linear-gradient(315deg, #000 25%, transparent 25%)`,
+                                    backgroundPosition: `15px 0, 15px 0, 0 0, 0 0`,
+                                    backgroundSize: `30px 30px`
+                                }}
+                            />
+                            <div className="relative z-10 w-32 h-40 md:w-44 md:h-52 mb-6 md:mb-8 drop-shadow-[0_15px_25px_rgba(0,0,0,0.35)] group-hover:scale-105 transition-transform duration-300 cursor-pointer">
+                                <Image src="/promos/meat.png" alt="Fresh Meat" fill className="object-contain" unoptimized />
+                            </div>
+                            <span className="relative z-10 text-white font-black tracking-widest text-[12px] md:text-[14px]">FRESH MEAT</span>
+                        </div>
                     </div>
                 </section>
 

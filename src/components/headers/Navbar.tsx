@@ -55,8 +55,20 @@ export default function Navbar() {
             {/* ── Mobile: complete top bar ── */}
             <header className="md:hidden sticky top-0 left-0 right-0 z-50 shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
                 {/* Row 1: Logo & Icons */}
-                <div className="flex items-center justify-between px-4 h-16 bg-[#429420] relative z-20">
-                    <div className="flex items-center gap-3">
+                <div 
+                    className="flex items-center justify-between px-4 h-16 relative z-20"
+                    style={{ backgroundColor: "#0D530E" }}
+                >
+                    {/* Subtle pattern overlay */}
+                    <div 
+                        className="absolute inset-0 pointer-events-none opacity-[0.15]"
+                        style={{
+                            backgroundImage: `linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000), linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000)`,
+                            backgroundSize: '30px 30px',
+                            backgroundPosition: '0 0, 15px 15px'
+                        }}
+                    />
+                    <div className="flex items-center gap-3 relative z-10">
                         {pathname !== "/" && (
                             <button
                                 onClick={() => window.history.back()}
@@ -75,7 +87,7 @@ export default function Navbar() {
                         </Link>
                     </div>
 
-                    <div className="flex items-center gap-3.5 text-white">
+                    <div className="flex items-center gap-3.5 text-white relative z-10">
                         <button onClick={() => setIsMobileSearchOpen(!isMobileSearchOpen)} className="hover:scale-105 transition-transform">
                             {isMobileSearchOpen ? <X className="w-6 h-6" /> : <Search className="w-6 h-6" />}
                         </button>

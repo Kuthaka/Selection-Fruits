@@ -17,8 +17,20 @@ export default function MainNav() {
     return (
         <>
             <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
-            <div className="w-full bg-[#429420]">
-                <div className="max-w-7xl mx-auto px-4 md:px-8 h-[76px] flex items-center gap-6 md:gap-10">
+            <div 
+                className="w-full relative"
+                style={{ backgroundColor: "#0D530E" }}
+            >
+                {/* Subtle pattern overlay */}
+                <div 
+                    className="absolute inset-0 pointer-events-none opacity-[0.15]"
+                    style={{
+                        backgroundImage: `linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000), linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000)`,
+                        backgroundSize: '30px 30px',
+                        backgroundPosition: '0 0, 15px 15px'
+                    }}
+                />
+                <div className="max-w-7xl mx-auto px-4 md:px-8 h-[76px] flex items-center gap-6 md:gap-10 relative z-10">
 
                     {/* Logo */}
                     <Link href="/" className="flex-shrink-0 flex items-center gap-3 text-white">
