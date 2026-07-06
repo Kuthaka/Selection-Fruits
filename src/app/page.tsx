@@ -160,10 +160,11 @@ export default function Home() {
                                 <span className="text-[11px] md:text-[14px] font-bold text-[#285A48] tracking-wider drop-shadow-sm">FRESH IN NO TIME</span>
                             </div>
                             
-                            <h1 className="text-[32px] sm:text-[40px] md:text-[64px] font-black leading-[1.05] tracking-tight mb-3 md:mb-6 drop-shadow-md" style={{ fontFamily: "var(--font-display)" }}>
-                                <span className="text-white">Your Favorite Fruits</span><br/>
-                                <span className="text-[#285A48]">FRESH IN</span><br/>
-                                <span className="text-[#285A48]">MINUTES.</span>
+                            <h1 className="text-[32px] sm:text-[40px] md:text-[56px] lg:text-[64px] font-black leading-[1.05] tracking-tight mb-3 md:mb-6 drop-shadow-md" style={{ fontFamily: "var(--font-display)" }}>
+                                <span className="text-white">Fresh fruits and</span><br/>
+                                <span className="text-white">vegetables,</span><br/>
+                                <span className="text-[#285A48]">handpicked</span><br/>
+                                <span className="text-[#285A48]">for quality</span>
                             </h1>
                             
                             <p className="text-[13px] md:text-[18px] text-white/90 font-medium max-w-[260px] sm:max-w-sm md:max-w-md leading-relaxed mb-6 md:mb-10 drop-shadow-sm">

@@ -15,7 +15,19 @@ import CartDrawer from "@/components/cart/CartDrawer";
 export default function Navbar() {
     const [isCartOpen, setIsCartOpen] = useState(false);
     const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
     const pathname = usePathname();
+    
+    const isHome = pathname === "/";
+    const isFloating = !isHome || scrolled;
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 20);
+        };
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
     const totalItems = useCartStore(state => state.getTotalItems());
 
@@ -58,66 +70,72 @@ export default function Navbar() {
             </div>
 
             {/* ── Mobile: complete top bar ── */}
-            <header className="md:hidden sticky top-0 left-0 right-0 z-50 shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
-                {/* Row 1: Logo & Icons */}
+            {!isHome && <div className="md:hidden h-[80px] w-full shrink-0" />}
+            <header className={`md:hidden fixed left-0 right-0 z-50 transition-all duration-300 ${isFloating ? "top-0 pt-3 px-3 pb-3" : "top-7 pt-0 px-0"}`}>
                 <div 
-                    className="flex items-center justify-between px-4 h-16 relative z-20"
-                    style={{ backgroundColor: "#0D530E" }}
+                    className={`flex flex-col relative z-20 transition-all duration-300 ${isFloating ? "rounded-[22px] shadow-[0_8px_30px_rgba(0,0,0,0.2)] overflow-hidden" : ""}`}
+                    style={{ backgroundColor: isFloating ? "#0D530E" : "transparent" }}
                 >
-                    {/* Subtle pattern overlay */}
-                    <div 
-                        className="absolute inset-0 pointer-events-none opacity-[0.15]"
-                        style={{
-                            backgroundImage: `linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000), linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000)`,
-                            backgroundSize: '30px 30px',
-                            backgroundPosition: '0 0, 15px 15px'
-                        }}
-                    />
-                    <div className="flex items-center gap-3 relative z-10">
-                        <Link href="/" className="flex items-center gap-2">
-                            <div className="relative w-8 h-8">
-                                <Image src="/Mains/logo-bg.png" alt="Logo" fill className="object-contain" priority />
-                            </div>
-                            <div className="relative w-28 h-6">
-                                <Image src="/Mains/selection-2.png" alt="Selection Fruits" fill className="object-contain object-left" priority />
-                            </div>
-                        </Link>
+                    {/* Subtle pattern overlay - only when scrolled */}
+                    {isFloating && (
+                        <div 
+                            className="absolute inset-0 pointer-events-none opacity-[0.15]"
+                            style={{
+                                backgroundImage: `linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000), linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000)`,
+                                backgroundSize: '30px 30px',
+                                backgroundPosition: '0 0, 15px 15px'
+                            }}
+                        />
+                    )}
+
+                    {/* Row 1: Logo & Icons */}
+                    <div className={`flex items-center justify-between px-4 transition-all duration-300 relative z-10 ${isFloating ? "h-14" : "h-16"}`}>
+                        <div className="flex items-center gap-3">
+                            <Link href="/" className="flex items-center gap-2">
+                                <div className="relative w-8 h-8">
+                                    <Image src="/Mains/logo-bg.png" alt="Logo" fill className="object-contain" priority />
+                                </div>
+                                <div className="relative w-28 h-6">
+                                    <Image src="/Mains/selection-2.png" alt="Selection Fruits" fill className="object-contain object-left" priority />
+                                </div>
+                            </Link>
+                        </div>
+
+                        <div className="flex items-center gap-3.5 transition-colors duration-300 relative z-10 text-white">
+                            <button onClick={() => setIsMobileSearchOpen(!isMobileSearchOpen)} className="hover:scale-105 transition-transform">
+                                {isMobileSearchOpen ? <X className="w-6 h-6" /> : <Search className="w-6 h-6" />}
+                            </button>
+                            <button onClick={() => setIsCartOpen(true)} className="relative hover:scale-105 transition-transform">
+                                <ShoppingBag className="w-6 h-6" />
+                                {totalItems > 0 && (
+                                    <span className="absolute -top-1.5 -right-1.5 bg-yellow-400 text-gray-900 text-[10px] w-4 h-4 flex items-center justify-center rounded-full font-bold">
+                                        {totalItems}
+                                    </span>
+                                )}
+                            </button>
+                        </div>
                     </div>
 
-                    <div className="flex items-center gap-3.5 text-white relative z-10">
-                        <button onClick={() => setIsMobileSearchOpen(!isMobileSearchOpen)} className="hover:scale-105 transition-transform">
-                            {isMobileSearchOpen ? <X className="w-6 h-6" /> : <Search className="w-6 h-6" />}
-                        </button>
-                        <button onClick={() => setIsCartOpen(true)} className="relative hover:scale-105 transition-transform">
-                            <ShoppingBag className="w-6 h-6" />
-                            {totalItems > 0 && (
-                                <span className="absolute -top-1.5 -right-1.5 bg-yellow-400 text-gray-900 text-[10px] w-4 h-4 flex items-center justify-center rounded-full font-bold">
-                                    {totalItems}
-                                </span>
-                            )}
-                        </button>
-                    </div>
-                </div>
+                    {/* Row 2: Search + Categories */}
+                    <div className={`relative z-[200] transition-all duration-300 ease-in-out origin-top ${isFloating ? "bg-transparent" : "bg-[#cdebc9]"} ${isMobileSearchOpen ? "max-h-[600px] opacity-100 py-3 px-4 pb-4" : "max-h-0 opacity-0 overflow-hidden py-0 px-4"}`}>
+                        <SearchBar />
 
-                {/* Row 2: Search + Categories */}
-                <div className={`relative z-[200] transition-all duration-300 ease-in-out origin-top bg-[#cdebc9] rounded-b-2xl shadow-sm ${isMobileSearchOpen ? "max-h-[600px] opacity-100 py-3 px-4 pb-4" : "max-h-0 opacity-0 overflow-hidden py-0 px-4"}`}>
-                    <SearchBar />
-
-                    {/* Category quick-links */}
-                    <div className="flex items-center gap-3 overflow-x-auto no-scrollbar pb-1 px-1 mt-3">
-                        {mobileCategories.map((cat, idx) => (
-                            <div
-                                key={idx}
-                                className={`flex flex-col items-center justify-center min-w-[64px] h-[68px] flex-shrink-0 cursor-pointer transition-all rounded-xl ${
-                                    cat.active
-                                        ? "bg-[#fcf9f2] shadow-sm text-gray-800"
-                                        : "text-gray-700 hover:text-gray-900"
-                                }`}
-                            >
-                                <cat.icon className={`w-6 h-6 mb-1 ${cat.active ? "text-[#429420]" : "text-gray-600"}`} strokeWidth={1.5} />
-                                <span className={`text-[11px] ${cat.active ? "font-bold text-gray-800" : "font-medium"}`}>{cat.name}</span>
-                            </div>
-                        ))}
+                        {/* Category quick-links */}
+                        <div className="flex items-center gap-3 overflow-x-auto no-scrollbar pb-1 px-1 mt-3">
+                            {mobileCategories.map((cat, idx) => (
+                                <div
+                                    key={idx}
+                                    className={`flex flex-col items-center justify-center min-w-[64px] h-[68px] flex-shrink-0 cursor-pointer transition-all rounded-xl ${
+                                        cat.active
+                                            ? isFloating ? "bg-white/20 text-white shadow-sm" : "bg-[#fcf9f2] shadow-sm text-gray-800"
+                                            : isFloating ? "text-white/80 hover:text-white" : "text-gray-700 hover:text-gray-900"
+                                    }`}
+                                >
+                                    <cat.icon className={`w-6 h-6 mb-1 ${cat.active ? (isFloating ? "text-white" : "text-[#429420]") : (isFloating ? "text-white/70" : "text-gray-600")}`} strokeWidth={1.5} />
+                                    <span className={`text-[11px] ${cat.active ? "font-bold" : "font-medium"}`}>{cat.name}</span>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </header>
