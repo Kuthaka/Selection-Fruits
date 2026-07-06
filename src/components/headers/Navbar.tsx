@@ -17,9 +17,10 @@ export default function Navbar() {
     const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const pathname = usePathname();
-    
+    const needsSpacer = pathname.startsWith("/shop");
     const isHome = pathname === "/";
-    const isFloating = !isHome || scrolled;
+    const isFloating = scrolled || isMobileSearchOpen;
+    const useWhiteElements = isHome || isFloating;
 
     useEffect(() => {
         const handleScroll = () => {
@@ -70,7 +71,7 @@ export default function Navbar() {
             </div>
 
             {/* ── Mobile: complete top bar ── */}
-            {!isHome && <div className="md:hidden h-[80px] w-full shrink-0" />}
+            {needsSpacer && <div className="md:hidden h-14 w-full shrink-0" />}
             <header className={`md:hidden fixed left-0 right-0 z-50 transition-all duration-300 ${isFloating ? "top-0 pt-3 px-3 pb-3" : "top-7 pt-0 px-0"}`}>
                 <div 
                     className={`flex flex-col relative z-20 transition-all duration-300 ${isFloating ? "rounded-[22px] shadow-[0_8px_30px_rgba(0,0,0,0.2)] overflow-hidden" : ""}`}
@@ -92,16 +93,16 @@ export default function Navbar() {
                     <div className={`flex items-center justify-between px-4 transition-all duration-300 relative z-10 ${isFloating ? "h-14" : "h-16"}`}>
                         <div className="flex items-center gap-3">
                             <Link href="/" className="flex items-center gap-2">
-                                <div className="relative w-8 h-8">
+                                <div className={`relative w-8 h-8 ${!isFloating ? "drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]" : ""}`}>
                                     <Image src="/Mains/logo-bg.png" alt="Logo" fill className="object-contain" priority />
                                 </div>
-                                <div className="relative w-28 h-6">
+                                <div className={`relative w-32 h-[26px] ${!isFloating ? "drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]" : ""}`}>
                                     <Image src="/Mains/selection-2.png" alt="Selection Fruits" fill className="object-contain object-left" priority />
                                 </div>
                             </Link>
                         </div>
 
-                        <div className="flex items-center gap-3.5 transition-colors duration-300 relative z-10 text-white">
+                        <div className={`flex items-center gap-3.5 transition-colors duration-300 relative z-10 text-white ${!isFloating ? "drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]" : ""}`}>
                             <button onClick={() => setIsMobileSearchOpen(!isMobileSearchOpen)} className="hover:scale-105 transition-transform">
                                 {isMobileSearchOpen ? <X className="w-6 h-6" /> : <Search className="w-6 h-6" />}
                             </button>

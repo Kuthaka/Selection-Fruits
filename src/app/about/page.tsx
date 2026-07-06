@@ -17,13 +17,18 @@ export default function AboutPage() {
             <Navbar />
 
             <main className="flex-grow">
-                {/* Simple Clean Header */}
-                <section className="bg-white py-12 md:py-20 border-b border-gray-100">
-                    <div className="max-w-7xl mx-auto px-4 md:px-8 text-center">
-                        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4" style={{ fontFamily: "var(--font-display)" }}>
+                {/* Dark Premium Header */}
+                <section className="relative w-full bg-[#0A1612] pt-32 pb-16 md:pt-36 md:pb-24 overflow-hidden">
+                    {/* Elegant background glow */}
+                    <div className="absolute top-[-50%] left-[-10%] w-[60%] h-[150%] bg-[#429420] opacity-[0.12] blur-[120px] rounded-full pointer-events-none"></div>
+                    <div className="absolute bottom-[-50%] right-[-10%] w-[50%] h-[150%] bg-[#e3d18a] opacity-[0.08] blur-[100px] rounded-full pointer-events-none"></div>
+                    
+                    <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 text-center flex flex-col items-center">
+                        <div className="w-16 h-1 bg-[#429420] mb-8 rounded-full"></div>
+                        <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 drop-shadow-md tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
                             Our Story
                         </h1>
-                        <p className="text-gray-500 max-w-2xl mx-auto text-[15px] leading-relaxed">
+                        <p className="text-gray-300 max-w-2xl mx-auto text-[15px] md:text-[17px] leading-relaxed font-light">
                             Delivering the freshest, highest quality fruits and organic produce directly from nature to your table.
                         </p>
                     </div>
