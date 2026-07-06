@@ -343,7 +343,7 @@ export default function Home() {
                         ) : (
                             FAKE_PRODUCTS.map((product, i) => {
                                 return (
-                                    <div key={product.id} className="w-[140px] md:w-[175px] flex-shrink-0 snap-start group relative bg-white flex flex-col h-full cursor-pointer border border-gray-100 hover:shadow-[0_4px_15px_rgba(0,0,0,0.05)] p-2.5 rounded-xl transition-all">
+                                    <Link key={product.id} href={`/shop/${product.id}`} className="w-[140px] md:w-[175px] flex-shrink-0 snap-start group relative bg-white flex flex-col h-full cursor-pointer border border-gray-100 hover:shadow-[0_4px_15px_rgba(0,0,0,0.05)] p-2.5 rounded-xl transition-all">
                                         {/* Image Area */}
                                         <div className="relative aspect-square bg-[#f4f7f4] rounded-lg flex items-center justify-center overflow-hidden p-4 mb-3">
                                             {/* Badges */}
@@ -362,7 +362,10 @@ export default function Home() {
 
                                             {/* Quick Actions (Right side stacked) */}
                                             <div className="absolute top-2 right-2 flex flex-col gap-1.5 translate-x-0 opacity-100 lg:translate-x-10 lg:opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300 z-10">
-                                                <button className="w-7 h-7 bg-white rounded-full flex items-center justify-center text-gray-600 hover:text-[#429420] shadow-sm border border-gray-100">
+                                                <button 
+                                                    onClick={(e) => e.preventDefault()}
+                                                    className="w-7 h-7 bg-white rounded-full flex items-center justify-center text-gray-600 hover:text-[#429420] shadow-sm border border-gray-100"
+                                                >
                                                     <Eye className="w-3.5 h-3.5" />
                                                 </button>
                                             </div>
@@ -379,11 +382,9 @@ export default function Home() {
                                                 <p className="text-[11px] text-gray-500">{product.brand}</p>
                                                 <p className="text-[10px] font-medium text-gray-400">{product.weight}</p>
                                             </div>
-                                            <Link href="#">
-                                                <h4 className="text-[13px] font-bold text-gray-900 leading-[1.3] mb-1.5 group-hover:text-[#429420] transition-colors line-clamp-2 h-[34px] overflow-hidden">
-                                                    {product.name}
-                                                </h4>
-                                            </Link>
+                                            <h4 className="text-[13px] font-bold text-gray-900 leading-[1.3] mb-1.5 group-hover:text-[#429420] transition-colors line-clamp-2 h-[34px] overflow-hidden">
+                                                {product.name}
+                                            </h4>
                                             
                                             {/* Price */}
                                             <div className="flex items-baseline gap-1.5 h-[24px] mt-auto mb-2">
@@ -401,7 +402,7 @@ export default function Home() {
                                                 </button>
                                             </div>
                                         </div>
-                                    </div>
+                                    </Link>
                                 );
                             })
                         )}
