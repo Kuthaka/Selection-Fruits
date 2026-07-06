@@ -15,6 +15,8 @@ export const metadata: Metadata = {
 
 import AnalyticsTracker from "@/components/analytics/AnalyticsTracker";
 
+import InitialSplash from "@/components/InitialSplash";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -43,6 +45,7 @@ export default function RootLayout({
       <body
         className={`${outfit.variable} antialiased font-sans bg-[#F2EDC2]`}
       >
+        <InitialSplash />
         <AnalyticsTracker />
         {children}
       </body>

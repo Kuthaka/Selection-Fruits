@@ -8,6 +8,7 @@ import { Star, Check, ChevronUp, ChevronDown, Heart, Shuffle, Loader2, Minus, Pl
 
 import Navbar from "@/components/headers/Navbar";
 import Footer from "@/components/Footer";
+import Loading from "@/app/loading";
 import { createClient } from "@/lib/supabase/client";
 import { Product } from "@/types/product";
 import { useCartStore } from "@/store/useCartStore";
@@ -33,6 +34,9 @@ export default function ProductDetails() {
     const fetchProductData = async () => {
         setLoading(true);
         try {
+            // Artificial delay to show off the cool loading animation
+            await new Promise(resolve => setTimeout(resolve, 1500));
+
             const { data, error } = await supabase
                 .from("products")
                 .select("*")
@@ -64,12 +68,7 @@ export default function ProductDetails() {
     };
 
     if (loading) {
-        return (
-            <div className="min-h-screen flex flex-col items-center justify-center gap-4 bg-white">
-                <Loader2 className="w-10 h-10 text-[#429420] animate-spin" />
-                <p className="text-[13px] font-semibold text-gray-500">Loading product...</p>
-            </div>
-        );
+        return <Loading />;
     }
 
     if (!product) return null;
