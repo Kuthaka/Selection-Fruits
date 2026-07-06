@@ -233,32 +233,42 @@ export default function ProductDetails() {
             </main>
 
             {/* ── Mobile Sticky Buy Button ── */}
-            <div className="md:hidden fixed bottom-0 left-0 right-0 z-[40] bg-white border-t border-gray-100 p-3 shadow-[0_-4px_20px_rgba(0,0,0,0.06)] flex items-center justify-between transition-transform duration-300">
+            <div className="md:hidden fixed bottom-0 left-0 right-0 z-[40] bg-white border-t border-gray-100 p-4 pb-6 shadow-[0_-8px_30px_rgba(0,0,0,0.08)] flex items-center justify-between transition-transform duration-300">
                 <div className="flex flex-col flex-shrink-0 mr-2">
-                    <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Total Price</span>
-                    <span className="text-[17px] font-black text-[#429420]">QAR {(displayPrice * (cartQuantity || 1)).toFixed(2)}</span>
+                    <span className="text-[10px] text-gray-400 font-bold uppercase tracking-[0.15em] mb-0.5">Price</span>
+                    <span className="text-[20px] font-black text-[#429420] leading-none">QAR {displayPrice.toFixed(2)}</span>
                 </div>
                 
-                <div className="flex items-center gap-2">
-                    {cartQuantity === 0 ? (
-                        <button 
-                            onClick={() => addItem(product)}
-                            className="h-11 px-6 bg-[#429420] text-white text-[13px] font-bold rounded-sm hover:bg-[#367a19] shadow-md shadow-[#429420]/20 transition-all active:scale-95 whitespace-nowrap flex items-center gap-2"
-                        >
-                            <ShoppingBag className="w-4 h-4" />
-                            Add To Cart
+                <div className="relative w-[150px] sm:w-[180px] h-[48px]">
+                    {/* Add to Cart State */}
+                    <button 
+                        onClick={() => addItem(product)}
+                        className={`absolute inset-0 w-full h-full bg-[#429420] text-white text-[14px] font-bold rounded-sm shadow-md shadow-[#429420]/20 transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] flex items-center justify-center gap-2 ${
+                            cartQuantity === 0 
+                                ? 'opacity-100 scale-100 pointer-events-auto hover:bg-[#367a19] active:scale-95' 
+                                : 'opacity-0 scale-90 pointer-events-none'
+                        }`}
+                    >
+                        <ShoppingBag className="w-4 h-4" />
+                        Add To Cart
+                    </button>
+                    
+                    {/* Incrementer State */}
+                    <div 
+                        className={`absolute inset-0 w-full h-full flex items-center border border-gray-200 rounded-sm bg-white shadow-sm transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] overflow-hidden ${
+                            cartQuantity > 0 
+                                ? 'opacity-100 scale-100 pointer-events-auto' 
+                                : 'opacity-0 scale-110 pointer-events-none'
+                        }`}
+                    >
+                        <button onClick={() => updateQuantity(product.id, cartQuantity - 1)} className="flex-1 h-full flex items-center justify-center text-gray-500 hover:bg-gray-50 active:bg-gray-100 transition-colors border-r border-gray-100">
+                            <Minus className="w-4 h-4" />
                         </button>
-                    ) : (
-                        <div className="flex items-center border border-gray-200 rounded-sm h-11 bg-white shadow-sm flex-shrink-0">
-                            <button onClick={() => updateQuantity(product.id, cartQuantity - 1)} className="w-10 h-full flex items-center justify-center text-gray-500 hover:text-gray-900 active:bg-gray-50 transition-colors">
-                                <Minus className="w-4 h-4" />
-                            </button>
-                            <span className="w-8 text-center text-[14px] font-bold text-gray-900">{cartQuantity}</span>
-                            <button onClick={() => updateQuantity(product.id, cartQuantity + 1)} className="w-10 h-full flex items-center justify-center text-gray-500 hover:text-gray-900 active:bg-gray-50 transition-colors">
-                                <Plus className="w-4 h-4" />
-                            </button>
-                        </div>
-                    )}
+                        <span className="w-12 text-center text-[15px] font-black text-gray-900">{cartQuantity}</span>
+                        <button onClick={() => updateQuantity(product.id, cartQuantity + 1)} className="flex-1 h-full flex items-center justify-center text-gray-500 hover:bg-gray-50 active:bg-gray-100 transition-colors border-l border-gray-100">
+                            <Plus className="w-4 h-4" />
+                        </button>
+                    </div>
                 </div>
             </div>
 
