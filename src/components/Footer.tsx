@@ -27,8 +27,8 @@ export default function Footer() {
     const displayMobile = settings?.mobile_number || "+91 - 74114 54555";
 
     return (
-        <footer className="w-full bg-[#fcf9f2] pt-6 pb-12 px-4 md:px-8">
-            <div className="max-w-7xl mx-auto bg-[#132B1A] rounded-[2rem] p-10 md:p-14 lg:p-16 flex flex-col lg:flex-row gap-12 lg:gap-24 relative overflow-hidden">
+        <footer className="w-full bg-[#fcf9f2] pb-24 md:pt-6 md:pb-12 md:px-8">
+            <div className="max-w-7xl mx-auto bg-[#132B1A] rounded-t-[2rem] md:rounded-[2rem] p-8 py-12 md:p-14 lg:p-16 flex flex-col lg:flex-row gap-12 lg:gap-24 relative overflow-hidden">
                 {/* Subtle Background Pattern / Curve (Optional) */}
                 <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-[#183621] rounded-full opacity-50 pointer-events-none"></div>
                 
@@ -54,16 +54,16 @@ export default function Footer() {
                         </a>
                     </div>
 
-                    <p className="text-[13px] text-[#ebeddf]/80 mt-auto pt-16 font-medium">
+                    <p className="text-[13px] text-[#ebeddf]/80 mt-8 lg:mt-auto lg:pt-16 font-medium">
                         &copy; 2024 Selection Fruits. All rights reserved.
                     </p>
                 </div>
 
                 {/* Grid for other 3 columns */}
-                <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-10 relative z-10">
+                <div className="flex-1 grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-10 md:gap-10 relative z-10">
                     
                     {/* Important Links */}
-                    <div className="flex flex-col gap-6">
+                    <div className="col-span-1 flex flex-col gap-6">
                         <h3 className="font-bold text-[#ebeddf] text-[15px]">Important Links</h3>
                         <ul className="flex flex-col gap-4">
                             <li><Link href="#" className="text-[13px] font-medium text-[#ebeddf]/80 hover:text-white transition-colors">News</Link></li>
@@ -74,7 +74,7 @@ export default function Footer() {
                     </div>
 
                     {/* Legal */}
-                    <div className="flex flex-col gap-6">
+                    <div className="col-span-1 flex flex-col gap-6">
                         <h3 className="font-bold text-[#ebeddf] text-[15px]">Legal</h3>
                         <ul className="flex flex-col gap-4">
                             <li><Link href="#" className="text-[13px] font-medium text-[#ebeddf]/80 hover:text-white transition-colors">Terms & Conditions</Link></li>
@@ -83,7 +83,7 @@ export default function Footer() {
                     </div>
 
                     {/* Support */}
-                    <div className="flex flex-col gap-6">
+                    <div className="col-span-2 md:col-span-1 flex flex-col gap-6 mt-2 md:mt-0">
                         <h3 className="font-bold text-[#ebeddf] text-[15px]">Support</h3>
                         <div className="flex flex-col gap-4 text-[#ebeddf]/80 text-[13px] font-medium">
                             <a href={`mailto:${displayEmail}`} className="hover:text-white transition-colors">{displayEmail}</a>
