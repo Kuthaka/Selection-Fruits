@@ -98,7 +98,7 @@ export default function Navbar() {
                     {/* Seamless Dropdown Background Layer (Fades in smoothly) */}
                     <div 
                         className={`absolute inset-x-0 bottom-0 z-0 transition-opacity duration-300 pointer-events-none ${isFloatingLayout ? "top-[56px] rounded-b-[22px]" : "top-[64px]"} ${isMobileSearchOpen ? "opacity-100" : "opacity-0"}`}
-                        style={{ background: 'linear-gradient(to bottom, #132B1A 0%, #132B1A 25px, #cdebc9 70px, #cdebc9 100%)' }}
+                        style={{ backgroundColor: '#cdebc9' }}
                     />
 
                     {/* Row 1: Logo & Icons */}
