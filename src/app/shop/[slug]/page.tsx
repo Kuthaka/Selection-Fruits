@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
@@ -20,6 +20,7 @@ export default function ProductDetails() {
     const [loading, setLoading] = useState(true);
     const [activeImage, setActiveImage] = useState(0);
     const [qty, setQty] = useState(1);
+    const scrollRef = useRef<HTMLDivElement>(null);
 
     const addItem = useCartStore((state) => state.addItem);
 
@@ -76,6 +77,27 @@ export default function ProductDetails() {
     const displayImages = product.images && product.images.length > 0 ? product.images : ["/promos/mango.png"];
     const displayPrice = product.offer_price ?? product.price;
 
+    const handleScroll = () => {
+        if (!scrollRef.current) return;
+        const width = scrollRef.current.clientWidth;
+        const scrollLeft = scrollRef.current.scrollLeft;
+        const newActive = Math.round(scrollLeft / width);
+        if (newActive !== activeImage) {
+            setActiveImage(newActive);
+        }
+    };
+
+    const handleDotClick = (idx: number) => {
+        setActiveImage(idx);
+        if (scrollRef.current) {
+            const width = scrollRef.current.clientWidth;
+            scrollRef.current.scrollTo({
+                left: width * idx,
+                behavior: "smooth"
+            });
+        }
+    };
+
     return (
         <div className="flex min-h-screen flex-col font-sans bg-white">
             <Navbar />
@@ -87,15 +109,24 @@ export default function ProductDetails() {
                     
                     {/* Left: Image Gallery */}
                     <div className="flex flex-col gap-4 relative">
-                        {/* Main Image */}
-                        <div className="w-full aspect-square relative bg-white border border-gray-200 rounded-sm overflow-hidden">
-                            <Image 
-                                src={displayImages[activeImage]} 
-                                alt={product.name} 
-                                fill 
-                                className="object-cover"
-                                priority
-                            />
+                        {/* Main Image Carousel */}
+                        <div 
+                            ref={scrollRef}
+                            onScroll={handleScroll}
+                            className="w-full aspect-square relative bg-white border border-gray-200 rounded-sm overflow-x-auto flex snap-x snap-mandatory hide-scrollbar"
+                            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                        >
+                            {displayImages.map((img, idx) => (
+                                <div key={idx} className="w-full h-full flex-shrink-0 snap-center relative">
+                                    <Image 
+                                        src={img} 
+                                        alt={`${product.name} - ${idx + 1}`} 
+                                        fill 
+                                        className="object-cover"
+                                        priority={idx === 0}
+                                    />
+                                </div>
+                            ))}
                         </div>
                         {/* Instagram-style Dots */}
                         {displayImages.length > 1 && (
@@ -103,7 +134,7 @@ export default function ProductDetails() {
                                 {displayImages.map((_, idx) => (
                                     <button 
                                         key={idx}
-                                        onClick={() => setActiveImage(idx)}
+                                        onClick={() => handleDotClick(idx)}
                                         className={`w-2 h-2 rounded-full transition-all ${activeImage === idx ? 'bg-[#429420] w-4' : 'bg-gray-300 hover:bg-gray-400'}`}
                                     />
                                 ))}
@@ -151,7 +182,7 @@ export default function ProductDetails() {
                         <hr className="border-gray-200 mb-6" />
                         
                         {/* Add to Cart Actions */}
-                        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-4">
+                        <div className="hidden md:flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-4">
                             <div className="flex border border-gray-300 rounded-sm w-full sm:w-[100px] h-12 sm:h-11 bg-white flex-shrink-0">
                                 <input 
                                     type="text" 
