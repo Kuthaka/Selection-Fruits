@@ -8,6 +8,7 @@ import Image from "next/image";
 import TopStrip from "./TopStrip";
 import MainNav from "./MainNav";
 import CategoryNav from "./CategoryNav";
+import SearchBar from "./SearchBar";
 import { useCartStore } from "@/store/useCartStore";
 import CartDrawer from "@/components/cart/CartDrawer";
 
@@ -46,11 +47,15 @@ export default function Navbar() {
                 <TopStrip />
             </div>
 
-            {/* ── Desktop: 2-layer sticky header ── */}
-            <header className="hidden md:block sticky top-0 left-0 right-0 z-50 shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
+            {/* ── Desktop: sticky MainNav (higher z so dropdown floats above CategoryNav) ── */}
+            <div className="hidden md:block sticky top-0 left-0 right-0 z-[60]">
                 <MainNav />
+            </div>
+
+            {/* ── Desktop: CategoryNav — sticks just below MainNav ── */}
+            <div className="hidden md:block sticky top-[76px] left-0 right-0 z-[50] shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
                 <CategoryNav />
-            </header>
+            </div>
 
             {/* ── Mobile: complete top bar ── */}
             <header className="md:hidden sticky top-0 left-0 right-0 z-50 shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
@@ -102,33 +107,25 @@ export default function Navbar() {
                     </div>
                 </div>
 
-                {/* Row 2: Search & Categories */}
-                <div className={`relative z-10 transition-all duration-300 ease-in-out origin-top overflow-hidden bg-[#cdebc9] rounded-b-2xl shadow-sm ${isMobileSearchOpen ? "max-h-[300px] opacity-100 py-3 pb-4" : "max-h-0 opacity-0 py-0"}`}>
-                    <div className="px-4">
-                        <div className="relative flex items-center w-full mb-4">
-                            <Search className="absolute left-4 w-4 h-4 text-gray-500" />
-                            <input
-                                type="text"
-                                placeholder="Search for Kid's Nutrition"
-                                className="w-full h-[44px] bg-[#fcf9f2] rounded-full pl-11 pr-4 text-[14px] text-gray-700 placeholder-gray-500 outline-none shadow-sm"
-                            />
-                        </div>
-                        
-                        <div className="flex items-center gap-5 overflow-x-auto no-scrollbar pb-1 px-1">
-                            {mobileCategories.map((cat, idx) => (
-                                <div 
-                                    key={idx} 
-                                    className={`flex flex-col items-center justify-center min-w-[64px] h-[68px] flex-shrink-0 cursor-pointer transition-all ${
-                                        cat.active 
-                                        ? "bg-[#fcf9f2] rounded-xl shadow-sm text-gray-800" 
+                {/* Row 2: Search + Categories */}
+                <div className={`relative z-[200] transition-all duration-300 ease-in-out origin-top bg-[#cdebc9] rounded-b-2xl shadow-sm ${isMobileSearchOpen ? "max-h-[600px] opacity-100 py-3 px-4 pb-4" : "max-h-0 opacity-0 overflow-hidden py-0 px-4"}`}>
+                    <SearchBar />
+
+                    {/* Category quick-links */}
+                    <div className="flex items-center gap-3 overflow-x-auto no-scrollbar pb-1 px-1 mt-3">
+                        {mobileCategories.map((cat, idx) => (
+                            <div
+                                key={idx}
+                                className={`flex flex-col items-center justify-center min-w-[64px] h-[68px] flex-shrink-0 cursor-pointer transition-all rounded-xl ${
+                                    cat.active
+                                        ? "bg-[#fcf9f2] shadow-sm text-gray-800"
                                         : "text-gray-700 hover:text-gray-900"
-                                    }`}
-                                >
-                                    <cat.icon className={`w-6 h-6 mb-1 ${cat.active ? "text-gray-800" : "text-gray-700"}`} strokeWidth={1.5} />
-                                    <span className={`text-[11px] ${cat.active ? "font-bold" : "font-medium"}`}>{cat.name}</span>
-                                </div>
-                            ))}
-                        </div>
+                                }`}
+                            >
+                                <cat.icon className={`w-6 h-6 mb-1 ${cat.active ? "text-[#429420]" : "text-gray-600"}`} strokeWidth={1.5} />
+                                <span className={`text-[11px] ${cat.active ? "font-bold text-gray-800" : "font-medium"}`}>{cat.name}</span>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </header>

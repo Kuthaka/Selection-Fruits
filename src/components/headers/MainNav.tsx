@@ -3,9 +3,10 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Search, ShoppingBag } from "lucide-react";
+import { ShoppingBag } from "lucide-react";
 import CartDrawer from "@/components/cart/CartDrawer";
 import { useCartStore } from "@/store/useCartStore";
+import SearchBar from "@/components/headers/SearchBar";
 
 export default function MainNav() {
     const [isCartOpen, setIsCartOpen] = useState(false);
@@ -55,18 +56,7 @@ export default function MainNav() {
                     </Link>
 
                     {/* Search bar — grows to fill middle */}
-                    <div className="flex-grow max-w-3xl">
-                        <div className="relative flex items-center w-full">
-                            <input
-                                type="text"
-                                placeholder="Search Product Here..."
-                                className="w-full h-[42px] bg-white rounded-full pl-5 pr-12 text-sm text-gray-700 placeholder-gray-400 outline-none focus:ring-2 focus:ring-white/50 transition-all"
-                            />
-                            <button className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center">
-                                <Search className="w-[18px] h-[18px] text-gray-700 hover:text-black transition-colors" />
-                            </button>
-                        </div>
-                    </div>
+                    <SearchBar />
 
                     {/* Right: icons */}
                     <div className="flex items-center gap-6 flex-shrink-0 ml-auto md:ml-0">
