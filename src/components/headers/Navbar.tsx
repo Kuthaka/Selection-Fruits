@@ -123,28 +123,30 @@ export default function Navbar() {
             </header>
 
             {/* ── Mobile Bottom Nav ── */}
-            <nav className="md:hidden fixed bottom-6 left-4 right-4 z-[100]">
-                <div className="bg-white/95 backdrop-blur-md shadow-[0_8px_30px_rgba(0,0,0,0.12)] border border-white/50 rounded-full p-1.5">
-                    <div className="flex items-center justify-between">
-                        {mobileNavLinks.map(({ name, path }) => {
-                            const active = isActive(path);
-                            return (
-                                <Link
-                                    key={path}
-                                    href={path}
-                                    className={`flex items-center justify-center transition-all duration-300 ${
-                                        active 
-                                            ? "bg-[#132B1A] text-white px-5 py-2.5 rounded-full shadow-md" 
-                                            : "text-gray-500 hover:text-gray-900 px-2 sm:px-3 py-2.5"
-                                    }`}
-                                >
-                                    <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-wider">{name}</span>
-                                </Link>
-                            );
-                        })}
+            {!(pathname.startsWith("/shop/") && pathname.length > 6) && (
+                <nav className="md:hidden fixed bottom-6 left-4 right-4 z-[100]">
+                    <div className="bg-white/95 backdrop-blur-md shadow-[0_8px_30px_rgba(0,0,0,0.12)] border border-white/50 rounded-full p-1.5">
+                        <div className="flex items-center justify-between">
+                            {mobileNavLinks.map(({ name, path }) => {
+                                const active = isActive(path);
+                                return (
+                                    <Link
+                                        key={path}
+                                        href={path}
+                                        className={`flex items-center justify-center transition-all duration-300 ${
+                                            active 
+                                                ? "bg-[#132B1A] text-white px-5 py-2.5 rounded-full shadow-md" 
+                                                : "text-gray-500 hover:text-gray-900 px-2 sm:px-3 py-2.5"
+                                        }`}
+                                    >
+                                        <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-wider">{name}</span>
+                                    </Link>
+                                );
+                            })}
+                        </div>
                     </div>
-                </div>
-            </nav>
+                </nav>
+            )}
 
 
         </>

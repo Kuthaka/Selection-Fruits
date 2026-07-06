@@ -86,23 +86,9 @@ export default function ProductDetails() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
                     
                     {/* Left: Image Gallery */}
-                    <div className="flex flex-col-reverse md:flex-row gap-4">
-                        {/* Thumbnails */}
-                        <div className="flex flex-row md:flex-col gap-3 w-full md:w-[80px] flex-shrink-0 overflow-x-auto md:overflow-visible hide-scrollbar pb-2 md:pb-0" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-                            {displayImages.map((img, idx) => (
-                                <button 
-                                    key={idx}
-                                    onClick={() => setActiveImage(idx)}
-                                    className={`relative w-[70px] md:w-full flex-shrink-0 aspect-square border rounded-sm p-1 transition-all ${
-                                        activeImage === idx ? 'border-[#429420] bg-white' : 'border-gray-200 bg-[#f4f7f4] opacity-70 hover:opacity-100'
-                                    }`}
-                                >
-                                    <Image src={img} alt={`${product.name} thumbnail`} fill className="object-cover rounded-sm" />
-                                </button>
-                            ))}
-                        </div>
+                    <div className="flex flex-col gap-4 relative">
                         {/* Main Image */}
-                        <div className="flex-grow aspect-square relative bg-white border border-gray-200 rounded-sm overflow-hidden w-full">
+                        <div className="w-full aspect-square relative bg-white border border-gray-200 rounded-sm overflow-hidden">
                             <Image 
                                 src={displayImages[activeImage]} 
                                 alt={product.name} 
@@ -111,16 +97,28 @@ export default function ProductDetails() {
                                 priority
                             />
                         </div>
+                        {/* Instagram-style Dots */}
+                        {displayImages.length > 1 && (
+                            <div className="flex justify-center gap-2 mt-2">
+                                {displayImages.map((_, idx) => (
+                                    <button 
+                                        key={idx}
+                                        onClick={() => setActiveImage(idx)}
+                                        className={`w-2 h-2 rounded-full transition-all ${activeImage === idx ? 'bg-[#429420] w-4' : 'bg-gray-300 hover:bg-gray-400'}`}
+                                    />
+                                ))}
+                            </div>
+                        )}
                     </div>
 
                     {/* Right: Product Info */}
                     <div className="flex flex-col">
-                        <h1 className="text-[26px] font-bold text-gray-900 mb-2">{product.name}</h1>
+                        <h1 className="text-[20px] md:text-[22px] font-bold text-gray-900 mb-2">{product.name}</h1>
                         
                         {/* Product Info */}
                         <div className="flex flex-col mb-4">
                             <p className="text-[13px] text-gray-400 font-medium">
-                                Brand : Selection Fruits <span className="mx-2 text-gray-300">|</span> Reference : demo_10
+                                Category: <span className="text-gray-600 font-semibold">{product.category || "Uncategorized"}</span>
                             </p>
                         </div>
                         
@@ -130,64 +128,12 @@ export default function ProductDetails() {
                             There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.
                         </p>
                         
-                        {/* Variations */}
-                        <div className="space-y-4 mb-6">
-                            {/* Color */}
-                            <div>
-                                <p className="text-[13.5px] font-bold text-gray-900 mb-2">Color : <span className="font-medium text-gray-600">Green</span></p>
-                                <div className="flex items-center gap-2 flex-wrap">
-                                    {['Taupe', 'Beige', 'White'].map(c => (
-                                        <button key={c} className="px-4 py-1.5 border border-gray-200 text-gray-600 text-[13px] rounded-sm font-medium hover:border-gray-300">{c}</button>
-                                    ))}
-                                    <button className="px-4 py-1.5 border border-[#429420] text-gray-800 text-[13px] rounded-sm font-medium">Green</button>
-                                </div>
-                            </div>
-                            
-                            {/* Size */}
-                            <div>
-                                <p className="text-[13.5px] font-bold text-gray-900 mb-2">Size : <span className="font-medium text-gray-600">M</span></p>
-                                <div className="flex items-center gap-2 flex-wrap">
-                                    <button className="px-4 py-1.5 border border-[#429420] text-gray-800 text-[13px] rounded-sm font-medium">M</button>
-                                    {['L', 'XL'].map(s => (
-                                        <button key={s} className="px-4 py-1.5 border border-gray-200 text-gray-600 text-[13px] rounded-sm font-medium hover:border-gray-300">{s}</button>
-                                    ))}
-                                </div>
-                            </div>
-                            
-                            {/* Dimension */}
-                            <div>
-                                <p className="text-[13.5px] font-bold text-gray-900 mb-2">Dimension : <span className="font-medium text-gray-600">60x90cm</span></p>
-                                <div className="flex items-center gap-2 flex-wrap">
-                                    <button className="px-4 py-1.5 border border-[#429420] text-gray-800 text-[13px] rounded-sm font-medium">60x90cm</button>
-                                </div>
-                            </div>
-                        </div>
+
                         
-                        {/* Stock Info & Countdown */}
+                        {/* Stock Info */}
                         <div className="mb-6">
                             <div className="inline-flex items-center gap-1.5 bg-[#e8f4ea] text-[#429420] px-2.5 py-1 rounded-sm text-[12px] font-bold mb-4">
                                 <Check className="w-3.5 h-3.5" /> In Stock
-                            </div>
-                            
-                            <p className="text-[14px] text-gray-700 mb-2 font-medium">Hurry! only <span className="font-bold text-gray-900">47</span> items left in stock.</p>
-                            
-                            <div className="w-full max-w-sm h-1.5 bg-gray-100 rounded-full mb-4">
-                                <div className="w-[80%] h-full bg-[#ffc107] rounded-full"></div>
-                            </div>
-                            
-                            {/* Timer Blocks */}
-                            <div className="flex gap-2">
-                                {[
-                                    { val: '25', lbl: 'Days' },
-                                    { val: '00', lbl: 'Hrs' },
-                                    { val: '04', lbl: 'Mins' },
-                                    { val: '38', lbl: 'Secs' },
-                                ].map(t => (
-                                    <div key={t.lbl} className="w-[44px] h-[48px] bg-[#f4f7f4] flex flex-col items-center justify-center rounded-sm">
-                                        <span className="text-[15px] font-bold text-gray-800 leading-none mb-0.5">{t.val}</span>
-                                        <span className="text-[9px] font-bold text-gray-500">{t.lbl}</span>
-                                    </div>
-                                ))}
                             </div>
                         </div>
                         
@@ -233,59 +179,16 @@ export default function ProductDetails() {
                             </button>
                         </div>
                         
-                        {/* Extra Actions */}
-                        <div className="flex items-center gap-6 mb-8 mt-2">
-                            <button className="flex items-center gap-1.5 text-[12.5px] font-bold text-gray-600 hover:text-[#429420] transition-colors">
-                                <Shuffle className="w-3.5 h-3.5" /> Add To Compare
-                            </button>
-                            <button className="flex items-center gap-1.5 text-[12.5px] font-bold text-gray-600 hover:text-[#429420] transition-colors">
-                                <Heart className="w-3.5 h-3.5" /> Add To Wishlist
-                            </button>
-                        </div>
-                        
-                        <hr className="border-gray-200 mb-6" />
-                        
-                        {/* Social Share Buttons */}
-                        <div className="flex items-center gap-2">
-                            <button className="flex items-center gap-1.5 px-3 py-1 bg-[#3b5998] hover:bg-[#324b80] transition-colors text-white text-[12px] font-bold rounded-sm shadow-sm">
-                                <span className="font-serif italic font-bold pr-1">f</span> Share
-                            </button>
-                            <button className="flex items-center gap-1.5 px-3 py-1 bg-[#00aced] hover:bg-[#0092c8] transition-colors text-white text-[12px] font-bold rounded-sm shadow-sm">
-                                <span className="font-serif italic font-bold">t</span> Tweet
-                            </button>
-                            <button className="flex items-center gap-1.5 px-3 py-1 bg-[#cb2027] hover:bg-[#a81a20] transition-colors text-white text-[12px] font-bold rounded-sm shadow-sm">
-                                <span className="font-serif italic font-bold pr-1">p</span> Pinterest
-                            </button>
-                        </div>
+
                     </div>
                 </div>
 
-                {/* ── Bottom Tabs ── */}
-                <div className="mt-12 md:mt-20">
-                    <div className="flex items-center justify-start md:justify-center gap-6 md:gap-10 border-b border-gray-200 overflow-x-auto whitespace-nowrap hide-scrollbar pb-1 md:pb-0" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-                        <button className="pb-3 md:pb-4 border-b-[3px] border-[#429420] text-[14px] md:text-[15px] font-bold text-gray-900 px-2 flex-shrink-0">
-                            Description
-                        </button>
-                        <button className="pb-3 md:pb-4 border-b-[3px] border-transparent hover:border-gray-300 text-[14px] md:text-[15px] font-bold text-gray-600 hover:text-gray-900 transition-colors px-2 flex-shrink-0">
-                            Product Details
-                        </button>
-                        <button className="pb-3 md:pb-4 border-b-[3px] border-transparent hover:border-gray-300 text-[14px] md:text-[15px] font-bold text-gray-600 hover:text-gray-900 transition-colors px-2 flex-shrink-0">
-                            Shipping
-                        </button>
-                        <button className="pb-3 md:pb-4 border-b-[3px] border-transparent hover:border-gray-300 text-[14px] md:text-[15px] font-bold text-gray-600 hover:text-gray-900 transition-colors px-2 flex-shrink-0">
-                            Size Chart
-                        </button>
-                    </div>
-                    {/* Placeholder for tab content */}
-                    <div className="py-8 text-center text-gray-500 text-[14px]">
-                        Product description goes here...
-                    </div>
-                </div>
+
 
             </main>
 
             {/* ── Mobile Sticky Buy Button ── */}
-            <div className="md:hidden fixed bottom-[90px] left-0 right-0 z-[40] bg-white border-t border-gray-100 p-3 shadow-[0_-4px_20px_rgba(0,0,0,0.06)] flex items-center justify-between transition-transform duration-300">
+            <div className="md:hidden fixed bottom-0 left-0 right-0 z-[40] bg-white border-t border-gray-100 p-3 shadow-[0_-4px_20px_rgba(0,0,0,0.06)] flex items-center justify-between transition-transform duration-300">
                 <div className="flex flex-col flex-shrink-0 mr-2">
                     <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Total Price</span>
                     <span className="text-[17px] font-black text-[#429420]">${(displayPrice * qty).toFixed(2)}</span>
