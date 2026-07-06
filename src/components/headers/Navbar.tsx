@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
-import { Home, Store, BookOpen, Info, Phone, ShoppingBag, Heart, Search, Apple, Leaf, Milk, ShoppingBasket, X } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import { Home, Store, BookOpen, Info, Phone, ShoppingBag, Heart, Search, Apple, Leaf, Milk, ShoppingBasket, X, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import TopStrip from "./TopStrip";
@@ -18,7 +18,9 @@ export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const [isScrollingDown, setIsScrollingDown] = useState(false);
     const pathname = usePathname();
+    const router = useRouter();
     const isShop = pathname.startsWith("/shop");
+    const isProductPage = pathname.startsWith("/shop/") && pathname.length > 6;
     const isHome = pathname === "/";
     const scrolledOrSearch = scrolled || isMobileSearchOpen;
     // Layout and Theme logic
@@ -104,6 +106,14 @@ export default function Navbar() {
                     {/* Row 1: Logo & Icons */}
                     <div className={`flex items-center justify-between px-4 transition-all duration-300 relative z-10 origin-center ${isFloatingLayout ? "h-14 scale-[0.96]" : "h-16 scale-100"}`}>
                         <div className="flex items-center gap-3">
+                            {isProductPage && (
+                                <button 
+                                    onClick={() => router.push('/shop')}
+                                    className={`flex items-center justify-center transition-colors ${useWhiteElements ? "text-white" : "text-[#0D530E]"}`}
+                                >
+                                    <ArrowLeft className="w-6 h-6" />
+                                </button>
+                            )}
                             <Link href="/" className="flex items-center gap-2">
                                 <div className={`relative w-8 h-8 ${!useSolidTheme ? "drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]" : ""}`}>
                                     <Image src="/Mains/logo-bg.png" alt="Logo" fill className="object-contain" priority />

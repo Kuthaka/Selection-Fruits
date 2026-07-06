@@ -101,7 +101,7 @@ export default function AdminDashboard() {
                         id: `#${p.id.substring(0, 5).toUpperCase()}`,
                         customer: "Visitor",
                         dish: p.name,
-                        amount: `₹${p.price}`,
+                        amount: `QAR ${p.price}`,
                         status: "Catalog Live",
                         time: "Updated"
                     }));

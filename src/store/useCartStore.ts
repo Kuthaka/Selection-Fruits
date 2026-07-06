@@ -1,6 +1,31 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { Product } from '@/types/product';
+import { useToastStore } from '@/store/useToastStore';
+
+const getFruitIcon = (name: string) => {
+    const l = name.toLowerCase();
+    if (l.includes('mango')) return '🥭';
+    if (l.includes('apple')) return '🍎';
+    if (l.includes('orange')) return '🍊';
+    if (l.includes('grape')) return '🍇';
+    if (l.includes('watermelon')) return '🍉';
+    if (l.includes('banana')) return '🍌';
+    if (l.includes('strawberry')) return '🍓';
+    if (l.includes('kiwi')) return '🥝';
+    if (l.includes('cherry')) return '🍒';
+    if (l.includes('peach')) return '🍑';
+    if (l.includes('lemon')) return '🍋';
+    if (l.includes('coconut')) return '🥥';
+    if (l.includes('pineapple')) return '🍍';
+    if (l.includes('avocado')) return '🥑';
+    if (l.includes('tomato')) return '🍅';
+    if (l.includes('carrot')) return '🥕';
+    if (l.includes('cabbage')) return '🥬';
+    if (l.includes('corn')) return '🌽';
+    if (l.includes('broccoli')) return '🥦';
+    return '🛒';
+};
 
 export interface CartItem extends Product {
     quantity: number;
@@ -36,12 +61,18 @@ export const useCartStore = create<CartStore>()(
                 } else {
                     set({ items: [...currentItems, { ...product, quantity: 1 }] });
                 }
+                
+                useToastStore.getState().addToast(`Added ${product.name} to cart`, getFruitIcon(product.name));
             },
 
             removeItem: (productId: string) => {
+                const itemToRemove = get().items.find(i => i.id === productId);
                 set({
                     items: get().items.filter((item) => item.id !== productId),
                 });
+                if (itemToRemove) {
+                    useToastStore.getState().addToast(`Removed ${itemToRemove.name} from cart`, getFruitIcon(itemToRemove.name));
+                }
             },
 
             updateQuantity: (productId: string, quantity: number) => {
@@ -50,11 +81,15 @@ export const useCartStore = create<CartStore>()(
                     return;
                 }
 
+                const itemToUpdate = get().items.find(i => i.id === productId);
                 set({
                     items: get().items.map((item) =>
                         item.id === productId ? { ...item, quantity } : item
                     ),
                 });
+                if (itemToUpdate && itemToUpdate.quantity !== quantity) {
+                    useToastStore.getState().addToast(`Updated ${itemToUpdate.name} quantity to ${quantity}`, getFruitIcon(itemToUpdate.name));
+                }
             },
 
             clearCart: () => set({ items: [] }),

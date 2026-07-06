@@ -185,8 +185,8 @@ export default function SearchBar() {
                                                     </div>
                                                     {/* Price */}
                                                     <div className="flex-shrink-0 text-right">
-                                                        <p className="text-[13px] font-bold text-[#429420]">₹{p.price.toFixed(2)}</p>
-                                                        {p.originalPrice && <p className="text-[11px] text-gray-400 line-through">₹{p.originalPrice.toFixed(2)}</p>}
+                                                        <p className="text-[13px] font-bold text-[#429420]">QAR {p.price.toFixed(2)}</p>
+                                                        {p.originalPrice && <p className="text-[11px] text-gray-400 line-through">QAR {p.originalPrice.toFixed(2)}</p>}
                                                     </div>
                                                 </button>
                                             </li>

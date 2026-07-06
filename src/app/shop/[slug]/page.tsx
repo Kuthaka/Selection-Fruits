@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
-import { Star, Check, ChevronUp, ChevronDown, Heart, Shuffle, Loader2, Minus, Plus, ArrowLeft } from "lucide-react";
+import { Star, Check, ChevronUp, ChevronDown, Heart, Shuffle, Loader2, Minus, Plus, ArrowLeft, ShoppingBag } from "lucide-react";
 
 import Navbar from "@/components/headers/Navbar";
 import Footer from "@/components/Footer";
@@ -19,10 +19,11 @@ export default function ProductDetails() {
     const [product, setProduct] = useState<Product | null>(null);
     const [loading, setLoading] = useState(true);
     const [activeImage, setActiveImage] = useState(0);
-    const [qty, setQty] = useState(1);
     const scrollRef = useRef<HTMLDivElement>(null);
-
+    const cartItem = useCartStore((state) => state.items.find(item => item.id === product?.id));
+    const cartQuantity = cartItem?.quantity || 0;
     const addItem = useCartStore((state) => state.addItem);
+    const updateQuantity = useCartStore((state) => state.updateQuantity);
 
     const supabase = createClient();
 
@@ -105,7 +106,7 @@ export default function ProductDetails() {
             <main className="flex-grow max-w-[1350px] mx-auto w-full px-4 md:px-8 pt-12 pb-24">
                 
                 {/* ── Back Navigation ── */}
-                <div className="mb-6 md:mb-8">
+                <div className="hidden md:block mb-6 md:mb-8">
                     <button 
                         onClick={() => router.push('/shop')} 
                         className="flex items-center gap-2 text-gray-500 hover:text-[#429420] transition-colors text-sm font-medium w-fit"
@@ -181,10 +182,10 @@ export default function ProductDetails() {
                         
                         {/* Price */}
                         <div className="flex items-baseline gap-3 mb-6">
-                            <span className="text-[24px] font-bold text-[#429420]">${displayPrice.toFixed(2)}</span>
+                            <span className="text-[24px] font-bold text-[#429420]">QAR {displayPrice.toFixed(2)}</span>
                             {product.regular_price && (
                                 <>
-                                    <span className="text-[16px] font-bold text-gray-400 line-through">${product.regular_price.toFixed(2)}</span>
+                                    <span className="text-[16px] font-bold text-gray-400 line-through">QAR {product.regular_price.toFixed(2)}</span>
                                     <span className="text-[14px] font-bold text-[#dc2626]">Save 17%</span>
                                 </>
                             )}
@@ -194,31 +195,33 @@ export default function ProductDetails() {
                         
                         {/* Add to Cart Actions */}
                         <div className="hidden md:flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-4">
-                            <div className="flex border border-gray-300 rounded-sm w-full sm:w-[100px] h-12 sm:h-11 bg-white flex-shrink-0">
-                                <input 
-                                    type="text" 
-                                    value={qty} 
-                                    readOnly 
-                                    className="w-full h-full text-center text-[15px] font-semibold text-gray-800 outline-none bg-transparent" 
-                                />
-                                <div className="flex flex-col border-l border-gray-300 w-10 sm:w-8 flex-shrink-0">
-                                    <button onClick={() => setQty(q => q + 1)} className="flex-1 flex items-center justify-center hover:bg-gray-50 border-b border-gray-300">
-                                        <ChevronUp className="w-4 h-4 text-gray-600" />
+                            {cartQuantity === 0 ? (
+                                <button 
+                                    onClick={() => addItem(product)}
+                                    className="w-full sm:w-auto flex-grow h-12 sm:h-11 px-8 md:px-14 bg-[#1aad52] text-white text-[14px] font-bold rounded-sm hover:bg-[#169645] transition-all shadow-sm whitespace-nowrap flex items-center justify-center gap-2"
+                                >
+                                    <ShoppingBag className="w-5 h-5" />
+                                    Add To Cart
+                                </button>
+                            ) : (
+                                <div className="flex border border-gray-300 rounded-sm w-full sm:w-[160px] h-12 sm:h-11 bg-white flex-shrink-0 overflow-hidden">
+                                    <button 
+                                        onClick={() => updateQuantity(product.id, cartQuantity - 1)} 
+                                        className="flex-1 flex items-center justify-center hover:bg-gray-50 active:bg-gray-100 transition-colors border-r border-gray-300"
+                                    >
+                                        <Minus className="w-4 h-4 text-gray-600" />
                                     </button>
-                                    <button onClick={() => setQty(q => Math.max(1, q - 1))} className="flex-1 flex items-center justify-center hover:bg-gray-50">
-                                        <ChevronDown className="w-4 h-4 text-gray-600" />
+                                    <span className="w-16 flex items-center justify-center text-[15px] font-bold text-gray-800 bg-transparent">
+                                        {cartQuantity}
+                                    </span>
+                                    <button 
+                                        onClick={() => updateQuantity(product.id, cartQuantity + 1)} 
+                                        className="flex-1 flex items-center justify-center hover:bg-gray-50 active:bg-gray-100 transition-colors border-l border-gray-300"
+                                    >
+                                        <Plus className="w-4 h-4 text-gray-600" />
                                     </button>
                                 </div>
-                            </div>
-                            
-                            <button 
-                                onClick={() => {
-                                    for(let i=0; i<qty; i++) addItem(product);
-                                }}
-                                className="w-full sm:w-auto flex-grow h-12 sm:h-11 px-8 md:px-14 bg-[#1aad52] text-white text-[14px] font-bold rounded-sm hover:brightness-95 transition-all shadow-sm whitespace-nowrap"
-                            >
-                                Add To Cart
-                            </button>
+                            )}
                         </div>
                         
 
@@ -233,29 +236,29 @@ export default function ProductDetails() {
             <div className="md:hidden fixed bottom-0 left-0 right-0 z-[40] bg-white border-t border-gray-100 p-3 shadow-[0_-4px_20px_rgba(0,0,0,0.06)] flex items-center justify-between transition-transform duration-300">
                 <div className="flex flex-col flex-shrink-0 mr-2">
                     <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Total Price</span>
-                    <span className="text-[17px] font-black text-[#429420]">${(displayPrice * qty).toFixed(2)}</span>
+                    <span className="text-[17px] font-black text-[#429420]">QAR {(displayPrice * (cartQuantity || 1)).toFixed(2)}</span>
                 </div>
                 
                 <div className="flex items-center gap-2">
-                    {/* Touch-Friendly Qty Selector */}
-                    <div className="flex items-center border border-gray-200 rounded-sm h-11 bg-white shadow-sm flex-shrink-0">
-                        <button onClick={() => setQty(q => Math.max(1, q - 1))} className="w-8 h-full flex items-center justify-center text-gray-500 hover:text-gray-900 active:bg-gray-50 transition-colors">
-                            <Minus className="w-3.5 h-3.5" />
+                    {cartQuantity === 0 ? (
+                        <button 
+                            onClick={() => addItem(product)}
+                            className="h-11 px-6 bg-[#429420] text-white text-[13px] font-bold rounded-sm hover:bg-[#367a19] shadow-md shadow-[#429420]/20 transition-all active:scale-95 whitespace-nowrap flex items-center gap-2"
+                        >
+                            <ShoppingBag className="w-4 h-4" />
+                            Add To Cart
                         </button>
-                        <span className="w-6 text-center text-[13px] font-bold text-gray-900">{qty}</span>
-                        <button onClick={() => setQty(q => q + 1)} className="w-8 h-full flex items-center justify-center text-gray-500 hover:text-gray-900 active:bg-gray-50 transition-colors">
-                            <Plus className="w-3.5 h-3.5" />
-                        </button>
-                    </div>
-
-                    <button 
-                        onClick={() => {
-                            for(let i=0; i<qty; i++) addItem(product);
-                        }}
-                        className="h-11 px-4 sm:px-6 bg-[#429420] text-white text-[13px] font-bold rounded-sm hover:bg-[#367a19] shadow-md shadow-[#429420]/20 transition-all active:scale-95 whitespace-nowrap"
-                    >
-                        Add To Cart
-                    </button>
+                    ) : (
+                        <div className="flex items-center border border-gray-200 rounded-sm h-11 bg-white shadow-sm flex-shrink-0">
+                            <button onClick={() => updateQuantity(product.id, cartQuantity - 1)} className="w-10 h-full flex items-center justify-center text-gray-500 hover:text-gray-900 active:bg-gray-50 transition-colors">
+                                <Minus className="w-4 h-4" />
+                            </button>
+                            <span className="w-8 text-center text-[14px] font-bold text-gray-900">{cartQuantity}</span>
+                            <button onClick={() => updateQuantity(product.id, cartQuantity + 1)} className="w-10 h-full flex items-center justify-center text-gray-500 hover:text-gray-900 active:bg-gray-50 transition-colors">
+                                <Plus className="w-4 h-4" />
+                            </button>
+                        </div>
+                    )}
                 </div>
             </div>
 

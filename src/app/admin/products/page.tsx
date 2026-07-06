@@ -198,9 +198,9 @@ export default function AdminProductsPage() {
 
                                 <div className="mt-4 flex items-center justify-between">
                                     <div className="flex items-center gap-2">
-                                        <span className="text-brand-teal font-black">₹{product.offer_price || product.price}</span>
+                                        <span className="text-brand-teal font-black">QAR {product.offer_price || product.price}</span>
                                         {product.offer_price && (
-                                            <span className="text-[10px] text-gray-300 line-through font-bold">₹{product.regular_price}</span>
+                                            <span className="text-[10px] text-gray-300 line-through font-bold">QAR {product.regular_price}</span>
                                         )}
                                     </div>
                                     <Link

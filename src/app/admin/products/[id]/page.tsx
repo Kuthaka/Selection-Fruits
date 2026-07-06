@@ -383,7 +383,7 @@ export default function ProductDetailsPage() {
 
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                     <div className="space-y-2">
-                                        <label className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] ml-2">Regular Price (₹)</label>
+                                        <label className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] ml-2">Regular Price (QAR)</label>
                                         <div className="relative">
                                             <input
                                                 type="number"
@@ -392,11 +392,11 @@ export default function ProductDetailsPage() {
                                                 onChange={(e) => setEditRegularPrice(e.target.value)}
                                                 className="w-full h-16 bg-brand-teal text-white border-none rounded-2xl px-14 text-xl font-black outline-none"
                                             />
-                                            <span className="absolute left-6 top-1/2 -translate-y-1/2 text-lg font-black text-white/40">₹</span>
+                                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-sm font-black text-white/40">QAR</span>
                                         </div>
                                     </div>
                                     <div className="space-y-2">
-                                        <label className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] ml-2">Offer Price (₹)</label>
+                                        <label className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] ml-2">Offer Price (QAR)</label>
                                         <div className="relative">
                                             <input
                                                 type="number"
@@ -405,7 +405,7 @@ export default function ProductDetailsPage() {
                                                 onChange={(e) => setEditOfferPrice(e.target.value)}
                                                 className="w-full h-16 bg-brand-orange text-white border-none rounded-2xl px-14 text-xl font-black outline-none"
                                             />
-                                            <span className="absolute left-6 top-1/2 -translate-y-1/2 text-lg font-black text-white/40">₹</span>
+                                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-sm font-black text-white/40">QAR</span>
                                         </div>
                                     </div>
                                 </div>
@@ -537,9 +537,9 @@ export default function ProductDetailsPage() {
                         <div>
                             <h2 className="text-5xl md:text-6xl font-black text-brand-teal uppercase tracking-tighter leading-tight mb-4">{product.name}</h2>
                             <div className="flex items-baseline gap-4">
-                                <span className="text-5xl font-black text-brand-orange tracking-tighter">₹{product.offer_price || product.regular_price || product.price}</span>
+                                <span className="text-5xl font-black text-brand-orange tracking-tighter">QAR {product.offer_price || product.regular_price || product.price}</span>
                                 {(product.offer_price && product.regular_price) && (
-                                    <span className="text-xl font-bold text-gray-300 line-through uppercase tracking-widest">₹{product.regular_price}</span>
+                                    <span className="text-xl font-bold text-gray-300 line-through uppercase tracking-widest">QAR {product.regular_price}</span>
                                 )}
                                 <span className="text-xs font-bold text-gray-300 uppercase tracking-widest ml-4">Global MSRP (Tax incl.)</span>
                             </div>

@@ -14,8 +14,8 @@ export const metadata: Metadata = {
 };
 
 import AnalyticsTracker from "@/components/analytics/AnalyticsTracker";
-
 import InitialSplash from "@/components/InitialSplash";
+import ToastContainer from "@/components/ui/ToastContainer";
 
 export default function RootLayout({
   children,
@@ -47,6 +47,7 @@ export default function RootLayout({
       >
         <InitialSplash />
         <AnalyticsTracker />
+        <ToastContainer />
         {children}
       </body>
     </html>

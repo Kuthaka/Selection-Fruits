@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronDown, LayoutGrid, List, Plus, Eye, Star, ChevronRight, ChevronLeft } from "lucide-react";
+import { ChevronDown, LayoutGrid, List, Plus, Star, ChevronRight, ChevronLeft } from "lucide-react";
 
 import Navbar from "@/components/headers/Navbar";
 import Footer from "@/components/Footer";
@@ -120,12 +120,7 @@ export default function Shop() {
                                             )}
                                         </div>
 
-                                        {/* Quick Actions */}
-                                        <div className="absolute top-2 right-2 flex flex-col gap-1.5 translate-x-0 opacity-100 lg:translate-x-10 lg:opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300 z-10">
-                                            <button className="w-7 h-7 bg-white rounded-full flex items-center justify-center text-gray-600 hover:text-[#429420] shadow-sm border border-gray-100">
-                                                <Eye className="w-3.5 h-3.5" />
-                                            </button>
-                                        </div>
+
 
                                         {/* Product Image */}
                                         <div className="relative w-[85%] h-[85%] transform transition-transform duration-500 group-hover:scale-105">
@@ -146,8 +141,8 @@ export default function Shop() {
                                         {/* Price & Mobile Add Button */}
                                         <div className="flex items-center justify-between mt-auto mb-1 lg:mb-2 h-[24px]">
                                             <div className="flex items-baseline gap-1.5">
-                                                <span className="text-[14px] font-bold text-[#429420]">${product.price.toFixed(2)}</span>
-                                                {product.originalPrice && <span className="text-[12px] text-gray-400 line-through">${product.originalPrice.toFixed(2)}</span>}
+                                                <span className="text-[14px] font-bold text-[#429420]">QAR {product.price.toFixed(2)}</span>
+                                                {product.originalPrice && <span className="text-[12px] text-gray-400 line-through">QAR {product.originalPrice.toFixed(2)}</span>}
                                             </div>
                                             <button 
                                                 onClick={(e) => { e.preventDefault(); addItem(product as unknown as Product); }}

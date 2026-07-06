@@ -257,7 +257,7 @@ export default function CategoryDetailsPage() {
                                         <div className="flex-grow">
                                             <h4 className="text-xs font-black text-brand-teal uppercase tracking-tight mb-1 group-hover:text-brand-orange transition-colors">{product.name}</h4>
                                             <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
-                                                ₹{product.offer_price || product.price} {product.offer_price && <span className="line-through opacity-50 ml-1">₹{product.regular_price}</span>} / {product.size_grams}g
+                                                QAR {product.offer_price || product.price} {product.offer_price && <span className="line-through opacity-50 ml-1">QAR {product.regular_price}</span>} / {product.size_grams}g
                                             </p>
                                             <div className="mt-3 flex items-center gap-2">
                                                 <div className={`w-1.5 h-1.5 rounded-full ${product.is_listed ? 'bg-green-500' : 'bg-red-500'}`} />

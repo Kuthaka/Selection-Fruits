@@ -142,7 +142,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                                                 </button>
                                             </div>
                                             <div className="text-right">
-                                                <span className="text-[#429420] font-black text-sm">${(item.price * item.quantity).toFixed(2)}</span>
+                                                <span className="text-[#429420] font-black text-sm">QAR {(item.price * item.quantity).toFixed(2)}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -157,7 +157,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                     <div className="flex justify-between items-center mb-6">
                         <span className="text-gray-500 font-bold uppercase text-[11px] tracking-[0.1em]">Summary</span>
                         <div className="text-right">
-                            <span className="text-gray-900 font-black text-2xl block">${totalPrice.toFixed(2)}</span>
+                            <span className="text-gray-900 font-black text-2xl block">QAR {totalPrice.toFixed(2)}</span>
                             <span className="text-gray-400 text-[10px]">Taxes calculated at checkout</span>
                         </div>
                     </div>
@@ -168,10 +168,10 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                             let message = "Hello Selection Fruits! 👋\n\nI'd like to place an order for the following items:\n\n";
 
                             items.forEach((item, index) => {
-                                message += `${index + 1}. *${item.name}*\n   🔢 Qty: ${item.quantity}\n   💰 Price: $${(item.price * item.quantity).toFixed(2)}\n   🔗 Link: ${window.location.origin}/shop/${item.slug}\n\n`;
+                                message += `${index + 1}. *${item.name}*\n   🔢 Qty: ${item.quantity}\n   💰 Price: QAR ${(item.price * item.quantity).toFixed(2)}\n   🔗 Link: ${window.location.origin}/shop/${item.slug}\n\n`;
                             });
 
-                            message += `--------------------------\n🛍️ *Total Items:* ${totalItems}\n💳 *Total Amount:* $${totalPrice.toFixed(2)}\n\nPlease let me know how to proceed. Thank you!`;
+                            message += `--------------------------\n🛍️ *Total Items:* ${totalItems}\n💳 *Total Amount:* QAR ${totalPrice.toFixed(2)}\n\nPlease let me know how to proceed. Thank you!`;
 
                             const { handleWhatsAppCheckout } = await import("@/lib/whatsapp");
                             handleWhatsAppCheckout(message);

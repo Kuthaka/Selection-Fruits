@@ -310,7 +310,7 @@ export default function AddProductPage() {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 {/* Regular Price */}
                                 <div className="space-y-3 group">
-                                    <label className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] ml-2">Regular Price (₹) <span className="text-brand-orange">*</span></label>
+                                    <label className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] ml-2">Regular Price (QAR) <span className="text-brand-orange">*</span></label>
                                     <div className="relative">
                                         <input
                                             type="number"
@@ -321,13 +321,13 @@ export default function AddProductPage() {
                                             step="0.01"
                                             className="w-full h-16 bg-brand-teal text-white border-none rounded-[1.5rem] px-14 text-xl font-black focus:ring-4 focus:ring-brand-orange/20 transition-all outline-none"
                                         />
-                                        <span className="absolute left-6 top-1/2 -translate-y-1/2 text-lg font-black text-white/40">₹</span>
+                                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-sm font-black text-white/40">QAR</span>
                                     </div>
                                 </div>
 
                                 {/* Offer Price */}
                                 <div className="space-y-3 group">
-                                    <label className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] ml-2">Offer Price (₹) <span className="text-gray-400 opacity-60">(Optional)</span></label>
+                                    <label className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] ml-2">Offer Price (QAR) <span className="text-gray-400 opacity-60">(Optional)</span></label>
                                     <div className="relative">
                                         <input
                                             type="number"
@@ -337,7 +337,7 @@ export default function AddProductPage() {
                                             step="0.01"
                                             className="w-full h-16 bg-brand-orange text-white border-none rounded-[1.5rem] px-14 text-xl font-black focus:ring-4 focus:ring-brand-teal/20 transition-all outline-none"
                                         />
-                                        <span className="absolute left-6 top-1/2 -translate-y-1/2 text-lg font-black text-white/40">₹</span>
+                                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-sm font-black text-white/40">QAR</span>
                                     </div>
                                 </div>
                             </div>
