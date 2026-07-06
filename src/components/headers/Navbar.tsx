@@ -18,10 +18,14 @@ export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const [isScrollingDown, setIsScrollingDown] = useState(false);
     const pathname = usePathname();
-    const needsSpacer = pathname.startsWith("/shop");
+    const isShop = pathname.startsWith("/shop");
     const isHome = pathname === "/";
-    const isFloating = scrolled || isMobileSearchOpen;
-    const useWhiteElements = isHome || isFloating;
+    const scrolledOrSearch = scrolled || isMobileSearchOpen;
+    
+    // Layout and Theme logic
+    const isFloatingLayout = !isShop && scrolledOrSearch;
+    const useSolidTheme = isShop || scrolledOrSearch;
+    const useWhiteElements = isHome || useSolidTheme;
 
     useEffect(() => {
         let lastScrollY = window.scrollY;
@@ -86,14 +90,13 @@ export default function Navbar() {
             </div>
 
             {/* ── Mobile: complete top bar ── */}
-            {needsSpacer && <div className="md:hidden h-14 w-full shrink-0" />}
-            <header className={`md:hidden fixed left-0 right-0 z-50 transition-all duration-300 ${isFloating ? "top-0 pt-3 px-3 pb-3" : "top-7 pt-0 px-0"}`}>
+            <header className={`md:hidden z-50 transition-all duration-300 ${isShop ? "sticky top-0 w-full pt-0 px-0" : `fixed left-0 right-0 ${isFloatingLayout ? "top-0 pt-3 px-3 pb-3" : "top-7 pt-0 px-0"}`}`}>
                 <div 
-                    className={`flex flex-col relative z-20 transition-all duration-300 ${isFloating ? "rounded-[22px] shadow-[0_8px_30px_rgba(0,0,0,0.2)]" : ""} ${isFloating && !isMobileSearchOpen ? "overflow-hidden" : ""}`}
-                    style={{ backgroundColor: isFloating ? "#0D530E" : "transparent" }}
+                    className={`flex flex-col relative z-20 transition-all duration-300 ${isFloatingLayout ? "rounded-[22px] shadow-[0_8px_30px_rgba(0,0,0,0.2)]" : ""} ${isFloatingLayout && !isMobileSearchOpen ? "overflow-hidden" : ""}`}
+                    style={{ backgroundColor: useSolidTheme ? "#0D530E" : "transparent" }}
                 >
-                    {/* Subtle pattern overlay - only when scrolled */}
-                    {isFloating && (
+                    {/* Subtle pattern overlay - only when using solid theme */}
+                    {useSolidTheme && (
                         <div 
                             className="absolute inset-0 pointer-events-none opacity-[0.15]"
                             style={{
@@ -105,19 +108,19 @@ export default function Navbar() {
                     )}
 
                     {/* Row 1: Logo & Icons */}
-                    <div className={`flex items-center justify-between px-4 transition-all duration-300 relative z-10 ${isFloating ? "h-14" : "h-16"}`}>
+                    <div className={`flex items-center justify-between px-4 transition-all duration-300 relative z-10 ${isFloatingLayout ? "h-14" : "h-16"}`}>
                         <div className="flex items-center gap-3">
                             <Link href="/" className="flex items-center gap-2">
-                                <div className={`relative w-8 h-8 ${!isFloating ? "drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]" : ""}`}>
+                                <div className={`relative w-8 h-8 ${!useSolidTheme ? "drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]" : ""}`}>
                                     <Image src="/Mains/logo-bg.png" alt="Logo" fill className="object-contain" priority />
                                 </div>
-                                <div className={`relative w-32 h-[26px] ${!isFloating ? "drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]" : ""}`}>
-                                    <Image src="/Mains/selection-2.png" alt="Selection Fruits" fill className="object-contain object-left" priority />
+                                <div className={`relative w-32 h-[26px] ${!useSolidTheme ? "drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]" : ""}`}>
+                                    <Image src={useWhiteElements ? "/Mains/selection-2.png" : "/Mains/selection-1.png"} alt="Selection Fruits" fill className="object-contain object-left" priority />
                                 </div>
                             </Link>
                         </div>
 
-                        <div className={`flex items-center gap-3.5 transition-colors duration-300 relative z-10 text-white ${!isFloating ? "drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]" : ""}`}>
+                        <div className={`flex items-center gap-3.5 transition-colors duration-300 relative z-10 ${useWhiteElements ? "text-white" : "text-[#0D530E]"} ${!useSolidTheme ? "drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]" : ""}`}>
                             <button onClick={() => setIsMobileSearchOpen(!isMobileSearchOpen)} className="hover:scale-105 transition-transform">
                                 {isMobileSearchOpen ? <X className="w-6 h-6" /> : <Search className="w-6 h-6" />}
                             </button>
@@ -133,7 +136,7 @@ export default function Navbar() {
                     </div>
 
                     {/* Row 2: Search + Categories */}
-                    <div className={`relative z-[200] transition-all duration-300 ease-in-out origin-top ${isFloating ? "bg-transparent" : "bg-[#cdebc9]"} ${isMobileSearchOpen ? "max-h-[600px] opacity-100 py-3 px-4 pb-4" : "max-h-0 opacity-0 overflow-hidden py-0 px-4"}`}>
+                    <div className={`relative z-[200] transition-all duration-300 ease-in-out origin-top ${useSolidTheme ? "bg-transparent" : "bg-[#cdebc9]"} ${isMobileSearchOpen ? "max-h-[600px] opacity-100 py-3 px-4 pb-4" : "max-h-0 opacity-0 overflow-hidden py-0 px-4"}`}>
                         <SearchBar />
 
                         {/* Category quick-links */}
@@ -143,11 +146,11 @@ export default function Navbar() {
                                     key={idx}
                                     className={`flex flex-col items-center justify-center min-w-[64px] h-[68px] flex-shrink-0 cursor-pointer transition-all rounded-xl ${
                                         cat.active
-                                            ? isFloating ? "bg-white/20 text-white shadow-sm" : "bg-[#fcf9f2] shadow-sm text-gray-800"
-                                            : isFloating ? "text-white/80 hover:text-white" : "text-gray-700 hover:text-gray-900"
+                                            ? useSolidTheme ? "bg-white/20 text-white shadow-sm" : "bg-[#fcf9f2] shadow-sm text-gray-800"
+                                            : useSolidTheme ? "text-white/80 hover:text-white" : "text-gray-700 hover:text-gray-900"
                                     }`}
                                 >
-                                    <cat.icon className={`w-6 h-6 mb-1 ${cat.active ? (isFloating ? "text-white" : "text-[#429420]") : (isFloating ? "text-white/70" : "text-gray-600")}`} strokeWidth={1.5} />
+                                    <cat.icon className={`w-6 h-6 mb-1 ${cat.active ? (useSolidTheme ? "text-white" : "text-[#429420]") : (useSolidTheme ? "text-white/70" : "text-gray-600")}`} strokeWidth={1.5} />
                                     <span className={`text-[11px] ${cat.active ? "font-bold" : "font-medium"}`}>{cat.name}</span>
                                 </div>
                             ))}

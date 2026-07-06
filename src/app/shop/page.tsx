@@ -60,8 +60,8 @@ export default function Shop() {
 
                     {/* ── Main Content ── */}
                     <div className="flex-grow min-w-0">
-                        {/* ── Mobile Categories (Visible only on small screens) ── */}
-                        <div className="lg:hidden w-full overflow-x-auto hide-scrollbar pb-4 mb-4 flex items-center gap-2" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                        {/* ── Mobile Categories (Sticky under navbar on mobile) ── */}
+                        <div className="lg:hidden sticky top-[64px] z-40 bg-[#fcf9f2] py-3 -mx-4 px-4 w-[calc(100%+32px)] border-b border-gray-100 overflow-x-auto hide-scrollbar mb-4 flex items-center gap-2 shadow-sm -mt-12" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                             <button className="px-4 py-1.5 bg-[#429420] text-white text-[13px] font-bold rounded-full whitespace-nowrap shadow-sm">All</button>
                             {["Fresh Fruits", "Fresh Vegetables", "Organic Staples", "Dairy Products", "Exotic Fruits"].map(c => (
                                 <button key={c} className="px-4 py-1.5 bg-[#f4f7f4] text-gray-700 hover:bg-[#e8ece8] text-[13px] font-medium rounded-full whitespace-nowrap transition-colors border border-gray-200">{c}</button>
