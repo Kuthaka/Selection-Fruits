@@ -37,13 +37,13 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
         <>
             {/* Overlay */}
             <div
-                className={`fixed inset-0 bg-black/20 backdrop-blur-sm transition-opacity duration-500 z-[90] ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+                className={`fixed inset-0 bg-black/20 backdrop-blur-sm transition-opacity duration-500 z-[190] ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
                 onClick={onClose}
             />
 
             {/* Drawer Panel */}
             <div
-                className={`fixed top-0 right-0 h-full w-full max-w-[400px] bg-[#fcf9f2] shadow-[0_0_50px_rgba(0,0,0,0.2)] z-[100] transform transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] flex flex-col ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
+                className={`fixed top-0 right-0 h-full w-full max-w-[400px] bg-[#fcf9f2] shadow-[0_0_50px_rgba(0,0,0,0.2)] z-[200] transform transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] flex flex-col ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
             >
                 {/* Header */}
                 <div className="p-6 border-b border-gray-200 flex items-center justify-between bg-[#fcf9f2]">
@@ -153,8 +153,8 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                 </div>
 
                 {/* Footer */}
-                <div className="p-8 pb-32 md:pb-8 border-t border-gray-200 bg-white">
-                    <div className="flex justify-between items-center mb-6">
+                <div className="p-5 pb-8 md:p-6 border-t border-gray-200 bg-white">
+                    <div className="flex justify-between items-center mb-4">
                         <span className="text-gray-500 font-bold uppercase text-[11px] tracking-[0.1em]">Summary</span>
                         <div className="text-right">
                             <span className="text-gray-900 font-black text-2xl block">QAR {totalPrice.toFixed(2)}</span>
@@ -177,7 +177,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                             handleWhatsAppCheckout(message);
                         }}
                         disabled={items.length === 0}
-                        className={`w-full py-4 flex items-center justify-center gap-3 font-bold rounded-xl text-[13px] transition-all ${items.length > 0
+                        className={`w-full py-3.5 flex items-center justify-center gap-2 font-bold rounded-xl text-[13px] transition-all ${items.length > 0
                             ? "bg-[#429420] text-white shadow-lg hover:shadow-xl shadow-[#429420]/20 hover:-translate-y-0.5 hover:bg-[#367a19]"
                             : "bg-gray-100 text-gray-400 cursor-not-allowed"
                             }`}
