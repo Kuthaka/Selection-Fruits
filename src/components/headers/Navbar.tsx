@@ -96,7 +96,7 @@ export default function Navbar() {
                 >
 
                     {/* Row 1: Logo & Icons */}
-                    <div className={`flex items-center justify-between px-4 transition-all duration-300 relative z-10 ${isFloatingLayout ? "h-14" : "h-16"}`}>
+                    <div className={`flex items-center justify-between px-4 transition-all duration-300 relative z-10 origin-center ${isFloatingLayout ? "h-14 scale-[0.96]" : "h-16 scale-100"}`}>
                         <div className="flex items-center gap-3">
                             <Link href="/" className="flex items-center gap-2">
                                 <div className={`relative w-8 h-8 ${!useSolidTheme ? "drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]" : ""}`}>

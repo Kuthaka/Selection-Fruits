@@ -7,6 +7,8 @@ import { ChevronDown, LayoutGrid, List, Plus, Eye, Star, ChevronRight, ChevronLe
 
 import Navbar from "@/components/headers/Navbar";
 import Footer from "@/components/Footer";
+import { useCartStore } from "@/store/useCartStore";
+import { Product } from "@/types/product";
 
 // We'll use the same FAKE_PRODUCTS from home page to match the design requested
 const FAKE_PRODUCTS = [
@@ -26,6 +28,7 @@ export default function Shop() {
     const [sortBy, setSortBy] = useState("Relevance");
     const [isSortOpen, setIsSortOpen] = useState(false);
     const sortOptions = ["Relevance", "Price: Low to High", "Price: High to Low", "New Arrivals"];
+    const addItem = useCartStore(state => state.addItem);
 
     return (
         <div className="flex min-h-screen flex-col bg-[#fcf9f2]">
@@ -147,7 +150,7 @@ export default function Shop() {
                                                 {product.originalPrice && <span className="text-[12px] text-gray-400 line-through">${product.originalPrice.toFixed(2)}</span>}
                                             </div>
                                             <button 
-                                                onClick={(e) => { e.preventDefault(); console.log("Added fake product") }}
+                                                onClick={(e) => { e.preventDefault(); addItem(product as unknown as Product); }}
                                                 className="w-7 h-7 bg-[#1aad52] text-white rounded-full flex items-center justify-center lg:hidden hover:brightness-95 transition-all flex-shrink-0 shadow-sm"
                                             >
                                                 <Plus className="w-4 h-4" />
@@ -157,7 +160,7 @@ export default function Shop() {
                                         {/* Desktop Add To Cart Hover Button */}
                                         <div className="mt-3 hidden lg:block opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto h-9">
                                             <button 
-                                                onClick={(e) => { e.preventDefault(); console.log("Added fake product") }}
+                                                onClick={(e) => { e.preventDefault(); addItem(product as unknown as Product); }}
                                                 className="w-full h-full bg-[#1aad52] text-white font-bold text-[13px] rounded-md hover:brightness-95 transition-all flex items-center justify-center"
                                             >
                                                 Add To Cart

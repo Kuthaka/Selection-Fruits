@@ -394,7 +394,7 @@ export default function Home() {
                                                     {product.originalPrice && <span className="text-[12px] text-gray-400 line-through">${product.originalPrice.toFixed(2)}</span>}
                                                 </div>
                                                 <button 
-                                                    onClick={(e) => { e.preventDefault(); console.log("Added fake product") }}
+                                                    onClick={(e) => { e.preventDefault(); addItem(product as unknown as Product); }}
                                                     className="w-7 h-7 bg-[#1aad52] text-white rounded-full flex items-center justify-center lg:hidden hover:brightness-95 transition-all flex-shrink-0 shadow-sm"
                                                 >
                                                     <Plus className="w-4 h-4" />
@@ -404,7 +404,7 @@ export default function Home() {
                                             {/* Desktop Add To Cart Hover Button */}
                                             <div className="mt-3 hidden lg:block opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto h-9">
                                                 <button 
-                                                    onClick={(e) => { e.preventDefault(); console.log("Added fake product") }}
+                                                    onClick={(e) => { e.preventDefault(); addItem(product as unknown as Product); }}
                                                     className="w-full h-full bg-[#1aad52] text-white font-bold text-[13px] rounded-md hover:brightness-95 transition-all flex items-center justify-center"
                                                 >
                                                     Add To Cart

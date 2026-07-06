@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
-import { Star, Check, ChevronUp, ChevronDown, Heart, Shuffle, Loader2, Minus, Plus } from "lucide-react";
+import { Star, Check, ChevronUp, ChevronDown, Heart, Shuffle, Loader2, Minus, Plus, ArrowLeft } from "lucide-react";
 
 import Navbar from "@/components/headers/Navbar";
 import Footer from "@/components/Footer";
@@ -104,6 +104,17 @@ export default function ProductDetails() {
 
             <main className="flex-grow max-w-[1350px] mx-auto w-full px-4 md:px-8 pt-12 pb-24">
                 
+                {/* ── Back Navigation ── */}
+                <div className="mb-6 md:mb-8">
+                    <button 
+                        onClick={() => router.push('/shop')} 
+                        className="flex items-center gap-2 text-gray-500 hover:text-[#429420] transition-colors text-sm font-medium w-fit"
+                    >
+                        <ArrowLeft className="w-4 h-4" />
+                        Back to Shop
+                    </button>
+                </div>
+
                 {/* ── Main Layout ── */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
                     
