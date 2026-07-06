@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { ChevronLeft, Home, Store, BookOpen, Info, Phone, ShoppingBag, Heart, Search, Apple, Leaf, Milk, ShoppingBasket, X } from "lucide-react";
+import { Home, Store, BookOpen, Info, Phone, ShoppingBag, Heart, Search, Apple, Leaf, Milk, ShoppingBasket, X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import TopStrip from "./TopStrip";
@@ -74,14 +74,6 @@ export default function Navbar() {
                         }}
                     />
                     <div className="flex items-center gap-3 relative z-10">
-                        {pathname !== "/" && (
-                            <button
-                                onClick={() => window.history.back()}
-                                className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white flex-shrink-0"
-                            >
-                                <ChevronLeft className="w-5 h-5" />
-                            </button>
-                        )}
                         <Link href="/" className="flex items-center gap-2">
                             <div className="relative w-8 h-8">
                                 <Image src="/Mains/logo-bg.png" alt="Logo" fill className="object-contain" priority />

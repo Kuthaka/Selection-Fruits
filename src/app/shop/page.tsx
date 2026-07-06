@@ -32,30 +32,6 @@ export default function Shop() {
             <Navbar />
 
             <main className="flex-grow max-w-[1350px] mx-auto w-full px-4 md:px-8 pt-12 pb-16">
-                
-                {/* Breadcrumbs */}
-                <div className="flex items-center mb-8 h-[38px]">
-                    {/* Home Tab */}
-                    <Link 
-                        href="/" 
-                        className="relative flex items-center h-full bg-white border border-gray-300 border-r-0 pl-6 pr-4 z-20 hover:text-[#429420] transition-colors"
-                    >
-                        <span className="font-semibold text-gray-700 text-[13px]">Home</span>
-                        {/* Outer gray border of the arrow */}
-                        <div className="absolute top-[-1px] right-[-19px] w-0 h-0 border-y-[19px] border-y-transparent border-l-[19px] border-l-gray-300 z-10"></div>
-                        {/* Inner white background of the arrow */}
-                        <div className="absolute top-[0px] right-[-18px] w-0 h-0 border-y-[18px] border-y-transparent border-l-[18px] border-l-white z-20"></div>
-                    </Link>
-
-                    {/* Shop Tab */}
-                    <div className="relative flex items-center h-full bg-[#f4f7f4] border border-gray-300 border-l-0 border-r-0 pl-10 pr-4 z-10 -ml-[1px]">
-                        <span className="font-semibold text-gray-900 text-[13px]">Shop</span>
-                        {/* Outer gray border of the arrow */}
-                        <div className="absolute top-[-1px] right-[-19px] w-0 h-0 border-y-[19px] border-y-transparent border-l-[19px] border-l-gray-300 z-10"></div>
-                        {/* Inner green background of the arrow */}
-                        <div className="absolute top-[0px] right-[-18px] w-0 h-0 border-y-[18px] border-y-transparent border-l-[18px] border-l-[#f4f7f4] z-20"></div>
-                    </div>
-                </div>
 
                 <div className="flex flex-col lg:flex-row gap-8">
                     
@@ -93,12 +69,9 @@ export default function Shop() {
                         </div>
 
                         {/* Toolbar */}
-                        <div className="bg-[#f9fbf9] rounded-sm p-3 px-4 flex flex-wrap gap-4 items-center justify-between mb-6 border border-gray-200">
-                            <div className="flex items-center">
-                                <span className="text-[13px] text-gray-600 font-medium">There are 20 products.</span>
-                            </div>
+                        <div className="flex justify-end mb-6 relative">
                             <div className="flex items-center gap-2 relative">
-                                <span className="text-[13px] text-gray-600">Sort by:</span>
+                                <span className="text-[13px] text-gray-600 font-medium">Sort by:</span>
                                 <div 
                                     onClick={() => setIsSortOpen(!isSortOpen)}
                                     className="border border-gray-200 bg-white rounded-sm px-3 py-1.5 flex items-center gap-6 cursor-pointer text-[13px] text-gray-700 min-w-[140px] justify-between shadow-sm hover:border-gray-300 transition-colors"
@@ -177,9 +150,10 @@ export default function Shop() {
                                         <div className="mt-3 opacity-100 pointer-events-auto lg:opacity-0 lg:pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto h-9">
                                             <button 
                                                 onClick={(e) => { e.preventDefault(); console.log("Added fake product") }}
-                                                className="w-full h-full bg-[#1aad52] text-white font-bold text-[13px] rounded-md hover:brightness-95 transition-all"
+                                                className="w-full h-full bg-[#1aad52] text-white font-bold text-[13px] rounded-md hover:brightness-95 transition-all flex items-center justify-center"
                                             >
-                                                Add To Cart
+                                                <span className="hidden md:inline">Add To Cart</span>
+                                                <Plus className="w-5 h-5 md:hidden" />
                                             </button>
                                         </div>
                                     </div>

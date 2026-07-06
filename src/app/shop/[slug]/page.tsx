@@ -82,28 +82,6 @@ export default function ProductDetails() {
 
             <main className="flex-grow max-w-[1350px] mx-auto w-full px-4 md:px-8 pt-12 pb-24">
                 
-                {/* ── Breadcrumbs ── */}
-                <div className="flex items-center mb-6 md:mb-10 h-[38px] overflow-x-auto overflow-y-hidden whitespace-nowrap hide-scrollbar" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-                    {/* Home */}
-                    <Link href="/" className="relative flex items-center h-full bg-white border border-gray-300 border-r-0 pl-4 md:pl-6 pr-4 z-30 hover:text-[#429420] transition-colors flex-shrink-0">
-                        <span className="font-semibold text-gray-700 text-[12px] md:text-[13px]">Home</span>
-                        <div className="absolute top-[-1px] right-[-19px] w-0 h-0 border-y-[19px] border-y-transparent border-l-[19px] border-l-gray-300 z-10"></div>
-                        <div className="absolute top-[0px] right-[-18px] w-0 h-0 border-y-[18px] border-y-transparent border-l-[18px] border-l-white z-20"></div>
-                    </Link>
-                    {/* Category (Shop) */}
-                    <Link href="/shop" className="relative flex items-center h-full bg-[#f4f7f4] border border-gray-300 border-l-0 border-r-0 pl-8 md:pl-10 pr-4 z-20 -ml-[1px] hover:text-[#429420] transition-colors flex-shrink-0">
-                        <span className="font-semibold text-gray-800 text-[12px] md:text-[13px]">Shop</span>
-                        <div className="absolute top-[-1px] right-[-19px] w-0 h-0 border-y-[19px] border-y-transparent border-l-[19px] border-l-gray-300 z-10"></div>
-                        <div className="absolute top-[0px] right-[-18px] w-0 h-0 border-y-[18px] border-y-transparent border-l-[18px] border-l-[#f4f7f4] z-20"></div>
-                    </Link>
-                    {/* Current Product */}
-                    <div className="relative flex items-center h-full bg-[#f4f7f4] border border-gray-300 border-l-0 border-r-0 pl-8 md:pl-10 pr-4 z-10 -ml-[1px] flex-shrink-0">
-                        <span className="font-semibold text-gray-900 text-[12px] md:text-[13px]">{product.name}</span>
-                        <div className="absolute top-[-1px] right-[-19px] w-0 h-0 border-y-[19px] border-y-transparent border-l-[19px] border-l-gray-300 z-10"></div>
-                        <div className="absolute top-[0px] right-[-18px] w-0 h-0 border-y-[18px] border-y-transparent border-l-[18px] border-l-[#f4f7f4] z-20"></div>
-                    </div>
-                </div>
-
                 {/* ── Main Layout ── */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
                     
