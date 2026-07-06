@@ -16,6 +16,7 @@ export default function Navbar() {
     const [isCartOpen, setIsCartOpen] = useState(false);
     const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const [isScrollingDown, setIsScrollingDown] = useState(false);
     const pathname = usePathname();
     const needsSpacer = pathname.startsWith("/shop");
     const isHome = pathname === "/";
@@ -23,10 +24,24 @@ export default function Navbar() {
     const useWhiteElements = isHome || isFloating;
 
     useEffect(() => {
+        let lastScrollY = window.scrollY;
+
         const handleScroll = () => {
-            setScrolled(window.scrollY > 20);
+            const currentScrollY = window.scrollY;
+            setScrolled(currentScrollY > 20);
+
+            if (currentScrollY > 60) {
+                if (currentScrollY > lastScrollY) {
+                    setIsScrollingDown(true);
+                } else if (currentScrollY < lastScrollY) {
+                    setIsScrollingDown(false);
+                }
+            } else {
+                setIsScrollingDown(false);
+            }
+            lastScrollY = currentScrollY;
         };
-        window.addEventListener("scroll", handleScroll);
+        window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
@@ -74,7 +89,7 @@ export default function Navbar() {
             {needsSpacer && <div className="md:hidden h-14 w-full shrink-0" />}
             <header className={`md:hidden fixed left-0 right-0 z-50 transition-all duration-300 ${isFloating ? "top-0 pt-3 px-3 pb-3" : "top-7 pt-0 px-0"}`}>
                 <div 
-                    className={`flex flex-col relative z-20 transition-all duration-300 ${isFloating ? "rounded-[22px] shadow-[0_8px_30px_rgba(0,0,0,0.2)] overflow-hidden" : ""}`}
+                    className={`flex flex-col relative z-20 transition-all duration-300 ${isFloating ? "rounded-[22px] shadow-[0_8px_30px_rgba(0,0,0,0.2)]" : ""} ${isFloating && !isMobileSearchOpen ? "overflow-hidden" : ""}`}
                     style={{ backgroundColor: isFloating ? "#0D530E" : "transparent" }}
                 >
                     {/* Subtle pattern overlay - only when scrolled */}
@@ -143,7 +158,7 @@ export default function Navbar() {
 
             {/* ── Mobile Bottom Nav ── */}
             {!(pathname.startsWith("/shop/") && pathname.length > 6) && (
-                <nav className="md:hidden fixed bottom-6 left-4 right-4 z-[100]">
+                <nav className={`md:hidden fixed bottom-6 left-4 right-4 z-[100] transition-all duration-500 ease-in-out ${isScrollingDown ? "translate-y-[150%] opacity-0 pointer-events-none" : "translate-y-0 opacity-100"}`}>
                     <div className="bg-white/95 backdrop-blur-md shadow-[0_8px_30px_rgba(0,0,0,0.12)] border border-white/50 rounded-full p-1.5">
                         <div className="flex items-center justify-between">
                             {mobileNavLinks.map(({ name, path }) => {
