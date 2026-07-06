@@ -156,14 +156,14 @@ export default function Home() {
                         {/* Right: Text block */}
                         <div className="w-full md:w-1/2 flex flex-col items-end md:items-start text-right md:text-left justify-start md:justify-center z-10 relative">
                             <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-4 flex-row-reverse md:flex-row">
-                                <div className="w-6 md:w-8 h-[2px] bg-[#FFF78D] drop-shadow-sm" />
-                                <span className="text-[11px] md:text-[14px] font-bold text-[#FFF78D] tracking-wider drop-shadow-sm">FRESH IN NO TIME</span>
+                                <div className="w-6 md:w-8 h-[2px] bg-[#285A48] drop-shadow-sm" />
+                                <span className="text-[11px] md:text-[14px] font-bold text-[#285A48] tracking-wider drop-shadow-sm">FRESH IN NO TIME</span>
                             </div>
                             
                             <h1 className="text-[32px] sm:text-[40px] md:text-[64px] font-black leading-[1.05] tracking-tight mb-3 md:mb-6 drop-shadow-md" style={{ fontFamily: "var(--font-display)" }}>
                                 <span className="text-white">Your Favorite Fruits</span><br/>
-                                <span className="text-[#FFF78D]">FRESH IN</span><br/>
-                                <span className="text-[#FFF78D]">MINUTES.</span>
+                                <span className="text-[#285A48]">FRESH IN</span><br/>
+                                <span className="text-[#285A48]">MINUTES.</span>
                             </h1>
                             
                             <p className="text-[13px] md:text-[18px] text-white/90 font-medium max-w-[260px] sm:max-w-sm md:max-w-md leading-relaxed mb-6 md:mb-10 drop-shadow-sm">
@@ -173,7 +173,7 @@ export default function Home() {
                             <div>
                                 <button
                                     onClick={() => router.push("/shop")}
-                                    className="bg-[#FFF78D] hover:bg-[#efe77d] text-[#132B1A] text-[12px] md:text-[15px] font-bold px-6 py-3 md:px-10 md:py-4 rounded-full transition-all shadow-[0_8px_20px_rgba(255,247,141,0.2)] hover:shadow-[0_8px_25px_rgba(255,247,141,0.3)] hover:-translate-y-0.5 tracking-widest uppercase active:scale-95"
+                                    className="bg-[#285A48] hover:bg-[#1e4336] text-white text-[12px] md:text-[15px] font-bold px-6 py-3 md:px-10 md:py-4 rounded-full transition-all shadow-[0_8px_20px_rgba(40,90,72,0.35)] hover:shadow-[0_8px_25px_rgba(40,90,72,0.5)] hover:-translate-y-0.5 tracking-widest uppercase active:scale-95"
                                 >
                                     YES, I'M HEALTHY
                                 </button>
