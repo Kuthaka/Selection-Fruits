@@ -123,7 +123,7 @@ export default function Home() {
     ];
 
     return (
-        <div className="flex min-h-screen flex-col bg-white">
+        <div className="flex min-h-screen flex-col bg-[#F2EDC2]">
             <Navbar />
 
             <main className="flex-grow">
@@ -303,7 +303,7 @@ export default function Home() {
                 {/* ─────────────────────────────────────────────────────────────────
                     FEATURED PRODUCTS
                 ───────────────────────────────────────────────────────────────── */}
-                <section className="max-w-7xl mx-auto px-4 md:px-8 pt-4 md:pt-6 pb-10 md:pb-14 relative">
+                <section className="max-w-7xl mx-auto px-4 md:px-8 pt-16 md:pt-24 pb-10 md:pb-14 relative">
                     <div className="flex flex-col mb-8 border-b border-gray-200">
                         <div className="inline-block border-b-[2.5px] border-[#429420] pb-2.5 w-fit">
                             <h2 className="text-xl md:text-2xl font-bold text-gray-900" style={{ fontFamily: "var(--font-display)" }}>
@@ -407,7 +407,7 @@ export default function Home() {
                 {/* ─────────────────────────────────────────────────────────────────
                     SHOP BY FEATURED CATEGORIES
                 ───────────────────────────────────────────────────────────────── */}
-                <section className="bg-[#f4f7f4] py-12 md:py-16">
+                <section className="py-12 md:py-16">
                     <div className="max-w-7xl mx-auto px-4 md:px-8">
                         <div className="flex flex-col mb-10 border-b border-[#429420]/20">
                             <div className="inline-block border-b-[2.5px] border-[#429420] pb-2.5 w-fit">

@@ -27,7 +27,7 @@ export default function Footer() {
     const displayMobile = settings?.mobile_number || "+91 - 74114 54555";
 
     return (
-        <footer className="w-full bg-[#fcf9f2] pb-24 md:pt-6 md:pb-12 md:px-8">
+        <footer className="w-full bg-[#F2EDC2] pb-24 md:pt-6 md:pb-12 md:px-8">
             <div className="max-w-7xl mx-auto bg-[#132B1A] rounded-t-[2rem] md:rounded-[2rem] p-8 py-12 md:p-14 lg:p-16 flex flex-col lg:flex-row gap-12 lg:gap-24 relative overflow-hidden">
                 {/* Subtle Background Pattern / Curve (Optional) */}
                 <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-[#183621] rounded-full opacity-50 pointer-events-none"></div>

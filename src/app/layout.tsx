@@ -41,7 +41,7 @@ export default function RootLayout({
         </Script>
       </head>
       <body
-        className={`${outfit.variable} antialiased font-sans`}
+        className={`${outfit.variable} antialiased font-sans bg-[#F2EDC2]`}
       >
         <AnalyticsTracker />
         {children}
