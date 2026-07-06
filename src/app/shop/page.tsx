@@ -140,20 +140,27 @@ export default function Shop() {
                                             {product.name}
                                         </h4>
                                         
-                                        {/* Price */}
-                                        <div className="flex items-baseline gap-1.5 h-[24px] mt-auto mb-2">
-                                            <span className="text-[14px] font-bold text-[#429420]">${product.price.toFixed(2)}</span>
-                                            {product.originalPrice && <span className="text-[12px] text-gray-400 line-through">${product.originalPrice.toFixed(2)}</span>}
+                                        {/* Price & Mobile Add Button */}
+                                        <div className="flex items-center justify-between mt-auto mb-1 lg:mb-2 h-[24px]">
+                                            <div className="flex items-baseline gap-1.5">
+                                                <span className="text-[14px] font-bold text-[#429420]">${product.price.toFixed(2)}</span>
+                                                {product.originalPrice && <span className="text-[12px] text-gray-400 line-through">${product.originalPrice.toFixed(2)}</span>}
+                                            </div>
+                                            <button 
+                                                onClick={(e) => { e.preventDefault(); console.log("Added fake product") }}
+                                                className="w-7 h-7 bg-[#1aad52] text-white rounded-full flex items-center justify-center lg:hidden hover:brightness-95 transition-all flex-shrink-0 shadow-sm"
+                                            >
+                                                <Plus className="w-4 h-4" />
+                                            </button>
                                         </div>
                                         
-                                        {/* Add To Cart Hover Button */}
-                                        <div className="mt-3 opacity-100 pointer-events-auto lg:opacity-0 lg:pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto h-9">
+                                        {/* Desktop Add To Cart Hover Button */}
+                                        <div className="mt-3 hidden lg:block opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto h-9">
                                             <button 
                                                 onClick={(e) => { e.preventDefault(); console.log("Added fake product") }}
                                                 className="w-full h-full bg-[#1aad52] text-white font-bold text-[13px] rounded-md hover:brightness-95 transition-all flex items-center justify-center"
                                             >
-                                                <span className="hidden md:inline">Add To Cart</span>
-                                                <Plus className="w-5 h-5 md:hidden" />
+                                                Add To Cart
                                             </button>
                                         </div>
                                     </div>

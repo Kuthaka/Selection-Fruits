@@ -285,7 +285,7 @@ export default function ProductDetails() {
             </main>
 
             {/* ── Mobile Sticky Buy Button ── */}
-            <div className="md:hidden fixed bottom-[76px] left-0 right-0 z-[40] bg-white border-t border-gray-100 p-3 shadow-[0_-4px_20px_rgba(0,0,0,0.06)] flex items-center justify-between transition-transform duration-300">
+            <div className="md:hidden fixed bottom-[90px] left-0 right-0 z-[40] bg-white border-t border-gray-100 p-3 shadow-[0_-4px_20px_rgba(0,0,0,0.06)] flex items-center justify-between transition-transform duration-300">
                 <div className="flex flex-col flex-shrink-0 mr-2">
                     <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Total Price</span>
                     <span className="text-[17px] font-black text-[#429420]">${(displayPrice * qty).toFixed(2)}</span>

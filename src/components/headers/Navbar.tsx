@@ -123,20 +123,25 @@ export default function Navbar() {
             </header>
 
             {/* ── Mobile Bottom Nav ── */}
-            <nav className="md:hidden fixed bottom-0 left-0 right-0 z-[100]">
-                <div className="bg-white border-t border-gray-100 px-2 pt-2 pb-4">
-                    <div className="flex items-center justify-around">
-                        {mobileNavLinks.map(({ name, path, Icon }) => (
-                            <Link
-                                key={path}
-                                href={path}
-                                className={`flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl transition-all ${isActive(path) ? "text-[#429420]" : "text-gray-400 hover:text-gray-600"}`}
-                            >
-                                <Icon className={`w-5 h-5 ${isActive(path) ? "stroke-[2.5px]" : "stroke-[1.5px]"}`} />
-                                <span className="text-[10px] font-semibold">{name}</span>
-                                {isActive(path) && <span className="w-1 h-1 rounded-full bg-[#429420]" />}
-                            </Link>
-                        ))}
+            <nav className="md:hidden fixed bottom-6 left-4 right-4 z-[100]">
+                <div className="bg-white/95 backdrop-blur-md shadow-[0_8px_30px_rgba(0,0,0,0.12)] border border-white/50 rounded-full p-1.5">
+                    <div className="flex items-center justify-between">
+                        {mobileNavLinks.map(({ name, path }) => {
+                            const active = isActive(path);
+                            return (
+                                <Link
+                                    key={path}
+                                    href={path}
+                                    className={`flex items-center justify-center transition-all duration-300 ${
+                                        active 
+                                            ? "bg-[#132B1A] text-white px-5 py-2.5 rounded-full shadow-md" 
+                                            : "text-gray-500 hover:text-gray-900 px-2 sm:px-3 py-2.5"
+                                    }`}
+                                >
+                                    <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-wider">{name}</span>
+                                </Link>
+                            );
+                        })}
                     </div>
                 </div>
             </nav>
