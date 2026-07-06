@@ -10,12 +10,10 @@ import {
 } from "lucide-react";
 import Navbar from "@/components/headers/Navbar";
 import Footer from "@/components/Footer";
-import TopBanner from "@/components/headers/TopBanner";
 
 export default function AboutPage() {
     return (
-        <div className="flex min-h-screen flex-col font-sans bg-[#fcf9f2]">
-            <TopBanner />
+        <div className="flex min-h-screen flex-col font-sans bg-transparent">
             <Navbar />
 
             <main className="flex-grow">

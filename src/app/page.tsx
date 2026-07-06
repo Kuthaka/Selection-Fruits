@@ -131,45 +131,49 @@ export default function Home() {
                 {/* ─────────────────────────────────────────────────────────────────
                     HERO SECTION
                 ───────────────────────────────────────────────────────────────── */}
-                <section 
-                    className="w-full relative overflow-hidden bg-center bg-cover bg-no-repeat"
-                    style={{ backgroundImage: "url('/Mains/banner-2.png')" }}
-                >
-                    {/* Subtle dark overlay for text readability */}
-                    <div className="absolute inset-0 bg-black/30 z-0"></div>
-                    {/* Vertical Background Text */}
+                <section className="w-full relative overflow-hidden min-h-[450px] sm:min-h-[500px] md:min-h-[600px]">
+                    {/* Mobile Background */}
+                    <div className="absolute inset-0 z-0 md:hidden bg-center bg-cover bg-no-repeat" style={{ backgroundImage: "url('/Mains/banner-mob.png')" }}></div>
+                    
+                    {/* Desktop Background */}
+                    <div className="absolute inset-0 z-0 hidden md:block bg-center bg-cover bg-no-repeat" style={{ backgroundImage: "url('/Mains/banner-2.png')" }}></div>
+
+                    {/* Subtle dark overlay for text readability - restored for mobile too */}
+                    <div className="absolute inset-0 bg-black/40 md:bg-black/30 z-0"></div>
+
+                    {/* Vertical Background Text - hidden on mobile anyway */}
                     <div className="absolute -left-36 lg:-left-28 xl:-left-20 top-1/2 -translate-y-1/2 -rotate-90 origin-center hidden lg:block select-none pointer-events-none z-0">
                         <span className="text-[26px] xl:text-[36px] font-black text-white/30 tracking-[0.35em] whitespace-nowrap leading-none mix-blend-overlay animate-[pulse_4s_cubic-bezier(0.4,0,0.6,1)_infinite]">SELECTION FRUITS</span>
                     </div>
 
-                    <div className="max-w-7xl mx-auto px-4 md:px-8 py-12 md:py-20 flex flex-col md:flex-row items-center justify-between min-h-[480px] md:min-h-[600px] gap-8 md:gap-16 relative z-10 pl-4 lg:pl-32">
+                    <div className="max-w-7xl mx-auto px-4 md:px-8 pt-24 pb-12 md:py-20 flex flex-col md:flex-row items-end md:items-center justify-start md:justify-between min-h-[450px] sm:min-h-[500px] md:min-h-[600px] gap-8 md:gap-16 relative z-10 lg:pl-32">
                         
                         {/* Left: Empty space to let background show and push text right */}
-                        <div className="w-full md:w-1/2 flex items-center justify-center relative">
+                        <div className="hidden md:flex w-full md:w-1/2 items-center justify-center relative">
                             {/* Removed banner-1.png to showcase background image */}
                         </div>
 
                         {/* Right: Text block */}
-                        <div className="w-full md:w-1/2 flex flex-col justify-center z-10 relative">
-                            <div className="flex items-center gap-3 mb-4">
-                                <div className="w-8 h-[2px] bg-[#FFF78D] drop-shadow-sm" />
-                                <span className="text-[13px] md:text-[14px] font-bold text-[#FFF78D] tracking-wider drop-shadow-sm">FRESH IN NO TIME</span>
+                        <div className="w-full md:w-1/2 flex flex-col items-end md:items-start text-right md:text-left justify-start md:justify-center z-10 relative">
+                            <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-4 flex-row-reverse md:flex-row">
+                                <div className="w-6 md:w-8 h-[2px] bg-[#FFF78D] drop-shadow-sm" />
+                                <span className="text-[11px] md:text-[14px] font-bold text-[#FFF78D] tracking-wider drop-shadow-sm">FRESH IN NO TIME</span>
                             </div>
                             
-                            <h1 className="text-[42px] md:text-[64px] font-black leading-[1.05] tracking-tight mb-6 drop-shadow-md" style={{ fontFamily: "var(--font-display)" }}>
+                            <h1 className="text-[32px] sm:text-[40px] md:text-[64px] font-black leading-[1.05] tracking-tight mb-3 md:mb-6 drop-shadow-md" style={{ fontFamily: "var(--font-display)" }}>
                                 <span className="text-white">Your Favorite Fruits</span><br/>
                                 <span className="text-[#FFF78D]">FRESH IN</span><br/>
                                 <span className="text-[#FFF78D]">MINUTES.</span>
                             </h1>
                             
-                            <p className="text-[16px] md:text-[18px] text-white/90 font-medium max-w-md leading-relaxed mb-10 drop-shadow-sm">
-                                Premium organic fruits sourced directly from local farmers of India
+                            <p className="text-[13px] md:text-[18px] text-white/90 font-medium max-w-[260px] sm:max-w-sm md:max-w-md leading-relaxed mb-6 md:mb-10 drop-shadow-sm">
+                                Premium organic fruits sourced directly <br className="block md:hidden" /> from local farmers of India
                             </p>
                             
                             <div>
                                 <button
                                     onClick={() => router.push("/shop")}
-                                    className="bg-[#FFF78D] hover:bg-[#efe77d] text-[#132B1A] text-[14px] md:text-[15px] font-bold px-10 py-4 rounded-full transition-all shadow-[0_8px_20px_rgba(255,247,141,0.2)] hover:shadow-[0_8px_25px_rgba(255,247,141,0.3)] hover:-translate-y-0.5 tracking-widest uppercase active:scale-95"
+                                    className="bg-[#FFF78D] hover:bg-[#efe77d] text-[#132B1A] text-[12px] md:text-[15px] font-bold px-6 py-3 md:px-10 md:py-4 rounded-full transition-all shadow-[0_8px_20px_rgba(255,247,141,0.2)] hover:shadow-[0_8px_25px_rgba(255,247,141,0.3)] hover:-translate-y-0.5 tracking-widest uppercase active:scale-95"
                                 >
                                     YES, I'M HEALTHY
                                 </button>
