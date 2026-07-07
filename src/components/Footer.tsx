@@ -89,12 +89,7 @@ export default function Footer() {
                             <a href={`mailto:${displayEmail}`} className="hover:text-white transition-colors">{displayEmail}</a>
                             <a href={`tel:${displayMobile.replace(/\s/g, '')}`} className="hover:text-white transition-colors">{displayMobile}</a>
                             <p>8:00AM - 10:00PM</p>
-                            <p className="leading-relaxed">
-                                6th Floor, North Tower, Vaishnavi Tech<br/>
-                                Park, Sarjapur Main Rd, Bellandur,<br/>
-                                Bengaluru, Karnataka 560103
-                            </p>
-                            <p className="mt-2">CIN: U46909KA2024PTC193326</p>
+                            
                         </div>
                     </div>
 

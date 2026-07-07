@@ -58,7 +58,7 @@ export default function ProductCard({ product, className = '' }: ProductCardProp
                     </div>
                     <button 
                         onClick={(e) => { e.preventDefault(); addItem(product as unknown as Product); }}
-                        className="w-7 h-7 bg-[#1aad52] text-white rounded-full flex items-center justify-center lg:hidden hover:brightness-95 transition-all flex-shrink-0 shadow-sm"
+                        className="w-7 h-7 bg-[#1aad52] text-white rounded-full flex items-center justify-center lg:hidden hover:brightness-95 active:scale-90 transition-all flex-shrink-0 shadow-sm"
                     >
                         <Plus className="w-4 h-4" />
                     </button>
