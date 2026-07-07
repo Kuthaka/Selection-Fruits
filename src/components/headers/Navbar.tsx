@@ -15,6 +15,7 @@ import CartDrawer from "@/components/cart/CartDrawer";
 export default function Navbar() {
     const [isCartOpen, setIsCartOpen] = useState(false);
     const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
+    const [activeMobileCategory, setActiveMobileCategory] = useState("All");
     const [isMounted, setIsMounted] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const [isScrollingDown, setIsScrollingDown] = useState(false);
@@ -66,12 +67,21 @@ export default function Navbar() {
     ];
 
     const mobileCategories = [
-        { name: "All", icon: ShoppingBag, active: true },
-        { name: "Mango", icon: Apple, active: false },
-        { name: "Fresh", icon: Leaf, active: false },
-        { name: "Milk&Bread", icon: Milk, active: false },
-        { name: "Groceries", icon: ShoppingBasket, active: false }
+        { name: "All", icon: ShoppingBag },
+        { name: "Mango", icon: Apple },
+        { name: "Fresh", icon: Leaf },
+        { name: "Milk&Bread", icon: Milk },
+        { name: "Groceries", icon: ShoppingBasket }
     ];
+
+    const handleMobileCategoryClick = (catName: string) => {
+        setActiveMobileCategory(catName);
+        if (catName === "All") {
+            router.push("/shop");
+        } else {
+            router.push(`/shop?q=${encodeURIComponent(catName)}`);
+        }
+    };
 
     return (
         <>
@@ -149,21 +159,24 @@ export default function Navbar() {
                     >
                         <SearchBar />
 
-                        {/* Category quick-links */}
                         <div className="flex items-center gap-3 overflow-x-auto no-scrollbar pb-1 px-1 mt-3">
-                            {mobileCategories.map((cat, idx) => (
+                            {mobileCategories.map((cat, idx) => {
+                                const isActive = activeMobileCategory === cat.name;
+                                return (
                                 <div
                                     key={idx}
+                                    onClick={() => handleMobileCategoryClick(cat.name)}
                                     className={`flex flex-col items-center justify-center min-w-[64px] h-[68px] flex-shrink-0 cursor-pointer transition-all rounded-xl ${
-                                        cat.active
+                                        isActive
                                             ? "bg-[#fcf9f2] shadow-sm text-gray-800"
                                             : "text-gray-700 hover:text-gray-900"
                                     }`}
                                 >
-                                    <cat.icon className={`w-6 h-6 mb-1 ${cat.active ? "text-[#429420]" : "text-gray-600"}`} strokeWidth={1.5} />
-                                    <span className={`text-[11px] ${cat.active ? "font-bold" : "font-medium"}`}>{cat.name}</span>
+                                    <cat.icon className={`w-6 h-6 mb-1 ${isActive ? "text-[#429420]" : "text-gray-600"}`} strokeWidth={1.5} />
+                                    <span className={`text-[11px] ${isActive ? "font-bold" : "font-medium"}`}>{cat.name}</span>
                                 </div>
-                            ))}
+                                );
+                            })}
                         </div>
                     </div>
                 </div>
