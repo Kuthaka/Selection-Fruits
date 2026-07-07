@@ -95,7 +95,7 @@ export default function Navbar() {
             {/* ── Mobile: complete top bar ── */}
             <header className={`md:hidden z-50 transition-all duration-300 ${isShop ? "sticky top-0 w-full pt-0 px-0" : `fixed left-0 right-0 ${isFloatingLayout ? "pt-3 px-3 pb-3" : "pt-0 px-0"} ${scrolled ? "top-0" : "top-7"}`}`}>
                 <div 
-                    className={`flex flex-col relative z-20 transition-all duration-300 ${isFloatingLayout ? "rounded-[22px] shadow-[0_8px_30px_rgba(0,0,0,0.2)]" : (isMobileSearchOpen ? "rounded-b-[22px] shadow-md overflow-hidden" : "")} ${isFloatingLayout && !isMobileSearchOpen ? "overflow-hidden" : ""}`}
+                    className={`flex flex-col relative z-20 transition-all duration-300 ${isFloatingLayout ? "rounded-[22px] shadow-[0_8px_30px_rgba(0,0,0,0.2)]" : (isMobileSearchOpen ? "rounded-b-[22px] shadow-md" : "")} ${isFloatingLayout && !isMobileSearchOpen ? "overflow-hidden" : ""}`}
                     style={{ backgroundColor: useSolidTheme ? "#132B1A" : "transparent" }}
                 >
 
