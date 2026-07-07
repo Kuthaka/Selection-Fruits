@@ -106,22 +106,24 @@ export default function Navbar() {
                     {/* Row 1: Logo & Icons */}
                     <div className={`flex items-center justify-between px-4 transition-all duration-300 relative z-10 origin-center ${isFloatingLayout ? "h-14 scale-[0.96]" : "h-16 scale-100"}`}>
                         <div className="flex items-center gap-3">
-                            {isProductPage && (
+                            {isProductPage ? (
                                 <button 
                                     onClick={() => router.push('/shop')}
-                                    className={`flex items-center justify-center transition-colors ${useWhiteElements ? "text-white" : "text-[#0D530E]"}`}
+                                    className={`flex items-center gap-1.5 transition-colors text-[16px] font-bold ${useWhiteElements ? "text-white" : "text-[#0D530E]"}`}
                                 >
                                     <ArrowLeft className="w-6 h-6" />
+                                    Back
                                 </button>
+                            ) : (
+                                <Link href="/" className="flex items-center gap-2">
+                                    <div className={`relative w-8 h-8 ${!useSolidTheme ? "drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]" : ""}`}>
+                                        <Image src="/Mains/logo-bg.png" alt="Logo" fill className="object-contain" priority />
+                                    </div>
+                                    <div className={`relative w-32 h-[26px] ${!useSolidTheme ? "drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]" : ""}`}>
+                                        <Image src={useWhiteElements ? "/Mains/selection-2.png" : "/Mains/selection.png"} alt="Selection Fruits" fill className="object-contain object-left" priority />
+                                    </div>
+                                </Link>
                             )}
-                            <Link href="/" className="flex items-center gap-2">
-                                <div className={`relative w-8 h-8 ${!useSolidTheme ? "drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]" : ""}`}>
-                                    <Image src="/Mains/logo-bg.png" alt="Logo" fill className="object-contain" priority />
-                                </div>
-                                <div className={`relative w-32 h-[26px] ${!useSolidTheme ? "drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]" : ""}`}>
-                                    <Image src={useWhiteElements ? "/Mains/selection-2.png" : "/Mains/selection.png"} alt="Selection Fruits" fill className="object-contain object-left" priority />
-                                </div>
-                            </Link>
                         </div>
 
                         <div className={`flex items-center gap-3.5 transition-colors duration-300 relative z-10 ${useWhiteElements ? "text-white" : "text-[#0D530E]"} ${!useSolidTheme ? "drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]" : ""}`}>

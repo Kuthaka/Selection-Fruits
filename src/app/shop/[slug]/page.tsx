@@ -158,6 +158,17 @@ export default function ProductDetails() {
                     <div className="flex flex-col">
                         <h1 className="text-[20px] md:text-[22px] font-bold text-gray-900 mb-2">{product.name}</h1>
                         
+                        {/* Price */}
+                        <div className="flex items-baseline gap-3 mb-4">
+                            <span className="text-[24px] font-bold text-[#429420]">QAR {displayPrice.toFixed(2)}</span>
+                            {product.regular_price && (
+                                <>
+                                    <span className="text-[16px] font-bold text-gray-400 line-through">QAR {product.regular_price.toFixed(2)}</span>
+                                    <span className="text-[14px] font-bold text-[#dc2626]">Save 17%</span>
+                                </>
+                            )}
+                        </div>
+
                         {/* Product Info */}
                         <div className="flex flex-col mb-4">
                             <p className="text-[13px] text-gray-400 font-medium">
@@ -178,17 +189,6 @@ export default function ProductDetails() {
                             <div className="inline-flex items-center gap-1.5 bg-[#e8f4ea] text-[#429420] px-2.5 py-1 rounded-sm text-[12px] font-bold mb-4">
                                 <Check className="w-3.5 h-3.5" /> In Stock
                             </div>
-                        </div>
-                        
-                        {/* Price */}
-                        <div className="flex items-baseline gap-3 mb-6">
-                            <span className="text-[24px] font-bold text-[#429420]">QAR {displayPrice.toFixed(2)}</span>
-                            {product.regular_price && (
-                                <>
-                                    <span className="text-[16px] font-bold text-gray-400 line-through">QAR {product.regular_price.toFixed(2)}</span>
-                                    <span className="text-[14px] font-bold text-[#dc2626]">Save 17%</span>
-                                </>
-                            )}
                         </div>
                         
                         <hr className="border-gray-200 mb-6" />
@@ -243,7 +243,7 @@ export default function ProductDetails() {
                     {/* Add to Cart State */}
                     <button 
                         onClick={() => addItem(product)}
-                        className={`absolute inset-0 w-full h-full bg-[#429420] text-white text-[14px] font-bold rounded-sm shadow-md shadow-[#429420]/20 transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] flex items-center justify-center gap-2 ${
+                        className={`absolute inset-0 w-full h-full bg-[#429420] text-white text-[14px] font-bold rounded-full shadow-md shadow-[#429420]/20 transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] flex items-center justify-center gap-2 ${
                             cartQuantity === 0 
                                 ? 'opacity-100 scale-100 pointer-events-auto hover:bg-[#367a19] active:scale-95' 
                                 : 'opacity-0 scale-90 pointer-events-none'
@@ -255,7 +255,7 @@ export default function ProductDetails() {
                     
                     {/* Incrementer State */}
                     <div 
-                        className={`absolute inset-0 w-full h-full flex items-center border border-gray-200 rounded-sm bg-white shadow-sm transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] overflow-hidden ${
+                        className={`absolute inset-0 w-full h-full flex items-center border border-gray-200 rounded-full bg-white shadow-sm transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] overflow-hidden ${
                             cartQuantity > 0 
                                 ? 'opacity-100 scale-100 pointer-events-auto' 
                                 : 'opacity-0 scale-110 pointer-events-none'
