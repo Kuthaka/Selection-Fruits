@@ -99,7 +99,7 @@ export default function Shop() {
                                 {isSortOpen && (
                                     <>
                                         <div className="fixed inset-0 z-30" onClick={() => setIsSortOpen(false)} />
-                                        <div className="absolute top-full right-0 mt-1 min-w-[140px] bg-white border border-gray-200 rounded-sm shadow-lg overflow-hidden z-40 py-1">
+                                        <div className="absolute top-full left-0 md:left-auto md:right-0 mt-1 min-w-[140px] bg-white border border-gray-200 rounded-sm shadow-lg overflow-hidden z-40 py-1">
                                             {sortOptions.map((opt) => (
                                                 <button
                                                     key={opt}
