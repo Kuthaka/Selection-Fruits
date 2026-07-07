@@ -28,6 +28,7 @@ const FAKE_PRODUCTS = [
 export default function Shop() {
     const [sortBy, setSortBy] = useState("Relevance");
     const [isSortOpen, setIsSortOpen] = useState(false);
+    const [activeCategory, setActiveCategory] = useState("All");
     const sortOptions = ["Relevance", "Price: Low to High", "Price: High to Low", "New Arrivals"];
     const addItem = useCartStore(state => state.addItem);
 
@@ -50,10 +51,10 @@ export default function Shop() {
                             
                             <div className="p-4 space-y-2">
                                 {["Fresh Fruits", "Fresh Vegetables", "Organic Staples", "Dairy Products", "Exotic Fruits"].map(c => (
-                                    <label key={c} className="flex items-center justify-between cursor-pointer group py-1.5">
+                                    <label key={c} className="flex items-center justify-between cursor-pointer group py-1.5" onClick={() => setActiveCategory(activeCategory === c ? "All" : c)}>
                                         <div className="flex items-center gap-2.5">
-                                            <input type="checkbox" className="w-3.5 h-3.5 rounded-sm border-gray-300 text-[#429420] focus:ring-[#429420]" />
-                                            <span className="text-[13px] text-gray-600 group-hover:text-[#429420] transition-colors">{c}</span>
+                                            <input type="checkbox" checked={activeCategory === c} readOnly className="w-3.5 h-3.5 rounded-sm border-gray-300 text-[#429420] focus:ring-[#429420]" />
+                                            <span className={`text-[13px] group-hover:text-[#429420] transition-colors ${activeCategory === c ? "text-[#429420] font-bold" : "text-gray-600"}`}>{c}</span>
                                         </div>
                                     </label>
                                 ))}
@@ -66,9 +67,18 @@ export default function Shop() {
                     <div className="flex-grow min-w-0">
                         {/* ── Mobile Categories (Sticky under navbar on mobile) ── */}
                         <div className="lg:hidden sticky top-[64px] z-40 bg-[#fcf9f2] py-3 -mx-4 px-4 w-[calc(100%+32px)] border-b border-gray-100 overflow-x-auto hide-scrollbar mb-4 flex items-center gap-2 shadow-sm -mt-12" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-                            <button className="px-4 py-1.5 bg-[#429420] text-white text-[13px] font-bold rounded-full whitespace-nowrap shadow-sm">All</button>
-                            {["Fresh Fruits", "Fresh Vegetables", "Organic Staples", "Dairy Products", "Exotic Fruits"].map(c => (
-                                <button key={c} className="px-4 py-1.5 bg-[#f4f7f4] text-gray-700 hover:bg-[#e8ece8] text-[13px] font-medium rounded-full whitespace-nowrap transition-colors border border-gray-200">{c}</button>
+                            {["All", "Fresh Fruits", "Fresh Vegetables", "Organic Staples", "Dairy Products", "Exotic Fruits"].map(c => (
+                                <button 
+                                    key={c} 
+                                    onClick={() => setActiveCategory(c)}
+                                    className={`px-4 py-1.5 text-[13px] rounded-full whitespace-nowrap shadow-sm transition-colors ${
+                                        activeCategory === c 
+                                            ? "bg-[#429420] text-white font-bold" 
+                                            : "bg-[#f4f7f4] text-gray-700 hover:bg-[#e8ece8] font-medium border border-gray-200"
+                                    }`}
+                                >
+                                    {c}
+                                </button>
                             ))}
                         </div>
 
