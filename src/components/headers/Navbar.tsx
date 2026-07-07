@@ -15,6 +15,7 @@ import CartDrawer from "@/components/cart/CartDrawer";
 export default function Navbar() {
     const [isCartOpen, setIsCartOpen] = useState(false);
     const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
+    const [isMounted, setIsMounted] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const [isScrollingDown, setIsScrollingDown] = useState(false);
     const pathname = usePathname();
@@ -29,6 +30,7 @@ export default function Navbar() {
     const useWhiteElements = true;
 
     useEffect(() => {
+        setIsMounted(true);
         let lastScrollY = window.scrollY;
 
         const handleScroll = () => {
@@ -132,7 +134,7 @@ export default function Navbar() {
                             </button>
                             <button onClick={() => setIsCartOpen(true)} className="relative hover:scale-105 transition-transform">
                                 <ShoppingBag className="w-6 h-6" />
-                                {totalItems > 0 && (
+                                {isMounted && totalItems > 0 && (
                                     <span className="absolute -top-1.5 -right-1.5 bg-yellow-400 text-gray-900 text-[10px] w-4 h-4 flex items-center justify-center rounded-full font-bold">
                                         {totalItems}
                                     </span>
