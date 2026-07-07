@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronDown, LayoutGrid, List, Plus, Star, ChevronRight, ChevronLeft } from "lucide-react";
+import { ChevronDown, LayoutGrid, List, Plus, Star, ChevronRight, ChevronLeft, ArrowUpDown } from "lucide-react";
 
 import Navbar from "@/components/headers/Navbar";
 import Footer from "@/components/Footer";
@@ -73,15 +73,29 @@ export default function Shop() {
                         </div>
 
                         {/* Toolbar */}
-                        <div className="flex justify-end mb-6 relative">
+                        <div className="flex justify-start md:justify-end mb-6 relative">
                             <div className="flex items-center gap-2 relative">
-                                <span className="text-[13px] text-gray-600 font-medium">Sort by:</span>
+                                {/* Desktop label */}
+                                <span className="hidden md:inline-block text-[13px] text-gray-600 font-medium">Sort by:</span>
+                                
+                                {/* Desktop Trigger */}
                                 <div 
                                     onClick={() => setIsSortOpen(!isSortOpen)}
-                                    className="border border-gray-200 bg-white rounded-sm px-3 py-1.5 flex items-center gap-6 cursor-pointer text-[13px] text-gray-700 min-w-[140px] justify-between shadow-sm hover:border-gray-300 transition-colors"
+                                    className="hidden md:flex border border-gray-200 bg-white rounded-sm px-3 py-1.5 items-center gap-6 cursor-pointer text-[13px] text-gray-700 min-w-[140px] justify-between shadow-sm hover:border-gray-300 transition-colors"
                                 >
                                     {sortBy} <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${isSortOpen ? "rotate-180" : ""}`} />
                                 </div>
+
+                                {/* Mobile Trigger */}
+                                <button 
+                                    onClick={() => setIsSortOpen(!isSortOpen)}
+                                    className="md:hidden flex items-center gap-1.5 px-4 py-1.5 bg-[#f0f0f0] text-gray-800 rounded-full text-[13px] font-medium transition-colors"
+                                >
+                                    <ArrowUpDown className="w-3.5 h-3.5" strokeWidth={2.5} />
+                                    Sort by
+                                    <ChevronDown className={`w-4 h-4 ml-0.5 text-gray-600 transition-transform duration-300 ${isSortOpen ? "rotate-180" : ""}`} strokeWidth={2.5} />
+                                </button>
+
                                 {isSortOpen && (
                                     <>
                                         <div className="fixed inset-0 z-30" onClick={() => setIsSortOpen(false)} />
