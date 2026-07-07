@@ -51,10 +51,10 @@ export default function ProductCard({ product, className = '' }: ProductCardProp
                 </h4>
                 
                 {/* Price & Mobile Add Button */}
-                <div className="flex items-center justify-between mt-auto mb-1 lg:mb-2 h-[24px]">
-                    <div className="flex items-baseline gap-1 md:gap-1.5">
-                        <span className="text-[12px] md:text-[14px] font-bold text-[#429420]">QAR {product.price.toFixed(2)}</span>
-                        {product.originalPrice && <span className="text-[10px] md:text-[12px] text-gray-400 line-through">QAR {product.originalPrice.toFixed(2)}</span>}
+                <div className="flex items-center justify-between mt-auto mb-1 lg:mb-2 min-h-[28px]">
+                    <div className="flex flex-col gap-0.5 justify-center">
+                        <span className="text-[12px] md:text-[14px] font-bold text-[#429420] leading-none">QAR {product.price.toFixed(2)}</span>
+                        {product.originalPrice && <span className="text-[10px] md:text-[12px] text-gray-400 line-through leading-none">QAR {product.originalPrice.toFixed(2)}</span>}
                     </div>
                     <button 
                         onClick={(e) => { e.preventDefault(); addItem(product as unknown as Product); }}
