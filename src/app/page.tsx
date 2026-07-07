@@ -11,6 +11,7 @@ import { createClient } from "@/lib/supabase/client";
 import { Product } from "@/types/product";
 import { Category } from "@/types/category";
 import { useCartStore } from "@/store/useCartStore";
+import ProductCard from "@/components/ProductCard";
 
 // Pastel pods for product cards (consistent with shop page)
 const PODS = ["pod-green", "pod-blue", "pod-amber", "pod-pink", "pod-mint", "pod-lavender"];
@@ -75,17 +76,17 @@ export default function Home() {
     const featuredProducts = products.slice(0, 8);
 
     const FAKE_PRODUCTS = [
-        { id: "1", brand: "Woodsman", name: "Pusa Cabbage Green Pattagobi Seed", price: 71.30, originalPrice: 85.90, discount: 17, isNew: true, rating: 3, image: "/promos/mango.png", weight: "500 g" },
-        { id: "2", brand: "Graphics", name: "Fresh Juicy Banana Isolated On White", price: 48.90, originalPrice: null, discount: 0, isNew: true, rating: 4, image: "/promos/grapes.png", weight: "1 kg" },
-        { id: "3", brand: "Graphics", name: "Organic Fresh Green Avocado Fruits", price: 61.90, originalPrice: null, discount: 0, isNew: true, rating: 4, image: "/promos/meat.png", weight: "3 pcs" },
-        { id: "4", brand: "Starwav", name: "Irresistable Apple Fragrance Oil", price: 35.20, originalPrice: 41.90, discount: 16, isNew: true, rating: 3, image: "/promos/coffee.png", weight: "250 ml" },
-        { id: "5", brand: "Vintage", name: "Kirat Organic Green Capsicum Seed", price: 56.90, originalPrice: null, discount: 0, isNew: true, rating: 3, image: "/promos/mango.png", weight: "50 g" },
-        { id: "6", brand: "Golden", name: "Onion hybrid seeds vegetable seeds", price: 39.19, originalPrice: 50.90, discount: 23, isNew: true, rating: 4, image: "/promos/grapes.png", weight: "100 g" },
-        { id: "7", brand: "Harvest", name: "Farm Fresh Sweet Corn Seeds", price: 22.50, originalPrice: 30.00, discount: 25, isNew: false, rating: 5, image: "/promos/meat.png", weight: "200 g" },
-        { id: "8", brand: "Organic", name: "Raw Honey From The Wild", price: 89.00, originalPrice: 110.00, discount: 19, isNew: false, rating: 4, image: "/promos/coffee.png", weight: "500 g" },
-        { id: "9", brand: "Spice", name: "Red Chili Powder Organic", price: 15.00, originalPrice: 18.00, discount: 16, isNew: true, rating: 5, image: "/promos/mango.png", weight: "250 g" },
-        { id: "10", brand: "Farm", name: "Fresh Strawberries Basket", price: 45.00, originalPrice: null, discount: 0, isNew: false, rating: 4, image: "/promos/grapes.png", weight: "1 Box" }
-    ];
+    { id: "1", brand: "Woodsman", name: "Cabbage", price: 71.30, originalPrice: 85.90, discount: 17, isNew: true, rating: 3, image: "/promos/mango.png", weight: "500 g" },
+    { id: "2", brand: "Graphics", name: "Banana", price: 48.90, originalPrice: null, discount: 0, isNew: true, rating: 4, image: "/promos/grapes.png", weight: "1 kg" },
+    { id: "3", brand: "Graphics", name: "Avocado", price: 61.90, originalPrice: null, discount: 0, isNew: true, rating: 4, image: "/promos/meat.png", weight: "3 pcs" },
+    { id: "4", brand: "Starwav", name: "Apple", price: 35.20, originalPrice: 41.90, discount: 16, isNew: true, rating: 3, image: "/promos/coffee.png", weight: "250 ml" },
+    { id: "5", brand: "Vintage", name: "Capsicum", price: 56.90, originalPrice: null, discount: 0, isNew: true, rating: 3, image: "/promos/mango.png", weight: "50 g" },
+    { id: "6", brand: "Golden", name: "Onion", price: 39.19, originalPrice: 50.90, discount: 23, isNew: true, rating: 4, image: "/promos/grapes.png", weight: "100 g" },
+    { id: "7", brand: "Harvest", name: "Corn", price: 22.50, originalPrice: 30.00, discount: 25, isNew: false, rating: 5, image: "/promos/meat.png", weight: "200 g" },
+    { id: "8", brand: "Organic", name: "Honey", price: 89.00, originalPrice: 110.00, discount: 19, isNew: false, rating: 4, image: "/promos/coffee.png", weight: "500 g" },
+    { id: "9", brand: "Spice", name: "Chili", price: 15.00, originalPrice: 18.00, discount: 16, isNew: true, rating: 5, image: "/promos/mango.png", weight: "250 g" },
+    { id: "10", brand: "Farm", name: "Strawberries", price: 45.00, originalPrice: null, discount: 0, isNew: false, rating: 4, image: "/promos/grapes.png", weight: "1 Box" }
+];
 
     const FAKE_REVIEWS = [
         { id: 1, name: "Byron Watts", text: "Contrary to popular belief, Lorem Ipsu not simply random text. It has roots in piece of classical Latin literature from", image: "https://randomuser.me/api/portraits/men/32.jpg" },
@@ -342,70 +343,9 @@ export default function Home() {
                                 </div>
                             ))
                         ) : (
-                            FAKE_PRODUCTS.map((product, i) => {
-                                return (
-                                    <Link key={product.id} href={`/shop/${product.id}`} className="w-[140px] md:w-[175px] flex-shrink-0 snap-start group relative bg-white flex flex-col h-full cursor-pointer border border-gray-100 hover:shadow-[0_4px_15px_rgba(0,0,0,0.05)] p-2.5 rounded-xl transition-all">
-                                        {/* Image Area */}
-                                        <div className="relative aspect-square bg-[#f4f7f4] rounded-lg flex items-center justify-center overflow-hidden p-4 mb-3">
-                                            {/* Badges */}
-                                            <div className="absolute top-2 left-2 flex flex-col gap-1.5 z-10">
-                                                {product.discount > 0 && (
-                                                    <span className="bg-[#ff4b4b] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full leading-none">
-                                                        -{product.discount}%
-                                                    </span>
-                                                )}
-                                                {product.isNew && (
-                                                    <span className="text-[10px] font-bold text-gray-600 leading-none ml-0.5 mt-0.5">
-                                                        New
-                                                    </span>
-                                                )}
-                                            </div>
-
-
-
-                                            {/* Product Image */}
-                                            <div className="relative w-[85%] h-[85%] transform transition-transform duration-500 group-hover:scale-105">
-                                                <Image src={product.image} alt={product.name} fill className="object-contain" unoptimized={true} sizes="(max-width:640px) 50vw, 16vw" />
-                                            </div>
-                                        </div>
-
-                                        {/* Content Area */}
-                                        <div className="flex flex-col flex-grow relative">
-                                            <div className="flex items-center justify-between mb-1">
-                                                <p className="text-[11px] text-gray-500">{product.brand}</p>
-                                                <p className="text-[10px] font-medium text-gray-400">{product.weight}</p>
-                                            </div>
-                                            <h4 className="text-[13px] font-bold text-gray-900 leading-[1.3] mb-1.5 group-hover:text-[#429420] transition-colors line-clamp-2 h-[34px] overflow-hidden">
-                                                {product.name}
-                                            </h4>
-                                            
-                                            {/* Price & Mobile Add Button */}
-                                            <div className="flex items-center justify-between mt-auto mb-1 lg:mb-2 h-[24px]">
-                                                <div className="flex items-baseline gap-1.5">
-                                                    <span className="text-[14px] font-bold text-[#429420]">QAR {product.price.toFixed(2)}</span>
-                                                    {product.originalPrice && <span className="text-[12px] text-gray-400 line-through">QAR {product.originalPrice.toFixed(2)}</span>}
-                                                </div>
-                                                <button 
-                                                    onClick={(e) => { e.preventDefault(); addItem(product as unknown as Product); }}
-                                                    className="w-7 h-7 bg-[#1aad52] text-white rounded-full flex items-center justify-center lg:hidden hover:brightness-95 transition-all flex-shrink-0 shadow-sm"
-                                                >
-                                                    <Plus className="w-4 h-4" />
-                                                </button>
-                                            </div>
-                                            
-                                            {/* Desktop Add To Cart Hover Button */}
-                                            <div className="mt-3 hidden lg:block opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto h-9">
-                                                <button 
-                                                    onClick={(e) => { e.preventDefault(); addItem(product as unknown as Product); }}
-                                                    className="w-full h-full bg-[#1aad52] text-white font-bold text-[13px] rounded-md hover:brightness-95 transition-all flex items-center justify-center"
-                                                >
-                                                    Add To Cart
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </Link>
-                                );
-                            })
+                            FAKE_PRODUCTS.map((product, i) => (
+                                <ProductCard key={product.id || i} product={product} className="w-[140px] md:w-[175px] flex-shrink-0 snap-start" />
+                            ))
                         )}
                     </div>
                 </section>
