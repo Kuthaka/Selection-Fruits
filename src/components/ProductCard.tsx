@@ -14,12 +14,14 @@ export default function ProductCard({ product, className = '' }: ProductCardProp
     const addItem = useCartStore((state) => state.addItem);
 
     return (
-        <Link 
-            href={`/shop/${product.id}`} 
-            className={`group relative bg-white flex flex-col h-full cursor-pointer border border-gray-100 hover:shadow-[0_4px_15px_rgba(0,0,0,0.05)] p-1.5 md:p-2.5 rounded-xl transition-all ${className}`}
+        <div 
+            className={`group relative bg-white flex flex-col h-full border border-gray-100 hover:shadow-[0_4px_15px_rgba(0,0,0,0.05)] p-1.5 md:p-2.5 rounded-xl transition-all ${className}`}
         >
             {/* Image Area */}
-            <div className="relative aspect-square bg-[#f4f7f4] rounded-lg flex items-center justify-center overflow-hidden p-2 md:p-4 mb-2 md:mb-3">
+            <Link 
+                href={`/shop/${product.id}`}
+                className="relative aspect-square bg-[#f4f7f4] rounded-lg flex items-center justify-center overflow-hidden p-2 md:p-4 mb-2 md:mb-3 cursor-pointer"
+            >
                 {/* Badges */}
                 <div className="absolute top-2 left-2 flex flex-col gap-1.5 z-10">
                     {product.discount > 0 && (
@@ -38,7 +40,7 @@ export default function ProductCard({ product, className = '' }: ProductCardProp
                 <div className="relative w-[95%] h-[95%] md:w-[85%] md:h-[85%] transform transition-transform duration-500 group-hover:scale-105">
                     <Image src={product.image} alt={product.name} fill className="object-contain" unoptimized={true} sizes="(max-width:640px) 50vw, 16vw" />
                 </div>
-            </div>
+            </Link>
 
             {/* Content Area */}
             <div className="flex flex-col flex-grow relative">
@@ -46,13 +48,17 @@ export default function ProductCard({ product, className = '' }: ProductCardProp
                     <p className="text-[11px] text-gray-500">{product.brand}</p>
                     <p className="text-[10px] font-medium text-gray-400">{product.weight}</p>
                 </div>
-                <h4 className="text-[11px] md:text-[13px] font-bold text-gray-900 leading-[1.3] mb-1.5 group-hover:text-[#429420] transition-colors line-clamp-2 h-[28px] md:h-[34px] overflow-hidden">
-                    {product.name}
-                </h4>
+                <div className="mb-1.5 z-10 relative">
+                    <Link href={`/shop/${product.id}`} className="cursor-pointer inline-block w-full">
+                        <h4 className="text-[11px] md:text-[13px] font-bold text-gray-900 leading-[1.3] group-hover:text-[#429420] transition-colors line-clamp-2 h-[28px] md:h-[34px] overflow-hidden">
+                            {product.name}
+                        </h4>
+                    </Link>
+                </div>
                 
                 {/* Price & Mobile Add Button */}
-                <div className="flex items-center justify-between mt-auto mb-1 lg:mb-2 min-h-[28px]">
-                    <div className="flex flex-col gap-0.5 justify-center">
+                <div className="relative z-20 flex items-center justify-between mt-auto mb-1 lg:mb-2 min-h-[28px]">
+                    <div className="flex flex-col gap-0.5 justify-center cursor-default">
                         <span className="text-[12px] md:text-[14px] font-bold text-[#429420] leading-none">QAR {product.price.toFixed(2)}</span>
                         {product.originalPrice && <span className="text-[10px] md:text-[12px] text-gray-400 line-through leading-none">QAR {product.originalPrice.toFixed(2)}</span>}
                     </div>
@@ -74,6 +80,6 @@ export default function ProductCard({ product, className = '' }: ProductCardProp
                     </button>
                 </div>
             </div>
-        </Link>
+        </div>
     );
 }
