@@ -95,10 +95,10 @@ body {
   animation: pop 0.25s ease;
 }
 
-@keyframes slideUpFade {
-  0% { transform: translateY(100%); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
+@keyframes toastFadeIn {
+  0% { opacity: 0; transform: translateY(-8px) scale(0.95); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
 }
-.animate-toast {
-  animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+.animate-toast-fade {
+  animation: toastFadeIn 0.3s cubic-bezier(0.32,0.72,0,1) forwards;
 }

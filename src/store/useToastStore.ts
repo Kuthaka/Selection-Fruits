@@ -1,31 +1,26 @@
 import { create } from 'zustand';
+import { toast as sonnerToast } from 'sonner';
 
 export interface ToastItem {
-    id: string;
+    id: string | number;
     message: string;
     icon?: string;
 }
 
 interface ToastStore {
-    toasts: ToastItem[];
+    toasts: ToastItem[]; // Kept for backward compatibility if any component reads it
     addToast: (message: string, icon?: string) => void;
-    removeToast: (id: string) => void;
+    removeToast: (id: string | number) => void;
 }
 
 export const useToastStore = create<ToastStore>((set) => ({
     toasts: [],
     addToast: (message, icon = '🛒') => {
-        const id = Math.random().toString(36).substring(7);
-        set((state) => ({
-            toasts: [...state.toasts, { id, message, icon }]
-        }));
-        setTimeout(() => {
-            set((state) => ({
-                toasts: state.toasts.filter((t) => t.id !== id)
-            }));
-        }, 2000);
+        sonnerToast(message, {
+            icon: icon,
+        });
     },
-    removeToast: (id) => set((state) => ({
-        toasts: state.toasts.filter((t) => t.id !== id)
-    })),
+    removeToast: (id) => {
+        sonnerToast.dismiss(id);
+    },
 }));
